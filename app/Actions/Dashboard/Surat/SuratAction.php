@@ -10,7 +10,6 @@ class SuratAction
 {
     public function execute($suratData)
     {
-
         $pengikut = implode(',', array_map(function ($nama, $umur, $hubungan) {
             return "$nama ($umur tahun) - $hubungan";
         }, $suratData->nama, $suratData->umur, $suratData->hubungan));

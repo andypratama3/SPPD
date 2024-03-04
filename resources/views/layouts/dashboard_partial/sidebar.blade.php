@@ -39,7 +39,7 @@
         </li> --}}
         <li class="nav-item {{ Request::routeIs('dashboard.surat.*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.surat.index') }}">
-                <i class="ti-bookmark menu-icon"></i>
+                <i class="fa-solid fa-envelope-open-text menu-icon"></i>
                 <span class="menu-title">Surat Perjalanan</span>
             </a>
         </li>

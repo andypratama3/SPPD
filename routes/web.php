@@ -27,5 +27,5 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.pegawai']);
     Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.pimpinan']);
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
-
+    Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
 });

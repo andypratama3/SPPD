@@ -35,4 +35,16 @@ class Surat extends Model
         $this->attributes['nomor_surat'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    public function pimpinan()
+    {
+        return $this->belongsTo(Pimpinan::class, 'pimpinan_id', 'id');
+    }
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class, 'pegawai_id', 'id');
+    }
 }
