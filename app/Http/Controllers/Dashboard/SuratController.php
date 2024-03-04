@@ -10,25 +10,10 @@ use App\Http\Controllers\Controller;
 use App\DataTransferObjects\SuratData;
 use Yajra\DataTables\Facades\DataTables;
 use App\Actions\Dashboard\Surat\SuratAction;
+use App\Actions\Dashboard\Surat\ActionDeleteSurat;
 
 class SuratController extends Controller
 {
-    /*
-        ? loop data from array like this
-        $pengikut = '';
-        foreach ($suratData->nama as $key => $nama) {
-            $umur = $suratData->umur[$key];
-            $hubungan = $suratData->hubungan[$key];
-
-            Concatenate each pengikut to the $pengikut string
-            $pengikut .= "$nama ($umur tahun) - $hubungan";
-
-            Add a comma after each pengikut except the last one
-            if ($key < count($suratData->nama) - 1) {
-                $pengikut .= ', ';
-            }
-        }
-    */
     public function index()
     {
         return view('admin.surat.index');
@@ -58,14 +43,30 @@ class SuratController extends Controller
         $pimpinans = Pimpinan::all();
         return view('admin.surat.create', compact('pegawais','pimpinans'));
     }
-    public function store(Request $request,SuratData $suratData, SuratAction $suratAction)
+    public function store(SuratData $suratData, SuratAction $suratAction)
     {
         $suratAction->execute($suratData);
         return redirect()->route('dashboard.surat.index')->with('success','Surat Menambahkan Pegawai');
     }
     public function show(Surat $surat)
     {
-    //    dd($surat->pengikut);
        return view('admin.surat.show', compact('surat'));
     }
+    public function edit(Surat $surat)
+    {
+        $pegawais = Pegawai::all();
+        $pimpinans = Pimpinan::all();
+       return view('admin.surat.edit', compact('surat','pegawais','pimpinans'));
+    }
+    public function update(SuratData $suratData, SuratAction $suratAction)
+    {
+        $suratAction->execute($suratData);
+        return redirect()->route('dashboard.surat.index')->with('success','Surat Menambahkan Pegawai');
+    }
+    public function destroy(ActionDeleteSurat $ActionDeleteSurat, Surat $surat)
+    {
+        $ActionDeleteSurat->execute($surat);
+        return redirect()->route('dashboard.surat.index')->with('success','Surat Berhasil Di Hapus');
+    }
+
 }

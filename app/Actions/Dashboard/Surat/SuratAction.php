@@ -13,7 +13,6 @@ class SuratAction
         $pengikut = implode(',', array_map(function ($nama, $umur, $hubungan) {
             return "$nama ($umur tahun) - $hubungan";
         }, $suratData->nama, $suratData->umur, $suratData->hubungan));
-
         $surat = Surat::updateOrCreate(
             ['slug' => $suratData->slug],
             [

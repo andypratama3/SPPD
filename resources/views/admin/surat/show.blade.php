@@ -136,11 +136,11 @@
                 </div>
             </div>
             <div class="card-body mt-3">
-                <form action="">
+
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12" >
                         <hr>
-                        <div class="form-group">
+                        <div class="form-group"> <input type="hidden">
                             <h6 class="text-center">Rincian Biaya</h6>
                             <hr>
                             <table class="table table-bordered text-center" id="dynamicAddRemove">

@@ -24,7 +24,6 @@ class SuratData extends Data
         public readonly array $nama,
         public readonly array $umur,
         public readonly array $hubungan,
-
         public readonly string $mata_anggaran,
         public readonly ?string $slug,
 
