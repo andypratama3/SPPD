@@ -30,10 +30,10 @@
                 </ul>
             </div>
         </li> --}}
-        <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-                <i class="ti-pie-chart menu-icon"></i>
-                <span class="menu-title">Charts</span>
+        <li class="nav-item {{ Request::routeIs('dashboard.surat.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.surat.index') }}">
+                <i class="ti-bookmark menu-icon"></i>
+                <span class="menu-title">Surat Perjalanan</span>
             </a>
         </li>
         <li class="nav-item">

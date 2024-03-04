@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
 use App\Http\Controllers\Dashboard\DashboardController;
 
@@ -23,5 +24,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/',DashboardController::class)->name('dashboard');
     Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.pegawai']);
+    Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
 
 });

@@ -5,7 +5,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Tambah Pegawai</h5>
+                <h5 class="text-center">Detail Pegawai</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.pegawai.store') }}" method="post">
@@ -15,19 +15,18 @@
                             <div class="form-group">
                                 <label for="">Nama <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="name"
-                                    placeholder="Masukan Nama Karyawan" value="{{ old('name') }}">
+                                    placeholder="Masukan Nama Karyawan" value="{{ $pegawai->name }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">NIP <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="nip"
-                                    placeholder="Masukan Nip Karyawan" value="{{ old('nip') }}">
+                                    placeholder="Masukan Nip Karyawan" value="{{ $pegawai->nip }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-                            <button class="btn btn-primary btn-sm float-end">Submit</button>
+                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-xs">Kembali</a>
                         </div>
                     </div>
                 </form>

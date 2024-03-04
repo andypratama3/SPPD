@@ -7,6 +7,9 @@
         .card {
             border-radius: 10px;
         }
+        .border-input {
+            border-radius: 10px;
+        }
     </style>
 </head>
 

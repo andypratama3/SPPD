@@ -10,6 +10,7 @@
             <span class="ti-view-list"></span>
         </button>
         <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item text-black"><strong>{{ \Carbon\Carbon::now()->translatedFormat('d F Y H:i:s') }}</strong></li>
             <li class="nav-item dropdown me-1">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
                     id="messageDropdown" href="#" data-bs-toggle="dropdown">
