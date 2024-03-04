@@ -7,9 +7,16 @@
             </a>
         </li>
 
+        <li class="nav-item {{ Request::routeIs('dashboard.pimpinan.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.pimpinan.index') }}">
+                <i class="ti ti-user menu-icon"></i>
+                <span class="menu-title">Pimpinan</span>
+            </a>
+        </li>
+
         <li class="nav-item {{ Request::routeIs('dashboard.pegawai.*') ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('dashboard.pegawai.index') }}">
-                <i class="ti ti-user menu-icon"></i>
+                <i class="fas fa-users menu-icon"></i>
                 <span class="menu-title">Pegawai</span>
             </a>
         </li>

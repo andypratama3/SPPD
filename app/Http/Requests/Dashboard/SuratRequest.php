@@ -11,7 +11,56 @@ class SuratRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+    public function getPemimpin()
+    {
+        $this->pimpinan_id;
+    }
+    public function getPegawai()
+    {
+        $this->pegawai_id;
+    }
+    public function getNomorSurat()
+    {
+        $this->nomor_surat;
+    }
+    public function getTujuanPerjalanan()
+    {
+        $this->tujuan_perjalanan;
+    }
+    public function getAngkutan()
+    {
+        $this->angkutan;
+    }
+    public function getTempatBerangkat()
+    {
+        $this->tempat_berangkat;
+    }
+    public function getTempatTujuan()
+    {
+        $this->tempat_tujuan;
+    }
+    public function getLamaPerjalanan()
+    {
+        $this->lama_perjalanan;
+    }
+    public function getTanggalKembali()
+    {
+        $this->tanggal_kembali;
+    }
+    public function getInstansi()
+    {
+        $this->instansi;
+    }
+    //pengikut
+    public function getMataAnggaran()
+    {
+        $this->mata_anggaran;
+    }
+    public function getSlug()
+    {
+        $this->slug;
     }
 
     /**

@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
-@section('title', 'Detail')
+@section('title', 'Dashboard')
 @section('content')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Detail Surat</h5>
+                <h5 class="text-center">Detail Pegawai</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.pegawai.store') }}" method="post">

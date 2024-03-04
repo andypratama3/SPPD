@@ -11,18 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('surat_perjalanans', function (Blueprint $table) {
+        Schema::create('surats', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('pimpinan_id')->nullable()->references('id')->on('pimpinans')->onDelete('cascade');
             $table->string('nomor_surat');
+            $table->foreignUuid('pegawai_id')->nullable()->references('id')->on('pegawais')->onDelete('cascade');
             $table->string('tujuan_perjalanan');
             $table->enum('angkutan', ['Darat', 'Udara','Air']);
             $table->string('tempat_berangkat');
             $table->string('tempat_tujuan');
-            $table->date('lama_perjalanan');
+            $table->string('lama_perjalanan');
             $table->date('tanggal_kembali');
-            $table->string('pengikut');
+            $table->string('instansi');
+            $table->longText('pengikut');
             $table->string('mata_anggaran');
-            
+            $table->string('slug');
             $table->timestamps();
         });
     }
