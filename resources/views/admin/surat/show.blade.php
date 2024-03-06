@@ -233,7 +233,10 @@
                                             <th class="w-25">RP</th>
                                             <th class="w-25">Total</th>
                                             <th class="w-50">Keterangan</th>
+                                            @if($rincian->status == 'Lunas')
+                                            @else
                                             <th class="w-25">Actions</th>
+                                            @endif
                                         </tr>
                                         @foreach ($surat->rincianBiaya as $rincian)
                                         @php
@@ -250,13 +253,20 @@
                                                 <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
                                                 <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
                                                 <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                                @if($rincian->status == 'Lunas')
+                                                @else
                                                 <td><button type="button" class="btn btn-xs btn-danger remove-row"><i class="fas fa-trash"></i></button></td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         @endforeach
                                         <tr>
+                                            @if($rincian->status == 'Lunas')
+                                            @else
                                             <td colspan="5"></td>
                                             <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
+                                            @endif
+
                                         </tr>
                                     </table>
 
@@ -266,11 +276,11 @@
                                 <div class="form-group">
                                     @if($rincian->status == 'Lunas')
                                     <label for="">Pembayaran Full</label>
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->pelunasan }}">
+                                    <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
                                     @else
                                     <label for="">Jumlah DP</label>
                                     @foreach ($surat->rincianBiaya as $dp)
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" value="{{ $dp->dp }}">
+                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $dp->dp }}">
                                     @endforeach
                                     @endif
                                 </div>
