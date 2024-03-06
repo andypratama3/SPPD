@@ -35,6 +35,7 @@ class RincianBiayaAction
         if ($dp_int + $pelunasan_int === $total_semua_rincian) {
             $update_status = 'Lunas';
             $sisa_pembayaran = 0;
+            $dp_int += $pelunasan_int;
         } else {
             $update_status = 'DP';
 
