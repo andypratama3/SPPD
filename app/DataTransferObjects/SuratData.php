@@ -18,6 +18,7 @@ class SuratData extends Data
         public readonly string $tempat_berangkat,
         public readonly string $tempat_tujuan,
         public readonly string $lama_perjalanan,
+        public readonly string $tanggal_berangkat,
         public readonly string $tanggal_kembali,
         public readonly string $instansi,
         public readonly ?string $pengikut,
@@ -43,6 +44,7 @@ class SuratData extends Data
             $request->getTempatTujuan(),
             $request->getLamaPerjalanan(),
             $request->getTanggalKembali(),
+            $request->getTanggalJalan(),
             $request->getInstansi(),
             $request->getMataAnggaran(),
             $request->getSlug(),
@@ -60,6 +62,7 @@ class SuratData extends Data
             'lama_perjalanan.required' => 'Kolom Lama Perjalanan tidak boleh kosong!',
             'tanggal_kembali.required' => 'Kolom Tanggal Kembali tidak boleh kosong!',
             'instansi.required' => 'Kolom Instansi tidak boleh kosong!',
+            'tanggal_berangkat.required' => 'Kolom Tanggal Berangkat tidak boleh kosong!',
             'mata_anggaran.required' => 'Kolom Mata Anggaran tidak boleh kosong!',
         ];
     }

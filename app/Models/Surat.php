@@ -24,6 +24,7 @@ class Surat extends Model
         'tempat_berangkat',
         'tempat_tujuan',
         'lama_perjalanan',
+        'tanggal_jalan',
         'tanggal_kembali',
         'instansi',
         'pengikut',

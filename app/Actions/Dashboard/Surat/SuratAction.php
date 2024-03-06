@@ -27,6 +27,7 @@ class SuratAction
                 'tempat_berangkat' => $suratData->tempat_berangkat,
                 'tempat_tujuan' => $suratData->tempat_tujuan,
                 'lama_perjalanan' => $suratData->lama_perjalanan,
+                'tanggal_berangkat' => $suratData->tanggal_berangkat,
                 'tanggal_kembali' => $suratData->tanggal_kembali,
                 'instansi' => $suratData->instansi,
                 'pengikut' => $pengikut,
