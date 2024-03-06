@@ -11,9 +11,14 @@ class RincianBiayaData extends Data
 {
     public function __construct(
         public readonly array $rincian,
+        public readonly array $rp,
         public readonly array $jumlah,
         public readonly array $total,
         public readonly ?array $keterangan,
+        public readonly ?string $dp,
+        public readonly ?string $sisa_pembayaran,
+        public readonly string $status,
+        public readonly string $surat,
         public readonly ?string $id,
 
     ) {
@@ -28,6 +33,9 @@ class RincianBiayaData extends Data
             $request->getRp(),
             $request->getTotal(),
             $request->getKeterangan(),
+            $request->getDp(),
+            $request->getSisaPembayaran(),
+            $request->getStatus(),
             $request->getId(),
         ]);
     }
@@ -38,6 +46,7 @@ class RincianBiayaData extends Data
             'rincian.required' => 'Kolom Rincian tidak boleh kosong!',
             'jumlah.required' => 'Kolom Jumlah tidak boleh kosong!',
             'rp.required' => 'Kolom Nominal tidak boleh kosong!',
+            'dp.required' => 'Kolom Nominal Dp tidak boleh kosong!',
         ];
     }
 }

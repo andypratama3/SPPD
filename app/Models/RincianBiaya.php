@@ -20,5 +20,13 @@ class RincianBiaya extends Model
         'rp',
         'total',
         'keterangan',
+        'dp',
+        'sisa_pembayaran',
+        'status'
     ];
+
+    public function surat()
+    {
+        return $this->belongsToMany(Surat::class, 'surat_rincian');
+    }
 }

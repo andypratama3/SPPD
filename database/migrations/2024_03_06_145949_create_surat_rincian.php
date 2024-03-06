@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('surat_rincian', function (Blueprint $table) {
-            $table->foreignUuid('rincia_id')->references('id')->on('pegawais')->onDelete('cascade');
+            $table->foreignUuid('rincian_biaya_id')->references('id')->on('rincian_biayas')->onDelete('cascade');
             $table->foreignUuid('surat_id')->references('id')->on('surats')->onDelete('cascade');
 
             // Setting The Primary Keys
-            $table->primary(['rincia_id', 'surat_id']);
+            $table->primary(['rincian_biaya_id', 'surat_id']);
         });
     }
 

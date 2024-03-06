@@ -50,6 +50,9 @@ class SuratController extends Controller
     }
     public function show(Surat $surat)
     {
+        foreach ($surat->rincianBiaya as $key => $value) {
+            // dd($value);
+        }
        return view('admin.surat.show', compact('surat'));
     }
     public function edit(Surat $surat)

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('tempat_berangkat');
             $table->string('tempat_tujuan');
             $table->string('lama_perjalanan');
+            $table->date('tanggal_berangkat');
             $table->date('tanggal_kembali');
             $table->string('instansi');
             $table->longText('pengikut');

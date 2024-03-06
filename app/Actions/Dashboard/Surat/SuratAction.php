@@ -10,9 +10,13 @@ class SuratAction
 {
     public function execute($suratData)
     {
-        $pengikut = implode(',', array_map(function ($nama, $umur, $hubungan) {
-            return "$nama ($umur tahun) - $hubungan";
-        }, $suratData->nama, $suratData->umur, $suratData->hubungan));
+        if (!empty($nama) && !empty($umur) && !empty($hubungan)) {
+            $pengikut = implode(',', array_map(function ($nama, $umur, $hubungan) {
+                return "$nama ($umur tahun) - $hubungan";
+            }, $suratData->nama, $suratData->umur, $suratData->hubungan));
+        }else {
+            $pengikut = "";
+        }
         $surat = Surat::updateOrCreate(
             ['slug' => $suratData->slug],
             [

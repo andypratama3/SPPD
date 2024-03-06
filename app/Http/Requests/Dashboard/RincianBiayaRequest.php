@@ -34,6 +34,19 @@ class RincianBiayaRequest extends FormRequest
     {
         $this->keterangan;
     }
+
+    public function getDp()
+    {
+        $this->dp;
+    }
+    public function getSiswaPembayaran()
+    {
+        $this->sisa_pembayaran;
+    }
+    public function getStatus()
+    {
+        $this->status;
+    }
     public function getId()
     {
         $this->id;
