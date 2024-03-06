@@ -9,14 +9,16 @@
             </div>
             <div class="card-body">
                 @include('layouts.flashmessage')
-                <form action="{{ route('dashboard.surat.store') }}" method="post">
+                <form action="{{ route('dashboard.surat.update', $surat->slug) }}" method="post">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" name="slug" value="{{ $surat->slug }}">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Pejabat Berwenang <code>*</code></label>
                                 <select name="pimpinan_id" id="" class="form-control select2">
-                                    <option selected disabled>Pilih Pejabat Berwenang</option>
+                                    <option selected value="{{ $surat->pimpinan->id }}">{{ $surat->pimpinan->name }}</option>
                                     @foreach ($pimpinans as $pimpinan)
                                     <option value="{{ $pimpinan->id }}">{{ $pimpinan->name }}</option>
                                     @endforeach
@@ -28,7 +30,7 @@
                                 <label for="">Nomor Surat <code>*</code></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control border-input" id="nomor_surat"
-                                        name="nomor_surat" value="{{ old('nomor_surat') }}"
+                                        name="nomor_surat" value="{{ $surat->nomor_surat }}"
                                         placeholder="Masukan Hanya Awalan No Surat">
                                     <div class="input-group-append">
                                         <span class="input-group-text text-black">/PL21/SPPD/2024</span>
@@ -39,8 +41,10 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Pegawai <code>*</code></label>
-                                <select name="pegawai_id" id="" class="form-control select2">
-                                    <option selected disabled>Pilih Pegawai</option>
+                                <select name="pegawai[]" multiple class="form-control select2" data-placeholder="Pilih Pegawai" id="pegawai" style="width: 100%">
+                                    @foreach ($surat->pegawai as $pegawai)
+                                    <option selected value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
+                                    @endforeach
                                     @foreach ($pegawais as $pegawai)
                                     <option value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
                                     @endforeach
@@ -51,14 +55,14 @@
                             <div class="form-group">
                                 <label for="">Tujuan Perjalanan <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tujuan_perjalanan"
-                                    placeholder="Masukan Tujuan Perjalanan" value="{{ old('tujuan_perjalanan') }}">
+                                    placeholder="Masukan Tujuan Perjalanan" value="{{ $surat->tujuan_perjalanan }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Angkutan <code>*</code></label>
                                 <select name="angkutan" class="form-control" style="border-radius: 10px;">
-                                    <option selected disabled>Pilih Angkutan</option>
+                                    <option selected {{ $surat->angkutan }}>{{ $surat->angkutan }}</option>
                                     <option value="Darat">Darat</option>
                                     <option value="Udara">Udara</option>
                                     <option value="Laut">Laut</option>
@@ -69,14 +73,14 @@
                             <div class="form-group">
                                 <label for="">Tempat Berangkat <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tempat_berangkat"
-                                    placeholder="Masukan Tempat Berangkat" readonly value="Samarinda">
+                                    placeholder="Masukan Tempat Berangkat" readonly value="{{ $surat->tempat_berangkat }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tempat Tujuan <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tempat_tujuan"
-                                    placeholder="Masukan Tempat Berangkat" value="{{ old('tempat_tujuan') }}">
+                                    placeholder="Masukan Tempat Berangkat" value="{{ $surat->tempat_tujuan }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -84,18 +88,25 @@
                                 <label for="">Lama Perjalanan <code>*</code></label>
                                 <div class="input-group">
                                     <input type="number" min="1" max="100" class="form-control border-input" name="lama_perjalanan"
-                                        placeholder="Masukan Angka" value="{{ old('lama_perjalanan') }}">
+                                        placeholder="Masukan Angka" value="{{ $surat->lama_perjalanan }}">
                                     <div class="input-group-append">
                                         <span class="input-group-text text-black">Hari</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group">
+                                <label for="tanggak_kembali">Tanggal Berangkat <code>*</code></label>
+                                <input type="date" class="form-control form-control-sm" name="tanggal_berangkat" id="tanggal_berangkat"
+                                    placeholder="Masukan Tujuan" value="{{ $surat->tanggal_berangkat }}">
+                            </div>
+                        </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tanggal Kembali <code>*</code></label>
                                 <input type="date" class="form-control border-input" name="tanggal_kembali"
-                                    placeholder="Masukan Tujuan" value="{{ old('tanggal_kembali') }}">
+                                    placeholder="Masukan Tujuan" value="{{ $surat->tanggal_kembali }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -109,7 +120,7 @@
                             <div class="form-group">
                                 <label for="">Mata Anggaran <code>*</code></label>
                                 <select name="mata_anggaran" id="" style="border-radius: 10px;" class="form-control">
-                                    <option selected disabled>Pilih Mata Anggaran</option>
+                                    <option selected value="{{ $surat->mata_anggaran }}">{{ $surat->mata_anggaran }}</option>
                                     <option value="524111">524111</option>
                                     <option value="524113">524113</option>
                                 </select>
@@ -124,14 +135,31 @@
                                         <th class="w-25">Umur</th>
                                         <th class="w-50">Hubungan</th>
                                     </tr>
-                                    <td><input type="text" class="form-control" name="nama[]"
-                                            placeholder="Masukkan Nama"></td>
-                                    <td><input type="text" class="form-control" name="umur[]"
-                                            placeholder="Masukkan Umur"></td>
-                                    <td><input type="text" class="form-control" name="hubungan[]"
-                                            placeholder="Masukkan Hubungan"></td>
-                                    <th class="w-25"><button type="button" id="dynamic-ar"
-                                            class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
+                                @if(!empty($surat->nama) && (!empty($surat->umur)) && (!empty($surat->hubungan)))
+                                @php
+                                    $decodedNama = json_decode($surat->nama, true);
+                                    $decodedUmur = json_decode($surat->umur, true);
+                                    $decodedHubungan = json_decode($surat->hubungan, true);
+                                @endphp
+                                @foreach ($decodedNama as $index => $nama)
+                                <tr>
+                                    <td><input type="text" class="form-control" name="nama[]" readonly value="{{ $nama }}"></td>
+                                    <td><input type="text" class="form-control" name="umur[]" readonly value="{{ $decodedUmur[$index] }}"></td>
+                                    <td><input type="text" class="form-control" name="hubungan[]" readonly value="{{ $decodedHubungan[$index] }}"></td>
+                                </tr>
+                                @endforeach
+                                @else
+                                    <tr>
+                                        <td><input type="text" class="form-control" name="nama[]"
+                                                ></td>
+                                        <td><input type="text" class="form-control" name="umur[]"
+                                             ></td>
+                                        <td><input type="text" class="form-control" name="hubungan[]"
+                                            ></td>
+                                            <th class="w-25"><button type="button" id="dynamic-ar"
+                                                    class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
+                                    </tr>
+                                @endif
                                 </table>
                             </div>
                         </div>

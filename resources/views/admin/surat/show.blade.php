@@ -90,6 +90,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="">Tanggal Berangkat <code>*</code></label>
+                            <input type="date" class="form-control border-input" name="tanggal_berangkat"
+                                placeholder="Masukan Tujuan" value="{{ $surat->tanggal_berangkat }}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="">Tanggal Kembali <code>*</code></label>
                             <input type="date" class="form-control border-input" name="tanggal_kembali"
                                 placeholder="Masukan Tujuan" value="{{ $surat->tanggal_kembali }}" readonly>
@@ -117,29 +124,18 @@
                                     <th class="w-25">Umur</th>
                                     <th class="w-50">Hubungan</th>
                                 </tr>
-                            @if (!empty($surat->pengikut))
+                                @if(!empty($surat->nama) && (!empty($surat->umur)) && (!empty($surat->hubungan)))
                                 @php
-                                $pengikutDetails = explode(',', $surat->pengikut);
+                                    $decodedNama = json_decode($surat->nama, true);
+                                    $decodedUmur = json_decode($surat->umur, true);
+                                    $decodedHubungan = json_decode($surat->hubungan, true);
                                 @endphp
-
-                                @foreach ($pengikutDetails as $detail)
-                                    @php
-                                    $parts = explode(' - ', $detail);
-                                    $nama_umur = explode(' ', $parts[0]);
-                                    $nama = $nama_umur[0];
-                                    // Extracting umur within parentheses
-                                    preg_match('/\(([^)]+)\)/', $parts[0], $matches);
-                                    $umur = $matches[1];
-                                    $hubungan = $parts[1] ?? '';
-                                    @endphp
-                                    <tr>
-                                        <td><input type="text" class="form-control" name="nama[]"
-                                                readonly value="{{ $nama }}"></td>
-                                        <td><input type="text" class="form-control" name="umur[]"
-                                            readonly value="{{ $umur }}"></td>
-                                        <td><input type="text" class="form-control" name="hubungan[]"
-                                            readonly value="{{ $hubungan }}"></td>
-                                    </tr>
+                                @foreach ($decodedNama as $index => $nama)
+                                <tr>
+                                    <td><input type="text" class="form-control" name="nama[]" readonly value="{{ $nama }}"></td>
+                                    <td><input type="text" class="form-control" name="umur[]" readonly value="{{ $decodedUmur[$index] }}"></td>
+                                    <td><input type="text" class="form-control" name="hubungan[]" readonly value="{{ $decodedHubungan[$index] }}"></td>
+                                </tr>
                                 @endforeach
                             @else
                             <tr>
@@ -217,7 +213,7 @@
                     </div>
                 </form>
                     @else
-                    @foreach ($surat->rincianBiaya as $rincian)  
+                    @foreach ($surat->rincianBiaya as $rincian)
                     <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -263,34 +259,60 @@
                                             <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
                                         </tr>
                                     </table>
-                                    
+
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
+                                    @if($rincian->status == 'Lunas')
+                                    <label for="">Pembayaran Full</label>
+                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->pelunasan }}">
+                                    @else
                                     <label for="">Jumlah DP</label>
                                     @foreach ($surat->rincianBiaya as $dp)
                                     <input type="text" name="dp" id="dp" class="form-control border-input" value="{{ $dp->dp }}">
                                     @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="">Status</label>
+                                    @if($rincian->status == 'Lunas')
+                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->status }}">
+                                    @else
                                     <select name="status" class="form-control border-input">
                                         @foreach ($surat->rincianBiaya as $status)
                                         <option selected value="{{ $status->status }}">{{ $status->status }}</option>
                                         @endforeach
                                         <option value="DP">DP</option>
                                         <option value="Belum Di Bayar">Belum Di Bayar</option>
-                                        <option value="Lunas">Lunas</option>
                                     </select>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Sisa Pembayaran</label>
+                                    <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
+                                </div>
+                            </div>
+                            @if($rincian->status == 'Lunas')
+                            <div class="col-12">
+                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
+                            </div>
+                            @else
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Input Pelunasan</label>
+                                    <input type="text" class="form-control border-input" name="pelunasan" id="pelunasan">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
                                 <button class="btn btn-primary float-end">Update</button>
                             </div>
+                            @endif
                         </div>
                     </form>
                     @endforeach
@@ -304,6 +326,22 @@
 <script>
     $(document).ready(function () {
         $('.select2').select2();
+
+        $('#pelunasan').click(function () {
+        const sisa_pembayaran = formatRupiah($('#sisa_pembayaran').val());
+        $('#sisa_pembayaran').val(sisa_pembayaran);
+        });
+
+        $('#dp').click(function () {
+         const dp = formatRupiah($('#dp').val());
+         $('#dp').val(dp);
+        });
+
+        $('#pelunasan').click(function () {
+            const pelunasan = formatRupiah($('#pelunasan').val());
+            $('#pelunasan').val(pelunasan);
+        });
+
         let i = 5;
         $("#dynamic-ar").click(function () {
         ++i;
@@ -340,6 +378,12 @@
             dp = dp.replace(/[^0-9.]/g, '');
             dp = formatRupiah(dp);
             $(this).val(dp);
+    });
+    $('#pelunasan').on('input', function () {
+        let pelunasan = $('#pelunasan').val();
+            pelunasan = pelunasan.replace(/[^0-9.]/g, '');
+            pelunasan = formatRupiah(pelunasan);
+            $(this).val(pelunasan);
     });
     $('#dynamicAddRemove').on('input', 'input[name^="rp"], input[name^="jumlah"]', function () {
         let tr = $(this).closest('tr');

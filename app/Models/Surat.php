@@ -18,16 +18,18 @@ class Surat extends Model
     protected $fillable = [
         'pimpinan_id',
         'nomor_surat',
-        'pegawai_id',
         'tujuan_perjalanan',
         'angkutan',
         'tempat_berangkat',
         'tempat_tujuan',
         'lama_perjalanan',
         'tanggal_jalan',
+        'tanggal_berangkat',
         'tanggal_kembali',
         'instansi',
-        'pengikut',
+        'nama',
+        'umur',
+        'hubungan',
         'mata_anggaran',
         'slug',
     ];
@@ -48,6 +50,7 @@ class Surat extends Model
     {
         return $this->belongsToMany(Pegawai::class, 'pegawai_surats');
     }
+
     public function rincianBiaya()
     {
         return $this->belongsToMany(RincianBiaya::class, 'surat_rincian');

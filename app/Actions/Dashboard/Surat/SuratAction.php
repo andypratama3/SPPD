@@ -10,13 +10,11 @@ class SuratAction
 {
     public function execute($suratData)
     {
-        if (!empty($nama) && !empty($umur) && !empty($hubungan)) {
-            $pengikut = implode(',', array_map(function ($nama, $umur, $hubungan) {
-                return "$nama ($umur tahun) - $hubungan";
-            }, $suratData->nama, $suratData->umur, $suratData->hubungan));
-        }else {
-            $pengikut = "";
-        }
+        $nama = json_encode($suratData->nama);
+        $umur = json_encode($suratData->umur);
+        $hubungan = json_encode($suratData->hubungan);
+
+
         $surat = Surat::updateOrCreate(
             ['slug' => $suratData->slug],
             [
@@ -30,7 +28,12 @@ class SuratAction
                 'tanggal_berangkat' => $suratData->tanggal_berangkat,
                 'tanggal_kembali' => $suratData->tanggal_kembali,
                 'instansi' => $suratData->instansi,
-                'pengikut' => $pengikut,
+                'nama' => $nama,
+                'umur' => $umur,
+                'hubungan' => $hubungan,
+                // 'nama' => $suratData->nama,
+                // 'umur' => $suratData->umur,
+                // 'hubungan' => $suratData->hubungan,
                 'mata_anggaran' => $suratData->mata_anggaran,
             ]
         );

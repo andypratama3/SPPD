@@ -22,6 +22,7 @@ class RincianBiaya extends Model
         'keterangan',
         'dp',
         'sisa_pembayaran',
+        'pelunasan',
         'status'
     ];
 

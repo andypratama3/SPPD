@@ -24,10 +24,10 @@
                             <td class="text-center">No</td>
                             <td class="text-center">Nomor SPPD</td>
                             <td class="text-center">Tanggal</td>
-                            <td class="text-center">Nama Personil</td>
+                            <td class="text-center">Nama Personil / Pegawai</td>
                             <td class="text-center">Tujuan</td>
-                            {{-- <td class="text-center">DP</td>
-                            <td class="text-center">Total</td> --}}
+                            <td class="text-center">DP</td>
+                            {{-- <td class="text-center">Total</td> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
             responsive: true,
             processing: true,
             pageLength: 100,
-            scrollX: true,  
+            scrollX: true,
             ajax: {
             'url': $('#data_surat').val(),
         },
@@ -60,7 +60,7 @@
             { data: 'DT_RowIndex',name: 'DT_RowIndex',orderable: false,searchable: false},
             { data: 'nomor_surat', name: 'nomor_surat'},
             { data: 'created_at', name: 'created_at'},
-            // { data: 'pegawai.name', name: 'pegawai.name'},
+            { data: 'pegawai_names', name: 'pegawai.name'},
             { data: 'tempat_tujuan', name: 'tempat_tujuan'},
             { data: 'options',name: 'options', orderable: false, searchable: false }
         ],

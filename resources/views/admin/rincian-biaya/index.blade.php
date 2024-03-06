@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('title, Rincian Biaya')
 @push('css')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />    
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 @endpush
 @section('content')
 <div class="row">
@@ -24,9 +24,7 @@
                             <td>Total</td>
                         </tr>
                     </thead>
-                    <tbody>
-                    
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </div>

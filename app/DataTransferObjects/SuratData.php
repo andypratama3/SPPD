@@ -21,10 +21,9 @@ class SuratData extends Data
         public readonly string $tanggal_berangkat,
         public readonly string $tanggal_kembali,
         public readonly string $instansi,
-        public readonly ?string $pengikut,
-        public readonly array $nama,
-        public readonly array $umur,
-        public readonly array $hubungan,
+        public readonly ?array $nama,
+        public readonly ?array $umur,
+        public readonly ?array $hubungan,
         public readonly string $mata_anggaran,
         public readonly ?string $slug,
 

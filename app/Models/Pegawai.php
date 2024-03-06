@@ -12,7 +12,9 @@ class Pegawai extends Model
     use UsesUuid,NameHasSlug;
     use HasFactory;
     protected $table = 'pegawais';
+
     protected $fillable = [
+        'id',
         'name',
         'nip',
         'jabatan',

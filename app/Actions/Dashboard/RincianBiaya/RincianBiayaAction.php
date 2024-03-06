@@ -15,7 +15,7 @@ class RincianBiayaAction
         $keterangan = json_encode($rincianBiayaData->keterangan);
 
         $data = json_decode($total, true);
-        $total_semua_rincian = 0; // Initialize the total sum variable
+        $total_semua_rincian = 0;
 
         if (is_array($data)) {
             // Iterate over each value, remove dots (thousand separator) and convert to integer
@@ -28,6 +28,22 @@ class RincianBiayaAction
 
         $sisa_pembayaran = $total_semua_rincian - $dp_int;
 
+        $input_pelunasan = str_replace('.', '', $rincianBiayaData->pelunasan);
+        $pelunasan_int = intval($input_pelunasan);
+
+
+        if ($dp_int + $pelunasan_int === $total_semua_rincian) {
+            $update_status = 'Lunas';
+            $sisa_pembayaran = 0;
+        } else {
+            $update_status = 'DP';
+
+            if ($pelunasan_int < $total_semua_rincian) {
+                $sisa_pembayaran = $total_semua_rincian - ($dp_int + $pelunasan_int);
+                $dp_int += $pelunasan_int;
+            }
+        }
+
         $rincianBiaya = RincianBiaya::updateOrCreate(
             ['id' => $rincianBiayaData->id],
             [
@@ -38,7 +54,8 @@ class RincianBiayaAction
                 'keterangan' => $keterangan,
                 'dp' => $dp_int,
                 'sisa_pembayaran' => $sisa_pembayaran,
-                'status' => $rincianBiayaData->status,
+                'pelunasan' => $pelunasan_int,
+                'status' => $update_status,
             ]
         );
 
