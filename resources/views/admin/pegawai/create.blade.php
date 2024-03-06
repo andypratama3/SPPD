@@ -25,6 +25,20 @@
                                     placeholder="Masukan Nip Karyawan" value="{{ old('nip') }}">
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Jabatan <code>*</code></label>
+                                <input type="text" class="form-control border-input" name="jabatan"
+                                    placeholder="Masukan Jabatan Karyawan" value="{{ old('jabatan') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Golongan <code>*</code></label>
+                                <input type="text" class="form-control border-input" name="golongan"
+                                    placeholder="Masukan Golongan" value="{{ old('golongan') }}">
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-sm">Kembali</a>
                             <button class="btn btn-primary btn-sm float-end">Submit</button>

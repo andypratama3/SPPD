@@ -20,12 +20,12 @@ class SuratController extends Controller
     }
     public function datatable()
     {
-        $query = Surat::with('pegawai')->select(['nomor_surat','pegawai_id','created_at','tempat_tujuan','slug'])->orderBy('created_at','desc');
+        $query = Surat::select(['nomor_surat','created_at','tempat_tujuan','slug'])->orderBy('created_at','desc');
         return DataTables::of($query)
-                ->addColumn('pegawai.name', function ($pegawai) {
-                    $pegawai_name = $pegawai->name;
-                    return $pegawai_name;
-                })
+                // ->addColumn('pegawai.name', function ($pegawai) {
+                //     $pegawai_name = $pegawai->name;
+                //     return $pegawai_name;
+                // })
                 ->addColumn('options', function ($row){
                     return '
                     <a href="' . route('dashboard.surat.show', $row->slug) . '" class="btn btn-xs btn-warning"><i class="fa fa-eye"></i></a>

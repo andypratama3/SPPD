@@ -12,6 +12,8 @@ class PegawaiData extends Data
     public function __construct(
         public readonly string $name,
         public readonly string $nip,
+        public readonly string $jabatan,
+        public readonly string $golongan,
         public readonly ?string $slug,
 
     ) {
@@ -23,6 +25,8 @@ class PegawaiData extends Data
         return self::from([
             $request->getName(),
             $request->getNip(),
+            $request->getJabatan(),
+            $request->getGolongan(),
             $request->getSlug(),
         ]);
     }

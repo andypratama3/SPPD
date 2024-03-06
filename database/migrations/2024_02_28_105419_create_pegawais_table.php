@@ -15,6 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('nip');
+            $table->string('jabatan');
+            $table->string('golongan');
             $table->string('slug');
             $table->timestamps();
         });

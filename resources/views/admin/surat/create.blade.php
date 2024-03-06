@@ -39,8 +39,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Pegawai <code>*</code></label>
-                                <select name="pegawai_id" id="" class="form-control select2">
-                                    <option selected disabled>Pilih Pegawai</option>
+                                <select name="pegawai[]" multiple class="form-control select2" data-placeholder="Pilih Pegawai">
+                                    <option>Pilih Pegawai</option>
                                     @foreach ($pegawais as $pegawai)
                                     <option value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
                                     @endforeach

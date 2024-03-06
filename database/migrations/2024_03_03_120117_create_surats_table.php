@@ -15,7 +15,6 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('pimpinan_id')->nullable()->references('id')->on('pimpinans')->onDelete('cascade');
             $table->string('nomor_surat');
-            $table->foreignUuid('pegawai_id')->nullable()->references('id')->on('pegawais')->onDelete('cascade');
             $table->string('tujuan_perjalanan');
             $table->enum('angkutan', ['Darat', 'Udara','Air']);
             $table->string('tempat_berangkat');

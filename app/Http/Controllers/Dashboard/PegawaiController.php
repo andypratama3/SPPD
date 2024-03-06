@@ -43,5 +43,11 @@ class PegawaiController extends Controller
         $pegawiaAction->execute($pegawaiData);
         return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Update Pegawai');
     }
+    public function destroy(PegawaiActionDelete $pegawaiActionDelete, Pegawai $pegawai)
+    {
+        $pegawaiActionDelete->execute($pegawai);
+        return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Hapus Pegawai');
+
+    }
 
 }

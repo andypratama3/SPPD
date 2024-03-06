@@ -18,7 +18,6 @@ class SuratAction
             [
                 'pimpinan_id' => $suratData->pimpinan_id,
                 'nomor_surat' => $suratData->nomor_surat,
-                'pegawai_id' => $suratData->pegawai_id,
                 'tujuan_perjalanan' => $suratData->tujuan_perjalanan,
                 'angkutan' => $suratData->angkutan,
                 'tempat_berangkat' => $suratData->tempat_berangkat,
@@ -30,5 +29,11 @@ class SuratAction
                 'mata_anggaran' => $suratData->mata_anggaran,
             ]
         );
+        if(empty($suratData->slug)){
+            $surat->pegawai()->attach($suratData->pegawai);
+        }else{
+            $surat->pegawai()->sync($suratData->pegawai);
+        }
+        return $surat;
     }
 }

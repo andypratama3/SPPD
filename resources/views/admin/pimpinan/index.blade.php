@@ -28,7 +28,7 @@
                             <td>{{ $pimpinan->nip }}</td>
                             <td>{{ $pimpinan->jabatan }}</td>
                             <td>
-                                <a href="{{ route('dashboard.pimpinan.show', $pimpinan->slug) }}" class="btn btn-secondary btn-xs"><i class="fas fa-eye"></i></a>
+                                {{-- <a href="{{ route('dashboard.pimpinan.show', $pimpinan->slug) }}" class="btn btn-secondary btn-xs"><i class="fas fa-eye"></i></a> --}}
                                 <a href="{{ route('dashboard.pimpinan.edit', $pimpinan->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen"></i></a>
                                 <a href="" class="btn btn-danger btn-xs" style="color: white;"><i class="fas fa-trash"></i></a>
                             </td>

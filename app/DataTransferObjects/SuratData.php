@@ -12,7 +12,7 @@ class SuratData extends Data
     public function __construct(
         public readonly string $pimpinan_id,
         public readonly string $nomor_surat,
-        public readonly string $pegawai_id,
+        public readonly array $pegawai,
         public readonly string $tujuan_perjalanan,
         public readonly string $angkutan,
         public readonly string $tempat_berangkat,

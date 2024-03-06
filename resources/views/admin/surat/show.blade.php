@@ -32,7 +32,10 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Pegawai <code>*</code></label>
-                            <input type="text" class="form-control border-input" value="{{ $surat->pegawai->name }}" readonly>
+                                @foreach ($surat->pegawai as $pegawai)
+                                <input type="text" class="form-control border-input w-25  mt-2" name="tujuan_perjalanan"
+                                value="{{ $pegawai->name }}" readonly>
+                                @endforeach
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -146,16 +149,18 @@
                             <table class="table table-bordered text-center" id="dynamicAddRemove">
                                 <tr>
                                     <th class="w-25">Rincian Biaya</th>
+                                    <th class="w-2">Jumlah</th>
                                     <th class="w-25">RP</th>
-                                    <th class="w-25">Jumlah</th>
+                                    <th class="w-25">Total</th>
                                     <th class="w-50">Keterangan</th>
                                 </tr>
                                 <td><input type="text" class="form-control" name="rincian[]"
                                     placeholder="Masukkan Rincian"></td>
+                                <td><input type="text" class="form-control" name="jumlah[]"></td>
                                 <td><input type="text" class="form-control" name="rp[]"
-                                    placeholder="Masukkan Rp"></td>
-                                <td><input type="text" class="form-control" name="jumlah[]"
-                                        placeholder="Masukkan jumlah"></td>
+                                    placeholder="Masukkan Rp" id="rp"></td>
+                                <td><input type="text" class="form-control" name="total[]"
+                                    readonly></td>
                                 <td><input type="text" class="form-control" name="keterangan[]"
                                         placeholder="Masukkan Keterangan"></td>
                                 <th class="w-25"><button type="button" id="dynamic-ar"
@@ -173,6 +178,7 @@
                         <div class="form-group">
                             <label for="">Status</label>
                             <select name="" id="" class="form-control border-input">
+                                <option selected disabled>Pilih Status Pembayaran</option>
                                 <option value="">DP</option>
                                 <option value="">Belum Di Bayar</option>
                                 <option value="">Lunas</option>
@@ -196,33 +202,72 @@
         $('.select2').select2();
         let i = 5;
         $("#dynamic-ar").click(function () {
-            ++i;
-            $("#dynamicAddRemove").append(
-                `<tr>
-                    <td>
-                        <input type="text" class="form-control" name="rincian[` + i + `]" placeholder="Masukkan rincian">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="rp[` + i + `]" placeholder="Masukkan Rp">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="jumlah[` + i + `]" placeholder="Masukkan jumlah">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="keterangan[` + i + `]" placeholder="Masukkan keterangan">
-                    </td>
-                    <td colspan="2">
-                        <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
-                    </td>
-                </tr>`
-            );
-        });
-        $(document).on('click', '.remove-input-field', function () {
-            $(this).parents('tr').remove();
-            --i;
-        });
-
+        ++i;
+        $("#dynamicAddRemove").append(
+            `<tr>
+                <td>
+                    <input type="text" class="form-control" name="rincian[${i}]" placeholder="Masukkan rincian">
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="jumlah[${i}]" placeholder="Masukkan jumlah">
+                </td>
+                <td>
+                    <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="total[${i}]" readonly>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
+                </td>
+                <td colspan="2">
+                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
+                </td>
+            </tr>`
+        );
     });
+
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+        --i;
+    });
+
+    $('#dynamicAddRemove').on('input', 'input[name^="rp"], input[name^="jumlah"]', function () {
+        let tr = $(this).closest('tr');
+        let rp = tr.find('input[name^="rp"]').val();
+        let jumlah = tr.find('input[name^="jumlah"]').val();
+        let total = calculateTotal(rp, jumlah);
+        tr.find('input[name^="total"]').val(total);
+    });
+
+    function calculateTotal(rp, jumlah) {
+        rp = rp.replace(/[^0-9.]/g, '');
+        jumlah = jumlah.replace(/[^0-9.]/g, '');
+        rp = parseFloat(rp);
+        jumlah = parseFloat(jumlah);
+        let total = rp * jumlah;
+        total = formatRupiah(total);
+        return total;
+    }
+
+    // Fungsi untuk memformat angka sebagai mata uang Rupiah
+    function formatRupiah(angka) {
+        var number_string = angka.toString().replace(/[^,\d]/g, ''),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return rupiah;
+
+    }
+});
 </script>
 @endpush
 @endsection

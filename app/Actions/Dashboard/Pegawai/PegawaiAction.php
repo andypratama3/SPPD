@@ -12,6 +12,8 @@ class PegawaiAction {
             [
                 'name' => $pegawaiData->name,
                 'nip' => $pegawaiData->nip,
+                'jabatan' => $pegawaiData->jabatan,
+                'golongan' => $pegawaiData->golongan,
             ]
         );
     }

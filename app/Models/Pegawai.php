@@ -15,6 +15,13 @@ class Pegawai extends Model
     protected $fillable = [
         'name',
         'nip',
+        'jabatan',
+        'golongan',
         'slug'
     ];
+
+    public function surat()
+    {
+        return $this->belongsToMany(Surat::class, 'pegawai_surats');
+    }
 }

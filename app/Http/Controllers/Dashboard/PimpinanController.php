@@ -24,4 +24,19 @@ class PimpinanController extends Controller
         $pimpinanAction->execute($pimpinanData);
         return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Menambahkan Pimpinan');
     }
+    public function edit(Pimpinan $pimpinan)
+    {
+        return view('admin.pimpinan.edit', compact('pimpinan'));
+    }
+    public function update(PimpinanData $pimpinanData, PimpinanAction $pimpinanAction)
+    {
+        $pimpinanAction->execute($pimpinanData);
+        return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Update Pimpinan');
+    }
+    public function destroy(PimpinanActionDelete $pimpinanActionDelete, Pimpinan $pimpinan)
+    {
+        $pimpinanActionDelete->execute($pimpinan);
+        return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Hapus Pimpinan');
+
+    }
 }

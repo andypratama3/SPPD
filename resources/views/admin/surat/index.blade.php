@@ -52,7 +52,7 @@
             { data: 'DT_RowIndex',name: 'DT_RowIndex',orderable: false,searchable: false},
             { data: 'nomor_surat', name: 'nomor_surat'},
             { data: 'created_at', name: 'created_at'},
-            { data: 'pegawai.name', name: 'pegawai.name'},
+            // { data: 'pegawai.name', name: 'pegawai.name'},
             { data: 'tempat_tujuan', name: 'tempat_tujuan'},
             { data: 'options',name: 'options', orderable: false, searchable: false }
         ],

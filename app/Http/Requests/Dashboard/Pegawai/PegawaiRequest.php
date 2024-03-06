@@ -21,6 +21,14 @@ class PegawaiRequest extends FormRequest
     {
         $this->nip;
     }
+    public function getJabatan()
+    {
+        $this->jabatan;
+    }
+    public function getGolongan()
+    {
+        $this->golongan;
+    }
     public function getSlug()
     {
         $this->slug;
