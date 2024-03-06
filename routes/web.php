@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\RincianBiayaController;
 use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
 use App\Http\Controllers\Dashboard\PimpinanController;
@@ -27,5 +28,6 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.pegawai']);
     Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.pimpinan']);
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
+    Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
     Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
 });

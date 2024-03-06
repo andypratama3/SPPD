@@ -8,7 +8,6 @@
                 <h5 class="text-center"> Detail Surat {{ $surat->nomor_surat }}</h5>
             </div>
             <div class="card-body">
-                @include('layouts.flashmessage')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -134,16 +133,18 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-
                     </div>
                 </div>
             </div>
             <div class="card-body mt-3">
+                @include('layouts.flashmessage')
 
+                <form action="{{ route('dashboard.rincian.biaya.store') }}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-md-12" >
                         <hr>
-                        <div class="form-group"> <input type="hidden">
+                        <div class="form-group">
                             <h6 class="text-center">Rincian Biaya</h6>
                             <hr>
                             <table class="table table-bordered text-center" id="dynamicAddRemove">
@@ -190,7 +191,7 @@
                         <button class="btn btn-primary float-end">Submit</button>
                     </div>
                 </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>
@@ -265,8 +266,8 @@
 
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return rupiah;
-
     }
+
 });
 </script>
 @endpush

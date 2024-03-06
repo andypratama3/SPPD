@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rincians', function (Blueprint $table) {
-            $table->id();
+        Schema::create('rincian_biayas', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('rincian');
+            $table->string('jumlah');
+            $table->string('rp');
+            $table->string('total');
+            $table->string('keterangan');
+
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rincians');
+        Schema::dropIfExists('rincian_biayas');
     }
 };
