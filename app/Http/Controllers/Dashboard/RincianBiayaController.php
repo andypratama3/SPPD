@@ -9,7 +9,16 @@ use App\Actions\Dashboard\RincianBiaya\RincianBiayaAction;
 
 class RincianBiayaController extends Controller
 {
+<<<<<<< Updated upstream
     public function store(RincianBiayaData $rincianData, RincianBiayaAction $rincianBiayaAction)
+=======
+    public function index()
+    {
+        return view('admin.rincian-biaya.index');
+    }
+
+    public function store(RincianBiayaData $rincianData,RincianBiayaAction $rincianBiayaAction)
+>>>>>>> Stashed changes
     {
         $rincianBiayaAction->execute($rincianData);
         return redirect()->back()->with('success','Berhasil Menambahkan Rincian');

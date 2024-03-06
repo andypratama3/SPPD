@@ -5,7 +5,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Tambah Pimpinan</h5>
+                <h5 class="text-center">TAMBAH PIMPINAN</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.pimpinan.store') }}" method="post">
@@ -33,8 +33,8 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-sm">Kembali</a>
-                            <button class="btn btn-primary btn-sm float-end">Submit</button>
+                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <button class="btn btn-primary btn-rounded float-end text-white">Submit</button>
                         </div>
                     </div>
                 </form>

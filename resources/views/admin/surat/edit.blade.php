@@ -12,7 +12,7 @@
                 <form action="{{ route('dashboard.surat.store') }}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Pejabat Berwenang <code>*</code></label>
                                 <select name="pimpinan_id" id="" class="form-control select2">
@@ -23,7 +23,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Nomor Surat <code>*</code></label>
                                 <div class="input-group">
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Pegawai <code>*</code></label>
                                 <select name="pegawai_id" id="" class="form-control select2">
@@ -47,14 +47,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tujuan Perjalanan <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tujuan_perjalanan"
                                     placeholder="Masukan Tujuan Perjalanan" value="{{ old('tujuan_perjalanan') }}">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Angkutan <code>*</code></label>
                                 <select name="angkutan" class="form-control" style="border-radius: 10px;">
@@ -65,21 +65,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tempat Berangkat <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tempat_berangkat"
                                     placeholder="Masukan Tempat Berangkat" readonly value="Samarinda">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tempat Tujuan <code>*</code></label>
                                 <input type="text" class="form-control border-input" name="tempat_tujuan"
                                     placeholder="Masukan Tempat Berangkat" value="{{ old('tempat_tujuan') }}">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Lama Perjalanan <code>*</code></label>
                                 <div class="input-group">
@@ -91,21 +91,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tanggal Kembali <code>*</code></label>
                                 <input type="date" class="form-control border-input" name="tanggal_kembali"
                                     placeholder="Masukan Tujuan" value="{{ old('tanggal_kembali') }}">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Instansi</label>
                                 <input type="text" class="form-control border-input" name="instansi" readonly
                                     value="Politeknik Pertanian Negeri Samarinda">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Mata Anggaran <code>*</code></label>
                                 <select name="mata_anggaran" id="" style="border-radius: 10px;" class="form-control">

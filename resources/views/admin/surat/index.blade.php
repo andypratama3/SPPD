@@ -2,6 +2,12 @@
 @section('title', 'Surat')
 @push('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+<style>
+    div.dt-container {
+        width: 800px;
+        margin: 0 auto;
+    }
+</style>
 @endpush
 @section('content')
 <div class="row">
@@ -9,22 +15,23 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <h4 class="text-center">Surat</h4>
-                    <a href="{{ route('dashboard.surat.create') }}" class="btn btn-primary btn-rounded btn-fw mb-4" style="float: inline-end; margin-right: 14px;"><i class="fas fa-plus"></i> Tambah</a>
+                    <h4 class="text-center">SURAT</h4>
+                    <a href="{{ route('dashboard.surat.create') }}" class="btn btn-primary mb-4 btn-rounded text-white float-end"><i class="fas fa-plus text-small"></i> Tambah</a>
                 </div>
-                <table class="table table-responsive text-center" id="table_surat">
+                <table class="table table-responsive text-center cell-border nowrap stripe hover" id="table_surat" style="width: 100%">
                     <thead>
                         <tr>
-                            <td>No</td>
-                            <td>Nomor SPPD</td>
-                            <td>Tanggal</td>
-                            <td>Nama Personil</td>
-                            <td>Tujuan</td>
-                            <td>DP</td>
-                            <td>Total</td>
+                            <td class="text-center">No</td>
+                            <td class="text-center">Nomor SPPD</td>
+                            <td class="text-center">Tanggal</td>
+                            <td class="text-center">Nama Personil</td>
+                            <td class="text-center">Tujuan</td>
+                            {{-- <td class="text-center">DP</td>
+                            <td class="text-center">Total</td> --}}
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -38,14 +45,15 @@
     $.noConflict();
     $(document).ready(function () {
         $('#table_surat').DataTable({
-        ordering: true,
-        pagination: true,
-        deferRender: true,
-        serverSide: true,
-        responsive: true,
-        processing: true,
-        pageLength: 100,
-        ajax: {
+            ordering: true,
+            pagination: true,
+            deferRender: true,
+            serverSide: true,
+            responsive: true,
+            processing: true,
+            pageLength: 100,
+            scrollX: true,  
+            ajax: {
             'url': $('#data_surat').val(),
         },
         columns: [

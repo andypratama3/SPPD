@@ -5,7 +5,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Edit Pegawai</h5>
+                <h5 class="text-center">EDIT PEGAWAI</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.pegawai.update', $pegawai->slug) }}" method="post">
@@ -28,8 +28,8 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger">Kembali</a>
-                            <button type="submit" class="btn btn-primary float-end">Submit</button>
+                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <button type="submit" class="btn btn-primary btn-rounded text-white float-end">Submit</button>
                         </div>
                     </div>
                 </form>
