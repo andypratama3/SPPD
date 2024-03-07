@@ -12,7 +12,8 @@
                 <form action="{{ route('dashboard.surat.update', $surat->slug) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="slug" value="{{ $surat->slug }}">
+                    <input type="hidden" name="slug" id="slug" value="{{ $surat->slug }}">
+
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
@@ -134,8 +135,8 @@
                                         <th class="w-25">Nama</th>
                                         <th class="w-25">Umur</th>
                                         <th class="w-50">Hubungan</th>
+                                        <th class="w-25">Action</th>
                                     </tr>
-                                @if(!empty($surat->nama) && (!empty($surat->umur)) && (!empty($surat->hubungan)))
                                 @php
                                     $decodedNama = json_decode($surat->nama, true);
                                     $decodedUmur = json_decode($surat->umur, true);
@@ -143,23 +144,14 @@
                                 @endphp
                                 @foreach ($decodedNama as $index => $nama)
                                 <tr>
-                                    <td><input type="text" class="form-control" name="nama[]" readonly value="{{ $nama }}"></td>
-                                    <td><input type="text" class="form-control" name="umur[]" readonly value="{{ $decodedUmur[$index] }}"></td>
-                                    <td><input type="text" class="form-control" name="hubungan[]" readonly value="{{ $decodedHubungan[$index] }}"></td>
+                                    <td><input type="text" class="form-control" name="nama[]" value="{{ $nama }}"></td>
+                                    <td><input type="text" class="form-control" name="umur[]" value="{{ $decodedUmur[$index] }}"></td>
+                                    <td><input type="text" class="form-control" name="hubungan[]" value="{{ $decodedHubungan[$index] }}"></td>
+                                    <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $index }}"><i class="fas fa-trash"></i></button></td>
                                 </tr>
                                 @endforeach
-                                @else
-                                    <tr>
-                                        <td><input type="text" class="form-control" name="nama[]"
-                                                ></td>
-                                        <td><input type="text" class="form-control" name="umur[]"
-                                             ></td>
-                                        <td><input type="text" class="form-control" name="hubungan[]"
-                                            ></td>
-                                            <th class="w-25"><button type="button" id="dynamic-ar"
-                                                    class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
-                                    </tr>
-                                @endif
+                                <th class="w-25"><button type="button" id="dynamic-ar"
+                                    class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
                                 </table>
                             </div>
                         </div>
@@ -201,19 +193,29 @@
             $(this).parents('tr').remove();
             --i;
         });
-        $('#nomor_surat').on('change', function () {
-            let nomor_surat = $('#nomor_surat').val();
-            // $.ajax({
-            //     type: "POST",
+        //delete data in array rincian
+        $('#dynamicAddRemove').on('click', '.delete-item-array', function () {
+            let item_array_index = $(this).data("id");
+            let slug = $('#slug').val();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-            //     data: {
-            //         nomor_surat : nomor_surat,
-            //     },
-            //     cache: false,
-            //     success: function (response) {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('dashboard.surat.arrayDelete') }}",
+                data: {
+                    item_array_index : item_array_index,
+                    slug : slug,
+                },
+                cache: false,
+                success: function (response) {
+                    console.log(response.success);
+                }
+            });
 
-            //     }
-            // });
         });
     });
 </script>

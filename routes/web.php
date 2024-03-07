@@ -29,5 +29,8 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.pimpinan']);
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
     Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
+    Route::get('rincian-biayas/records',[RincianBiayaController::class, 'datatable'])->name('dashboard.rincianBiaya.getRecords');
     Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
+    Route::post('rincian-biaya-array/delete',[RincianBiayaController::class, 'destroyRincianArray'])->name('dashboard.rincianBiaya.arrayDelete');
+    Route::post('rincian-surat-array/delete',[SuratController::class, 'destroySuratArray'])->name('dashboard.surat.arrayDelete');
 });

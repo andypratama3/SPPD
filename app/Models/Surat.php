@@ -50,7 +50,6 @@ class Surat extends Model
     {
         return $this->belongsToMany(Pegawai::class, 'pegawai_surats');
     }
-
     public function rincianBiaya()
     {
         return $this->belongsToMany(RincianBiaya::class, 'surat_rincian');

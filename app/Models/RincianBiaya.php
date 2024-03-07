@@ -25,7 +25,10 @@ class RincianBiaya extends Model
         'pelunasan',
         'status'
     ];
-
+    // public function getRouteKeyName()
+    // {
+    //     return 'id';
+    // }
     public function surat()
     {
         return $this->belongsToMany(Surat::class, 'surat_rincian');

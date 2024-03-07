@@ -26,8 +26,8 @@
                             <td class="text-center">Tanggal</td>
                             <td class="text-center">Nama Personil / Pegawai</td>
                             <td class="text-center">Tujuan</td>
-                            <td class="text-center">DP</td>
-                            {{-- <td class="text-center">Total</td> --}}
+                            {{-- <td class="text-center">DP</td> --}}
+                            <td class="text-center">Action</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -65,8 +65,55 @@
             { data: 'options',name: 'options', orderable: false, searchable: false }
         ],
     });
+    $('#table_surat').on('click', '#btn-delete', function () {
+        var slug = $(this).data('id');
+        var url = '{{ route("dashboard.surat.destroy", ":slug") }}'; // Use the correct route name "destroy"
+        url = url.replace(':slug', slug);
+        swal({
+            title: 'Anda yakin?',
+            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
+                // Send a DELETE request
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    data: {
+                        slug: slug,
+                    },
+                    cache: false,
+                    success: function (data) {
+                        if (data.success) {
+                            swal('Berhasil', data.success, 'success').then(() => {
+                                reloadTable('#table_surat');
+                            });
+                        } else if (data.message) {
+                            swal('Error', data.message, 'error');
+                            reloadTable('#table_surat');
+                        } else {
+                            swal('Error', 'Gagal menghapus surat', 'error');
+                            reloadTable('#table_surat');
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        swal('Error', 'Gagal menghapus surat', 'error');
+                    }
+                });
+            } else {
+                // If the user cancels the deletion, do nothing
+            }
+        });
     });
+});
 </script>
 @endpush
 @endsection

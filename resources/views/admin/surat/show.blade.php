@@ -217,7 +217,7 @@
                     <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <input type="hidden" name="id" value="{{ $rincian->id }}">
+                        <input type="hidden" name="id" id="rincian_id" value="{{ $rincian->id }}">
                         <input type="hidden" name="surat" value="{{ $surat->id }}">
                         <div class="row">
                             <div class="col-md-12" >
@@ -255,7 +255,7 @@
                                                 <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
                                                 @if($rincian->status == 'Lunas')
                                                 @else
-                                                <td><button type="button" class="btn btn-xs btn-danger remove-row"><i class="fas fa-trash"></i></button></td>
+                                                <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fas fa-trash"></i></button></td>
                                                 @endif
                                             </tr>
                                         @endforeach
@@ -429,6 +429,29 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return rupiah;
     }
+    $('#dynamicAddRemove').on('click', '.delete-item-array', function () {
+        let item_array_index = $(this).data("id");
+        let rincian_id = $('#rincian_id').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "{{ route('dashboard.rincianBiaya.arrayDelete') }}",
+            data: {
+                item_array_index : item_array_index,
+                rincian_id : rincian_id,
+            },
+            cache: false,
+            success: function (response) {
+                console.log(response);
+            }
+        });
+    });
 
 });
 </script>
