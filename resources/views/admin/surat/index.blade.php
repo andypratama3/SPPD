@@ -24,10 +24,10 @@
                             <td class="text-center">No</td>
                             <td class="text-center">Nomor SPPD</td>
                             <td class="text-center">Tanggal</td>
-                            <td class="text-center">Nama Personil / Pegawai</td>
+                            <td class="text-center">Nama Personil</td>
                             <td class="text-center">Tujuan</td>
-                            {{-- <td class="text-center">DP</td> --}}
-                            <td class="text-center">Action</td>
+                            {{-- <td class="text-center">DP</td>
+                            <td class="text-center">Total</td> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
             responsive: true,
             processing: true,
             pageLength: 100,
-            scrollX: true,
+            scrollX: true,  
             ajax: {
             'url': $('#data_surat').val(),
         },

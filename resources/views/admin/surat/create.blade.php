@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <label for="nomor_surat">Nomor Surat <code>*</code></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm border-input" id="nomor_surat"
+                                    <input type="text" class="form-control form-control-sm" id="nomor_surat"
                                         name="nomor_surat" value="{{ old('nomor_surat') }}"
                                         placeholder="Masukan Hanya Awalan No Surat">
                                         <span class="input-group-text text-black">/PL21/SPPD/2024</span>
@@ -48,14 +48,14 @@
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
                                 <label for="tujuan_perjalanan">Tujuan Perjalanan <code>*</code></label>
-                                <input type="text" class="form-control form-control-sm border-input" name="tujuan_perjalanan" id="tujuan_perjalanan"
+                                <input type="text" class="form-control form-control-sm" name="tujuan_perjalanan" id="tujuan_perjalanan"
                                     placeholder="Masukan Tujuan Perjalanan" value="{{ old('tujuan_perjalanan') }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
                                 <label for="angkutan">Angkutan <code>*</code></label>
-                                <select name="angkutan" id="angkutan" class="form-control form-control-sm border-input">
+                                <select name="angkutan" id="angkutan" class="form-control form-control-sm">
                                     <option selected disabled>Pilih Angkutan</option>
                                     <option value="Darat">Darat</option>
                                     <option value="Udara">Udara</option>
@@ -66,14 +66,14 @@
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
                                 <label for="tempat_berangkat">Tempat Berangkat <code>*</code></label>
-                                <input type="text" class="form-control form-control-sm border-input" name="tempat_berangkat" id="tempat_berangkat"
+                                <input type="text" class="form-control form-control-sm" name="tempat_berangkat" id="tempat_berangkat"
                                     placeholder="Masukan Tempat Berangkat" readonly value="Samarinda">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
                                 <label for="tempat_tujuan">Tempat Tujuan <code>*</code></label>
-                                <input type="text" class="form-control form-control-sm border-input" name="tempat_tujuan" id="tempat_tujuan"
+                                <input type="text" class="form-control form-control-sm" name="tempat_tujuan" id="tempat_tujuan"
                                     placeholder="Masukan Tempat Berangkat" value="{{ old('tempat_tujuan') }}">
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="form-group">
                                 <label for="lama_perjalanan">Lama Perjalanan <code>*</code></label>
                                 <div class="input-group">
-                                    <input type="number" min="1" max="100" class="form-control form-control-sm border-input" name="lama_perjalanan" id="lama_perjalanan"
+                                    <input type="number" min="1" max="100" class="form-control form-control-sm" name="lama_perjalanan" id="lama_perjalanan"
                                         placeholder="Masukan Angka" value="{{ old('lama_perjalanan') }}">
                                         <span class="input-group-text text-black">Hari</span>
                                 </div>
@@ -89,29 +89,22 @@
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
-                                <label for="tanggak_kembali">Tanggal Berangkat <code>*</code></label>
-                                <input type="date" class="form-control form-control-sm" name="tanggal_berangkat" id="tanggal_berangkat"
-                                    placeholder="Masukan" value="{{ old('tanggal_berangkat') }}">
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 ">
-                            <div class="form-group">
                                 <label for="tanggak_kembali">Tanggal Kembali <code>*</code></label>
-                                <input type="date" class="form-control form-control-sm border-input" name="tanggal_kembali" id="tanggal_kembali"
+                                <input type="date" class="form-control form-control-sm" name="tanggal_kembali" id="tanggal_kembali"
                                     placeholder="Masukan Tujuan" value="{{ old('tanggal_kembali') }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
                                 <label for="instansi">Instansi</label>
-                                <input type="text" class="form-control form-control-sm border-input" name="instansi" id="instansi" readonly
+                                <input type="text" class="form-control form-control-sm" name="instansi" id="instansi" readonly
                                     value="Politeknik Pertanian Negeri Samarinda">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
-                            <div class="form-group form-control-sm border-input mx-0 px-0">
+                            <div class="form-group form-control-sm mx-0 px-0">
                                 <label for="mata_anggaran">Mata Anggaran <code>*</code></label>
-                                <select name="mata_anggaran" id="mata_anggaran" class="form-control form-control-sm border-input ">
+                                <select name="mata_anggaran" id="mata_anggaran" class="form-control form-control-sm ">
                                     <option selected disabled>Pilih Mata Anggaran</option>
                                     <option value="524111">524111</option>
                                     <option value="524113">524113</option>
