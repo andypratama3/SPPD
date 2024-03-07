@@ -1,0 +1,86 @@
+.container-0 .left-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container-0 .left-container .logo {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.container-0 .left-container .logo img {
+    width: 75px;
+}
+
+.container-0 .left-container .title {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.container-0 .left-container .title p {
+    font-weight: bold;
+    margin: 0;
+}
+
+.container-0 .left-container .title .uni {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: .02rem;
+}
+
+.container-0 .left-container .title .vocation {
+    font-size: 13px;
+    margin: 0;
+}
+
+.container-0 .right-container p,
+.container-0 .right-container table td {
+    font-size: 12px;
+    margin: 0;
+}
+
+.container-1 .title {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+}
+
+.container-2 {
+    /* border: 2px red solid; */
+}
+
+.container-2 table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #000;
+    table-layout: fixed;
+}
+
+.container-2 table td {
+    border: 1px solid #000;
+    font-size: 12px;
+    padding: 3px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.container-2 table td ol {
+    transform: translateX(-20px);
+}
+
+.container-3 {
+    /* border: 2px red solid; */
+    font-size: 12px;
+}
+
+.container-3 .right-container td,
+.container-3 .right-container p {
+    margin: 0;
+    padding: 0;
+}

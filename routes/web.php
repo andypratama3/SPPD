@@ -31,3 +31,16 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
     Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
 });
+
+Route::get('cetak/lampiran1', function(){
+    return view('cetak.lampiran1');
+})->name('cetak.lampiran1');
+
+Route::get('cetak/lampiran2', function(){
+    return view('cetak.lampiran2');
+})->name('cetak.lampiran2');
+
+Route::get('cetak/rincian-biaya', function(){
+    return view('cetak.rincian-biaya');
+})->name('cetak.rincian-biaya');
+

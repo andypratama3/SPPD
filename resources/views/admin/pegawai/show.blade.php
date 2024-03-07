@@ -14,28 +14,28 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Nama <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="name"
+                                <input type="text" class="form-control form-control-sm border-input" name="name"
                                     placeholder="Masukan Nama Karyawan" value="{{ $pegawai->name }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">NIP <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="nip"
+                                <input type="text" class="form-control form-control-sm border-input" name="nip"
                                     placeholder="Masukan Nip Karyawan" value="{{ $pegawai->nip }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Jabatan <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="jabatan"
+                                <input type="text" class="form-control form-control-sm border-input" name="jabatan"
                                     placeholder="Masukan Jabatan Karyawan" value="{{ $pegawai->jabatan }}" readonly>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Golongan <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="golongan"
+                                <input type="text" class="form-control form-control-sm border-input" name="golongan"
                                     placeholder="Masukan Golongan" value="{{ $pegawai->golongan }}" readonly>
                             </div>
                         </div>

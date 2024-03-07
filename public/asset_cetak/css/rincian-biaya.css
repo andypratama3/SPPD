@@ -1,0 +1,82 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container-0 .title {
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.container-0 .tabel td {
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.container-0 .tabel .d-dot {
+    padding-left: 30px;
+    padding-right: 10px;
+}
+
+.container-1 {
+    margin-top: 10px;
+    padding-top: 5px;
+}
+
+.container-1 .tabel {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 1px solid #000;
+    border-top: 3px double #000;
+}
+
+.container-1 .tabel th {
+    border: 1px solid #000;
+    font-size: 12px;
+    padding: 3px;
+    vertical-align: middle;
+    line-height: 15px;
+}
+
+.container-1 .tabel td {
+    border: 1px solid #000;
+    font-size: 12px;
+    min-height: 40px;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0 3px;
+}
+
+.container-1 .tabel .non-tp-border td {
+    border-bottom: transparent;
+    border-top: transparent;
+}
+
+.container-1 .tabel .non-rl-border td {
+    border-right: transparent;
+    border-left: transparent;
+}
+
+.container-1 .tabel .tabel-rincian {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.container-1 .tabel .amount {
+    height: 100%;
+    align-items: center;
+    border-right: transparent;
+    border-left: transparent;
+}
+
+.container-1 .tabel .rp {
+    margin-right: 50px;
+}
+
+.container-1 .tabel .non-border td {
+    border: transparent;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0 3px;
+}

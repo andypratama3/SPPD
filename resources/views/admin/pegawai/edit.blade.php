@@ -16,14 +16,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">Nama <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="name"
+                                <input type="text" class="form-control form-control-sm border-input" name="name"
                                     placeholder="Masukan Nama Karyawan" value="{{ $pegawai->name }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">NIP <code>*</code></label>
-                                <input type="text" class="form-control border-input" name="nip"
+                                <input type="text" class="form-control form-control-sm border-input" name="nip"
                                     placeholder="Masukan Nip Karyawan" value="{{ $pegawai->nip }}">
                             </div>
                         </div>
