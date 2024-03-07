@@ -17,6 +17,7 @@ class RincianBiayaData extends Data
         public readonly ?array $keterangan,
         public readonly ?string $dp,
         public readonly ?string $sisa_pembayaran,
+        public readonly ?string $pelunasan,
         public readonly string $status,
         public readonly string $surat,
         public readonly ?string $id,
@@ -35,6 +36,7 @@ class RincianBiayaData extends Data
             $request->getKeterangan(),
             $request->getDp(),
             $request->getSisaPembayaran(),
+            $request->getPelunasan(),
             $request->getStatus(),
             $request->getId(),
         ]);

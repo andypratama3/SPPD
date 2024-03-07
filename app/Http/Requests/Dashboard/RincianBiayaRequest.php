@@ -43,6 +43,10 @@ class RincianBiayaRequest extends FormRequest
     {
         $this->sisa_pembayaran;
     }
+    public function getPelunasan()
+    {
+        $this->pelunasan;
+    }
     public function getStatus()
     {
         $this->status;

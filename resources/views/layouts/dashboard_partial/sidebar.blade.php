@@ -43,10 +43,10 @@
                 <span class="menu-title">Surat Perjalanan</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+        <li class="nav-item {{ Request::routeIs('dashboard.rincian.biaya.*') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('dashboard.rincian.biaya.index') }}">
                 <i class="ti-view-list-alt menu-icon"></i>
-                <span class="menu-title">Tables</span>
+                <span class="menu-title">Rincian Biaya</span>
             </a>
         </li>
         <li class="nav-item">

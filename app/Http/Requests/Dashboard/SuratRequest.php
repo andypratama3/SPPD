@@ -45,6 +45,10 @@ class SuratRequest extends FormRequest
     {
         $this->lama_perjalanan;
     }
+    public function getTanggalJalan()
+    {
+        $this->tanggal_jalan;
+    }
     public function getTanggalKembali()
     {
         $this->tanggal_kembali;

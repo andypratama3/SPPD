@@ -89,6 +89,13 @@
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
+                                <label for="tanggak_kembali">Tanggal Berangkat <code>*</code></label>
+                                <input type="date" class="form-control form-control-sm" name="tanggal_berangkat" id="tanggal_berangkat"
+                                    placeholder="Masukan" value="{{ old('tanggal_berangkat') }}">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group">
                                 <label for="tanggak_kembali">Tanggal Kembali <code>*</code></label>
                                 <input type="date" class="form-control form-control-sm border-input" name="tanggal_kembali" id="tanggal_kembali"
                                     placeholder="Masukan Tujuan" value="{{ old('tanggal_kembali') }}">

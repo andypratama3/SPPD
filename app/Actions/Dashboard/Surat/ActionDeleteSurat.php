@@ -3,13 +3,14 @@ namespace App\Actions\Dashboard\Surat;
 
 use App\Models\Surat;
 
-
-
 class ActionDeleteSurat
 {
-    public function execute($surat)
+    public function execute($request)
     {
-        $surat = Surat::where('slug', $surat)->firstOrFail();
+        $slug = $request->slug;
+        $surat = Surat::where('slug', $slug)->firstOrFail();
+        $surat->pegawai()->detach();
+        $surat->rincianBiaya()->detach();
         $surat->delete();
     }
 }
