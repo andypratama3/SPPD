@@ -2,6 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lampiran 1</title>
+    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ asset('asset_cetak/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
+    />
+    <style>
+        .page-break {
+            page-break-after: always;
+        }
+        </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lampiran 1</title>
     <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />

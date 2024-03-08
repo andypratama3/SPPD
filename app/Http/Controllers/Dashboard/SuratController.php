@@ -92,9 +92,9 @@ class SuratController extends Controller
     public function cetak_pdf($slug)
     {
         $surat = Surat::where('slug', $slug)->first();
-        $pdf = PDF::loadView('admin.cetak.cetak_surat', ['surat' => $surat]);
-        return $pdf->download('siswa' . $surat->nomor_surat . '.pdf');
-        // return view('cetak.lampiran1', compact('surat'));
+        // $pdf = PDF::loadView('admin.cetak.cetak_surat', ['surat' => $surat]);
+        // return $pdf->download('siswa' . $surat->nomor_surat . '.pdf');
+        return view('cetak.lampiran1', compact('surat'));
     }
 
 
