@@ -92,9 +92,35 @@ class SuratController extends Controller
     public function cetak_pdf($slug)
     {
         $surat = Surat::where('slug', $slug)->first();
+
+        // Load the view with the data
         // $pdf = PDF::loadView('admin.cetak.cetak_surat', ['surat' => $surat]);
-        // return $pdf->download('siswa' . $surat->nomor_surat . '.pdf');
-        return view('cetak.lampiran1', compact('surat'));
+
+        // // Set the paper size to A4
+        // $pdf->setPaper('a4');
+
+        // // Set additional options to match Chrome's print settings
+        // $pdf->setOptions([
+        //     'isPhpEnabled' => true, // Enable PHP rendering
+        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
+        //     'isRemoteEnabled' => true, // Allow loading of remote resources
+        //     'dpi' => 120, // DPI (dots per inch)
+        //     'defaultMediaType' => 'print', // Default media type
+        //     'fontHeightRatio' => 1.1, // Font height ratio
+        //     'isFontSubsettingEnabled' => true, // Enable font subsetting
+        //     'isJavascriptEnabled' => true, // Enable JavaScript execution
+        //     'isCssFloatEnabled' => true, // Enable CSS float
+        //     'isFixedPosEnabled' => true, // Enable fixed positioning
+        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
+        //     'isImageOptimEnabled' => true, // Enable image optimization
+        //     'isPdfaEnabled' => true, // Enable PDF/A mode
+        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
+        //     'isPhpEnabled' => true, // Enable PHP rendering
+        // ]);
+
+        // // // Download the PDF with a filename
+        // return $pdf->stream('siswa' . $surat->nomor_surat . '.pdf');
+        return view('admin.cetak.cetak_surat',compact('surat'));
     }
 
 
