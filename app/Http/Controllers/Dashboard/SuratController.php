@@ -66,7 +66,7 @@ class SuratController extends Controller
         // return redirect()->route('dashboard.surat.index')->with('success','Sukses Update Surat');
         return redirect()->back()->with('success','Sukses Update Surat');
     }
-    public function destroy(ActionDeleteSurat $ActionDeleteSurat, Request $request)
+    public function destroy(ActionDeleteSurat $ActionDeleteSurat, Surat $surat)
     {
         $result = $ActionDeleteSurat->execute($surat);
         if($result) {

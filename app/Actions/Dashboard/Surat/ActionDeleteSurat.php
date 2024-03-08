@@ -5,12 +5,13 @@ use App\Models\Surat;
 
 class ActionDeleteSurat
 {
-    public function execute($request)
+    public function execute($surat)
     {
-        $slug = $request->slug;
-        $surat = Surat::where('slug', $slug)->firstOrFail();
         $surat->pegawai()->detach();
         $surat->rincianBiaya()->detach();
+        foreach ($surat->rincianBiaya as $rincian) {
+            $rincian->delete();
+        }
         $surat->delete();
     }
 }

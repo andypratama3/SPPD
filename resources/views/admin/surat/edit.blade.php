@@ -96,6 +96,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group">
+                                <label for="tanggak_kembali">Tanggal Berangkat <code>*</code></label>
+                                <input type="date" class="form-control form-control-sm" name="tanggal_berangkat" id="tanggal_berangkat"
+                                    placeholder="Masukan Tujuan" value="{{ $surat->tanggal_berangkat }}">
+                            </div>
+                        </div>
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Tanggal Kembali <code>*</code></label>

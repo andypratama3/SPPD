@@ -154,14 +154,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card-body mt-3">
+            <div class="card-body mt-3" id="card-not-refresh">
                 @include('layouts.flashmessage')
                 @if($surat->rincianBiaya->isEmpty())
                 <form action="{{ route('dashboard.rincian.biaya.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="surat" value="{{ $surat->id }}">
                     <div class="row">
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <hr>
                             <div class="form-group">
 
@@ -219,11 +219,10 @@
                         @method('PUT')
                         <input type="hidden" name="id" id="rincian_id" value="{{ $rincian->id }}">
                         <input type="hidden" name="surat" value="{{ $surat->id }}">
-                        <div class="row">
-                            <div class="col-md-12" >
+                        <div class="row" id="not-refresh">
+                            <div class="col-md-12" id="form-group-reload">
                                 <hr>
-                                <div class="form-group">
-
+                                <div class="form-group" >
                                     <h6 class="text-center">Rincian Biaya</h6>
                                     <hr>
                                     <table class="table table-bordered text-center" id="dynamicAddRemove">
@@ -247,7 +246,7 @@
                                             $decodedKeterangan = json_decode($rincian['keterangan'], true);
                                         @endphp
                                         @foreach ($decodedRincian as $key => $item_rincian)
-                                            <tr>
+                                            <tr id="refresh-data">
                                                 <td><input type="text" class="form-control" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
                                                 <td><input type="text" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
                                                 <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
@@ -266,7 +265,6 @@
                                             <td colspan="5"></td>
                                             <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
                                             @endif
-
                                         </tr>
                                     </table>
 
@@ -302,7 +300,7 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="form-group">
+                                <div class="form-group" id="sisa_pembayaran_reload">
                                     <label for="">Sisa Pembayaran</label>
                                     <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
                                 </div>
@@ -429,7 +427,7 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return rupiah;
     }
-    $('#dynamicAddRemove').on('click', '.delete-item-array', function () {
+    $('#card-not-refresh').on('click', '.delete-item-array', function () {
         let item_array_index = $(this).data("id");
         let rincian_id = $('#rincian_id').val();
 
@@ -448,7 +446,9 @@
             },
             cache: false,
             success: function (response) {
-                console.log(response);
+                $('#refresh-data').load(location.href + " #refresh-data");
+                $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
+
             }
         });
     });

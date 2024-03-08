@@ -17,6 +17,25 @@ class RincianBiayaController extends Controller
     {
         return view('admin.rincian-biaya.index');
     }
+    public function datatable()
+    {
+        $query = RincianBiaya::with('surat')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
+
+        return DataTables::of($query)
+                ->addColumn('nomor_surat', function ($surat) {
+                    return $surat->first()->surat->pluck('nomor_surat')->implode(', ');
+                })
+                ->addColumn('options', function ($row){
+                    return '
+                        <a href="' . route('dashboard.rincian.biaya.show', $row->id) . '" class="btn btn-xs btn-info"><i class="fa fa-eye text-white"></i></a>
+                        <a href="' . route('dashboard.rincian.biaya.edit', $row->id) . '" class="btn btn-xs btn-warning"><i class="fa fa-pen text-white"></i></a>
+                        <button data-id="' . $row['id'] . '" class="btn btn-xs btn-danger" id="btn-delete"><i class="fa fa-trash text-white"></i></button>
+                    ';
+                })
+                ->rawColumns(['options'])
+                ->addIndexColumn()
+                ->make(true);
+    }
     public function store(RincianBiayaData $rincianData,RincianBiayaAction $rincianBiayaAction)
     {
         $rincianBiayaAction->execute($rincianData);

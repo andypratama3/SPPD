@@ -23,6 +23,7 @@ class RincianBiayaAction
                 return (int) str_replace('.', '', $value);
             }, $data));
         }
+
         $dp = str_replace('.', '', $rincianBiayaData->dp);
         $dp_int = intval($dp);
 
@@ -31,6 +32,10 @@ class RincianBiayaAction
         $input_pelunasan = str_replace('.', '', $rincianBiayaData->pelunasan);
         $pelunasan_int = intval($input_pelunasan);
 
+
+        // if ($total < $dp_int) {
+        //     $sisa_pembayaran = $total_semua_rincian + $total;
+        // }
 
         if ($dp_int + $pelunasan_int === $total_semua_rincian) {
             $update_status = 'Lunas';
