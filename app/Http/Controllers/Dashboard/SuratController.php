@@ -68,22 +68,23 @@ class SuratController extends Controller
     }
     public function destroy(ActionDeleteSurat $ActionDeleteSurat, Surat $surat)
     {
-        $result = $ActionDeleteSurat->execute($surat);
-        if($result) {
-            return response()->json(['success' => 'Berhasil Menghapus Surat']);
-        } else {
-            return response()->json(['message' => 'Gagal Menghapus Surat'], 500);
+        if($ActionDeleteSurat)
+        {
+            $ActionDeleteSurat->execute($surat);
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Surat']);
+        }else{
+            return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Surat']);
         }
 
     }
     public function destroySuratArray(Request $request, SuratActionDeleteArray $suratActionDeleteArray)
     {
-        $result = $suratActionDeleteArray->execute($request);
-
-        if($result) {
-            return response()->json(['success' => 'Berhasil Menghapus Pengikut']);
-        } else {
-            return response()->json(['message' => 'Gagal Menghapus Pengikut'], 500);
+        if($suratActionDeleteArray)
+        {
+            $suratActionDeleteArray->execute($request);
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Surat']);
+        }else{
+            return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Surat']);
         }
     }
 

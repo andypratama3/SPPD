@@ -43,6 +43,11 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
     $.noConflict();
+    function reloadTable(id){
+        var table = $(id).DataTable();
+        table.cleanData;
+        table.ajax.reload();
+    }
     $(document).ready(function () {
         $('#table_surat').DataTable({
             ordering: true,
@@ -87,13 +92,10 @@
                 $.ajax({
                     url: url,
                     type: 'DELETE',
-                    data: {
-                        slug: slug,
-                    },
                     cache: false,
                     success: function (data) {
-                        if (data.success) {
-                            swal('Berhasil', data.success, 'success').then(() => {
+                        if (data.status) {
+                            swal('Berhasil', data.status, 'success').then(() => {
                                 reloadTable('#table_surat');
                             });
                         } else if (data.message) {

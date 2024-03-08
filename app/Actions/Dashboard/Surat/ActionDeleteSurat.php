@@ -7,11 +7,14 @@ class ActionDeleteSurat
 {
     public function execute($surat)
     {
-        $surat->pegawai()->detach();
-        $surat->rincianBiaya()->detach();
-        foreach ($surat->rincianBiaya as $rincian) {
+       foreach ($surat->rincianBiaya as $rincian) {
+            $rincian->surat()->detach($surat->id);
             $rincian->delete();
         }
+        // Detach Pegawai records
+        $surat->pegawai()->detach();
+
+        // Delete the Surat record
         $surat->delete();
     }
 }
