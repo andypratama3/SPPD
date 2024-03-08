@@ -39,115 +39,78 @@
                     </div>
                 </div>
                 @include('layouts.flashmessage')
-                {{-- @foreach ($rincians as $rincian) --}}
-                <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" name="id" value="{{ $rincian->id }}">
-                    {{-- <input type="hidden" name="surat" value="{{ $surat->id }}"> --}}
-                    <div class="row">
-                        <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <div class="form-group">
+
+                            <h6 class="text-center">Rincian Biaya</h6>
                             <hr>
-                            <div class="form-group">
-
-                                <h6 class="text-center">Rincian Biaya</h6>
-                                <hr>
-                                <table class="table table-bordered text-center" id="dynamicAddRemove">
+                            <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                <tr>
+                                    <th class="w-25">Rincian Biaya</th>
+                                    <th class="w-10">Jumlah</th>
+                                    <th class="w-25">RP</th>
+                                    <th class="w-25">Total</th>
+                                    <th class="w-50">Keterangan</th>
+                                </tr>
+                                @php
+                                    $decodedRincian = json_decode($rincian['rincian'], true);
+                                    $decodedJumlah = json_decode($rincian['jumlah'], true);
+                                    $decodedRp = json_decode($rincian['rp'], true);
+                                    $decodedTotal = json_decode($rincian['total'], true);
+                                    $decodedKeterangan = json_decode($rincian['keterangan'], true);
+                                @endphp
+                                @foreach ($decodedRincian as $key => $item_rincian)
                                     <tr>
-                                        <th class="w-25">Rincian Biaya</th>
-                                        <th class="w-10">Jumlah</th>
-                                        <th class="w-25">RP</th>
-                                        <th class="w-25">Total</th>
-                                        <th class="w-50">Keterangan</th>
-                                        @if($rincian->status == 'Lunas')
-                                        @else
-                                        <th class="w-25">Actions</th>
-                                        @endif
-                                    </tr>
-                                    @php
-                                        $decodedRincian = json_decode($rincian['rincian'], true);
-                                        $decodedJumlah = json_decode($rincian['jumlah'], true);
-                                        $decodedRp = json_decode($rincian['rp'], true);
-                                        $decodedTotal = json_decode($rincian['total'], true);
-                                        $decodedKeterangan = json_decode($rincian['keterangan'], true);
-                                    @endphp
-                                    @foreach ($decodedRincian as $key => $item_rincian)
-                                        <tr>
-                                            <td><input type="text" class="form-control" name="rincian[]" readonly placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                            <td><input type="text" class="form-control" min="1" name="jumlah[]" readonly value="{{ $decodedJumlah[$key] }}"></td>
-                                            <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" readonly value="{{ $decodedRp[$key] }}" id="rp"></td>
-                                            <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
-                                            <td><input type="text" class="form-control" name="keterangan[]" readonly placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
-                                            @if($rincian->status == 'Lunas')
-                                            @else
-                                            <td><button type="button" class="btn btn-xs btn-danger remove-row"><i class="fas fa-trash"></i></button></td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        @if($rincian->status == 'Lunas')
-                                        @else
-                                        <td colspan="5"></td>
-                                        <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
-                                        @endif
+                                        <td><input type="text" class="form-control" name="rincian[]" readonly placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
+                                        <td><input type="text" class="form-control" min="1" name="jumlah[]" readonly value="{{ $decodedJumlah[$key] }}"></td>
+                                        <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" readonly value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                        <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
+                                        <td><input type="text" class="form-control" name="keterangan[]" readonly placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
 
                                     </tr>
-                                </table>
+                                @endforeach
+                            </table>
 
-                            </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                @if($rincian->status == 'Lunas')
-                                <label for="">Pembayaran Full</label>
-                                <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
-                                @else
-                                <label for="">Jumlah DP</label>
-
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Status</label>
-                                @if($rincian->status == 'Lunas')
-                                <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->status }}">
-                                @else
-                                <select name="status" class="form-control border-input">
-                                    @foreach ($surat->rincianBiaya as $status)
-                                    <option selected value="{{ $status->status }}">{{ $status->status }}</option>
-                                    @endforeach
-                                    <option value="DP">DP</option>
-                                    <option value="Belum Di Bayar">Belum Di Bayar</option>
-                                </select>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Sisa Pembayaran</label>
-                                <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
-                            </div>
-                        </div>
-                        @if($rincian->status == 'Lunas')
-                        <div class="col-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                        </div>
-                        @else
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Input Pelunasan</label>
-                                <input type="text" class="form-control border-input" name="pelunasan" id="pelunasan">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                            <button class="btn btn-primary float-end">Update</button>
-                        </div>
-                        @endif
                     </div>
-                </form>
+                    <div class="col-6">
+                        <div class="form-group">
+                            @if($rincian->status == 'Lunas')
+                            <label for="">Pembayaran Full</label>
+                            <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                            @else
+                            <label for="">Jumlah DP</label>
+                                <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            @if($rincian->status == 'Lunas')
+                            <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->status }}">
+                            @else
+                            @foreach ($surat->rincianBiaya as $status)
+                            <input type="text" class="form-control border-input" readonly value="{{ $status->status }}">
+                                @endforeach
+                            </select>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="">Sisa Pembayaran</label>
+                            <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

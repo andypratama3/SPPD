@@ -248,8 +248,8 @@
                                         @foreach ($decodedRincian as $key => $item_rincian)
                                             <tr id="refresh-data">
                                                 <td><input type="text" class="form-control" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                                <td><input type="text" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
-                                                <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                                <td><input type="number" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
+                                                <td><input type="number"  class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
                                                 <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
                                                 <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
                                                 @if($rincian->status == 'Lunas')
@@ -362,7 +362,7 @@
                     <input type="number" class="form-control" name="jumlah[${i}]" min="1">
                 </td>
                 <td>
-                    <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
+                    <input type="number" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
                 </td>
                 <td>
                     <input type="text" class="form-control" name="total[${i}]" readonly>

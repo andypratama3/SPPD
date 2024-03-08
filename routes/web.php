@@ -28,6 +28,8 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.pegawai']);
     Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.pimpinan']);
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
+    Route::get('surats/cetak-pdf/{slug}',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetakPdf');
+
     Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
     Route::get('rincian-biayas/records',[RincianBiayaController::class, 'datatable'])->name('dashboard.rincianBiaya.getRecords');
     Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');

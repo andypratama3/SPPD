@@ -6,6 +6,7 @@ use App\Models\Surat;
 use App\Models\Pegawai;
 use App\Models\Pimpinan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use App\DataTransferObjects\SuratData;
 use Yajra\DataTables\Facades\DataTables;
@@ -29,6 +30,7 @@ class SuratController extends Controller
                 })
                 ->addColumn('options', function ($row){
                     return '
+                    <a href="' . route('dashboard.surat.cetakPdf', $row->slug) . '" class="btn btn-xs btn-success"><i class="fa fa-file-pdf text-white"></i></a>
                     <a href="' . route('dashboard.surat.show', $row->slug) . '" class="btn btn-xs btn-info"><i class="fa fa-eye text-white"></i></a>
                     <a href="' . route('dashboard.surat.edit', $row->slug) . '" class="btn btn-xs btn-warning"><i class="fa fa-pen text-white"></i></a>
                     <button data-id="' . $row['slug'] . '" class="btn btn-xs btn-danger" id="btn-delete"><i class="fa fa-trash text-white"></i></button>
@@ -86,6 +88,12 @@ class SuratController extends Controller
         }else{
             return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Surat']);
         }
+    }
+    public function cetak_pdf($slug)
+    {
+        $surat = Surat::where('slug', $slug)->first();
+        $pdf = PDF::loadView('admin.cetak.cetak_surat', ['surat' => $surat]);
+        return $pdf->download('siswa' . $surat->nomor_surat . '.pdf');
     }
 
 
