@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTransferObjects\PimpinanData;
 use App\Actions\Dashboard\Pimpinan\PimpinanAction;
+use App\Actions\Dashboard\Pimpinan\PimpinanActionDelete;
 
 class PimpinanController extends Controller
 {

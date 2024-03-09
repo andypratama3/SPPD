@@ -20,5 +20,26 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('asset_dashboard/js/SwetAlert/index.js') }}"></script>
-
  @stack('javascript')
+
+ <script>
+    $(document).ready(function () {
+        $(".delete").click(function (e) {
+            slug = e.target.dataset.id;
+            swal({
+                    title: 'Anda yakin?',
+                    text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $(`#delete-${slug}`).submit();
+                    } else {
+                        // Do Nothing
+                    }
+                });
+        });
+    });
+ </script>

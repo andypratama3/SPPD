@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Rincian Biaya Edit')
+@section('title', 'Rincian Biaya')
 @push('css')
     <style>
         input::-webkit-outer-spin-button,
@@ -40,15 +40,12 @@
                 </div>
                 @include('layouts.flashmessage')
                 <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    @foreach ($rincian->surat as $surat)
-                    <input type="hidden" id="surat" name="surat" value="{{ $surat->id }}">
-                    @endforeach
-                    <input type="hidden" id="rincian_id" name="id" value="{{ $rincian->id }}">
-                    {{-- <input type="hidden" name="surat" value="{{ $surat->id }}"> --}}
-                    <div class="row">
-                        <div class="col-md-12" >
+                <div class="row">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" value="{{ $rincian->id }}" name="id">
+                        <input type="hidden" value="{{ $surat->id }}" name="surat">
+                        <div class="col-md-12">
                             <hr>
                             <div class="form-group">
 
@@ -66,6 +63,7 @@
                                         <th class="w-25">Actions</th>
                                         @endif
                                     </tr>
+                                    @foreach ($surat->rincianBiaya as $rincian)
                                     @php
                                         $decodedRincian = json_decode($rincian['rincian'], true);
                                         $decodedJumlah = json_decode($rincian['jumlah'], true);
@@ -74,10 +72,10 @@
                                         $decodedKeterangan = json_decode($rincian['keterangan'], true);
                                     @endphp
                                     @foreach ($decodedRincian as $key => $item_rincian)
-                                        <tr>
+                                        <tr id="refresh-data">
                                             <td><input type="text" class="form-control" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                            <td><input type="text" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
-                                            <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                            <td><input type="number" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
+                                            <td><input type="number"  class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
                                             <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
                                             <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
                                             @if($rincian->status == 'Lunas')
@@ -86,13 +84,13 @@
                                             @endif
                                         </tr>
                                     @endforeach
+                                    @endforeach
                                     <tr>
                                         @if($rincian->status == 'Lunas')
                                         @else
                                         <td colspan="5"></td>
                                         <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
                                         @endif
-
                                     </tr>
                                 </table>
 
@@ -102,11 +100,10 @@
                             <div class="form-group">
                                 @if($rincian->status == 'Lunas')
                                 <label for="">Pembayaran Full</label>
-                                <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                                <input type="text" id="dp" class="form-control border-input"  value="{{ $rincian->dp }}">
                                 @else
                                 <label for="">Jumlah DP</label>
-
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly  value="{{ $rincian->dp }}">
                                 @endif
                             </div>
                         </div>
@@ -133,21 +130,21 @@
                             </div>
                         </div>
                         @if($rincian->status == 'Lunas')
-                        <div class="col-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                        </div>
-                        @else
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="">Input Pelunasan</label>
-                                <input type="text" class="form-control border-input" name="pelunasan" id="pelunasan">
+                            <div class="col-12">
+                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                            <button class="btn btn-primary float-end">Update</button>
-                        </div>
-                        @endif
+                            @else
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Input Pelunasan</label>
+                                    <input type="text" class="form-control border-input" name="pelunasan" id="pelunasan" value="{{ $rincian->pelunasan }}">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
+                                <button class="btn btn-primary float-end">Update</button>
+                            </div>
+                            @endif
                     </div>
                 </form>
             </div>
@@ -162,6 +159,7 @@
 
         $('#pelunasan').click(function () {
         const sisa_pembayaran = formatRupiah($('#sisa_pembayaran').val());
+        $('#sisa_pembayaran').val(sisa_pembayaran);
         });
 
         $('#dp').click(function () {
@@ -189,7 +187,7 @@
                     <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="total[${i}]" readonly>
+                    <input type="text" class="form-control" name="total[${i}]" >
                 </td>
                 <td>
                     <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
@@ -251,8 +249,7 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return rupiah;
     }
-    //delete data in array rincian
-    $('#dynamicAddRemove').on('click', '.delete-item-array', function () {
+    $('#card-not-refresh').on('click', '.delete-item-array', function () {
         let item_array_index = $(this).data("id");
         let rincian_id = $('#rincian_id').val();
 
@@ -271,10 +268,11 @@
             },
             cache: false,
             success: function (response) {
-                console.log(response);
+                $('#refresh-data').load(location.href + " #refresh-data");
+                $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
+
             }
         });
-
     });
 
 });

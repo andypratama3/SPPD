@@ -137,21 +137,21 @@
                                         <th class="w-50">Hubungan</th>
                                         <th class="w-25">Action</th>
                                     </tr>
-                                @php
-                                    $decodedNama = json_decode($surat->nama, true);
-                                    $decodedUmur = json_decode($surat->umur, true);
-                                    $decodedHubungan = json_decode($surat->hubungan, true);
-                                @endphp
-                                @foreach ($decodedNama as $index => $nama)
-                                <tr>
-                                    <td><input type="text" class="form-control" name="nama[]" value="{{ $nama }}"></td>
-                                    <td><input type="text" class="form-control" name="umur[]" value="{{ $decodedUmur[$index] }}"></td>
-                                    <td><input type="text" class="form-control" name="hubungan[]" value="{{ $decodedHubungan[$index] }}"></td>
-                                    <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $index }}"><i class="fas fa-trash"></i></button></td>
-                                </tr>
-                                @endforeach
-                                <th class="w-25"><button type="button" id="dynamic-ar"
-                                    class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
+                                    @php
+                                        $decodedNama = json_decode($surat->nama, true);
+                                        $decodedUmur = json_decode($surat->umur, true);
+                                        $decodedHubungan = json_decode($surat->hubungan, true);
+                                    @endphp
+                                    @foreach ($decodedNama as $index => $nama)
+                                    <tr>
+                                        <td><input type="text" class="form-control" name="nama[]" value="{{ $nama }}"></td>
+                                        <td><input type="text" class="form-control" name="umur[]" value="{{ $decodedUmur[$index] }}"></td>
+                                        <td><input type="text" class="form-control" name="hubungan[]" value="{{ $decodedHubungan[$index] }}"></td>
+                                        <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $index }}"><i class="fas fa-trash"></i></button></td>
+                                    </tr>
+                                    @endforeach
+                                    <th class="w-25"><button type="button" id="dynamic-ar"
+                                        class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
                                 </table>
                             </div>
                         </div>

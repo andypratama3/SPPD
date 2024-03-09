@@ -19,4 +19,9 @@ class Pimpinan extends Model
         'nip',
         'jabatan',
     ];
+
+    public function surat()
+    {
+        return $this->hasMany(Surat::class, 'pimpinan_id', 'id');
+    }
 }

@@ -28,9 +28,18 @@
                             <td>{{ $pimpinan->nip }}</td>
                             <td>{{ $pimpinan->jabatan }}</td>
                             <td>
-                                {{-- <a href="{{ route('dashboard.pimpinan.show', $pimpinan->slug) }}" class="btn btn-secondary btn-xs"><i class="fas fa-eye"></i></a> --}}
                                 <a href="{{ route('dashboard.pimpinan.edit', $pimpinan->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
                                 <a href="" class="btn btn-danger btn-xs" style="color: white;"><i class="fa fa-trash"></i></a>
+                                <a href="#" data-id="{{ $pimpinan->slug }}" class="btn btn-danger btn-xs delete"
+                                    title="Hapus">
+                                    <form action="{{ route('dashboard.pimpinan.destroy', $pimpinan->slug) }}"
+                                        id="delete-{{ $pimpinan->slug }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('delete')
+                                    </form>
+                                    <i class="fas fa-trash"></i>
+
+                                </a>
                             </td>
                         </tr>
                         @endforeach

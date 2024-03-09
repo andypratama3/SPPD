@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use Carbon\Carbon;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\DataTransferObjects\PegawaiData;
 use App\Actions\Dashboard\Pegawai\PegawaiAction;
-use Carbon\Carbon;
+use App\Actions\Dashboard\Pegawai\PegawaiActionDelete;
 
 class PegawaiController extends Controller
 {
     public function index()
     {
         $limit = 20;
-        $pegawais = Pegawai::orderBy('name', 'asc')->paginate($limit);
+        $pegawais = Pegawai::orderBy('name','asc')->paginate($limit);
         $count = $pegawais->count();
         $no = $limit * ($pegawais->currentPage() - 1);
-        // dd(Carbon::parse('2019-03-01')->translatedFormat('d F Y'));
         return view('admin.pegawai.index', compact('pegawais','count','no'));
     }
     public function create()
@@ -47,7 +47,6 @@ class PegawaiController extends Controller
     {
         $pegawaiActionDelete->execute($pegawai);
         return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Hapus Pegawai');
-
     }
 
 }
