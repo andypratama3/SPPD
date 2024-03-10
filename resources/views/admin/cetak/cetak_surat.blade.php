@@ -5,27 +5,105 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lampiran 1</title>
-    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />
-    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran2.css') }}" />
-    <link
+    {{-- <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran2.css') }}" /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {{-- <link
       rel="stylesheet"
       href="{{ asset('asset_cetak/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
-    />
+    /> --}}
     <style>
-        @media print{
-        @page {
-            margin-top: 30px;
-            margin-bottom: 30px;
+    @media dompdf {
+        html, body { font-size: 80%; }
+        .container-0 .left-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
+
+        .container-0 .left-container .logo {
+            text-align: right;
+            margin-bottom: 10px;
         }
-        </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lampiran 1</title>
-    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />
-    <link
-      rel="stylesheet"
-      href="{{ asset('asset_cetak/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
-    />
+
+        .container-0 .left-container .logo img {
+            width: 75px;
+        }
+
+        .container-0 .left-container .title {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .container-0 .left-container .title p {
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .container-0 .left-container .title .uni {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: .02rem;
+        }
+
+        .container-0 .left-container .title .vocation {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .container-0 .right-container p,
+        .container-0 .right-container table td {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .container-1 .title {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            padding: 15px 0;
+            margin: 0;
+        }
+
+        .container-2 {
+            /* border: 2px red solid; */
+        }
+
+        .container-2 table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #000;
+            table-layout: fixed;
+        }
+
+        .container-2 table td {
+            border: 1px solid #000;
+            font-size: 12px;
+            padding: 3px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .container-2 table td ol {
+            transform: translateX(-20px);
+        }
+
+        .container-3 {
+            /* border: 2px red solid; */
+            font-size: 12px;
+        }
+
+        .container-3 .right-container td,
+        .container-3 .right-container p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+    </style>
+
   </head>
 
   <body>
@@ -476,7 +554,8 @@
         </table>
       </div>
     @endforeach
-    <script src="{{ asset('asset_cetak/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('asset_cetak/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script>
         // window.print();
     </script>
