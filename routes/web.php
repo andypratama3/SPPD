@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\RincianBiayaController;
+use App\Http\Controllers\Dashboard\SbmController;
 use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
 use App\Http\Controllers\Dashboard\PimpinanController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\RincianBiayaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'dashboard'], function (){
     Route::get('/',DashboardController::class)->name('dashboard');
-    Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.pegawai']);
-    Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.pimpinan']);
+    Route::group(['prefix' => 'datamaster'], function (){
+        Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
+        Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.datamaster.pimpinan']);
+        Route::resource('sbm', SbmController::class, ['names' => 'dashboard.datamaster.sbm']);
+    });
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
     Route::get('surats/cetak-pdf/{slug}',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetakPdf');
 

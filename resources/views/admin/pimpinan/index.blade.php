@@ -7,7 +7,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <h4 class="text-center">PIMPINAN</h4>
-                    <a href="{{ route('dashboard.pimpinan.create') }}" class="btn btn-primary btn-rounded float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
+                    <a href="{{ route('dashboard.datamaster.pimpinan.create') }}" class="btn btn-primary btn-rounded float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
                 </div>
                 <table class="table table-responsive text-center" id="table_pimpinan">
                     <tr>
@@ -28,11 +28,11 @@
                             <td>{{ $pimpinan->nip }}</td>
                             <td>{{ $pimpinan->jabatan }}</td>
                             <td>
-                                <a href="{{ route('dashboard.pimpinan.edit', $pimpinan->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
+                                <a href="{{ route('dashboard.datamaster.pimpinan.edit', $pimpinan->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
                                 <a href="" class="btn btn-danger btn-xs" style="color: white;"><i class="fa fa-trash"></i></a>
                                 <a href="#" data-id="{{ $pimpinan->slug }}" class="btn btn-danger btn-xs delete"
                                     title="Hapus">
-                                    <form action="{{ route('dashboard.pimpinan.destroy', $pimpinan->slug) }}"
+                                    <form action="{{ route('dashboard.datamaster.pimpinan.destroy', $pimpinan->slug) }}"
                                         id="delete-{{ $pimpinan->slug }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @method('delete')

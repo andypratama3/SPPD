@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Dashboard')
+@section('title', 'Edit Pimpinan')
 @section('content')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -8,7 +8,7 @@
                 <h5 class="text-center">EDIT PIMPINAN</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('dashboard.pimpinan.update', $pimpinan->slug) }}" method="post">
+                <form action="{{ route('dashboard.datamaster.pimpinan.update', $pimpinan->slug) }}" method="post">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="slug" value="{{ $pimpinan->slug }}">
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.pimpinan.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <a href="{{ route('dashboard.datamaster.pimpinan.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
                             <button type="submit" class="btn btn-primary btn-rounded float-end text-white">Submit</button>
                         </div>
                     </div>
