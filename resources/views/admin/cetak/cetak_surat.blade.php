@@ -12,8 +12,11 @@
       href="{{ asset('asset_cetak/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
     />
     <style>
-        .page-break {
-            page-break-after: always;
+        @media print{
+        @page {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
         }
         </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,8 +128,8 @@
             <td colspan="3">
               <p class="my-0 py-0">{{ $surat->tujuan_perjalanan }}</p>
               <p class="my-0 py-0">
-                <u>PT. Perkebunan Kaltim Utama I, Estate 2, Jawa, Kec. Sanga-sanga,
-                Kukar, Kaltim</u>
+                {{ $surat->tempat_tujuan }}
+                {{-- <u>{{ $surat->tempat_tujuan }}</u> --}}
               </p>
             </td>
           </tr>
@@ -136,7 +139,7 @@
               <p class="my-0 py-0">b. Tanggal berangkat</p>
               <p class="my-0 py-0">c. Tanggal harus kembali</p>
             </td>
-            <td colspan="3">2 (dua) hari 3 Februari 2024 4 Februari 2024</td>
+            <td colspan="3">{{ $surat->lama_perjalanan }} (dua) hari {{ $surat->tanggal_berangkat }} - {{ $surat->tanggal_kembali }}</td>
           </tr>
           <tr>
             <td style="word-spacing: 100px">Pengikut Nama</td>
@@ -184,7 +187,7 @@
         </table>
       </div>
     </div>
-    <div class="container-fluid mt-3 container-3" style="margin-bottom: 120px;">
+    <div class="container-fluid mt-3 container-3" style="margin-bottom: 200px;">
       <div class="row d-flex justify-content-between">
         <div class="col-7 left-container">
           <p>*) Coret yang tidak perlu</p>
@@ -202,8 +205,8 @@
           </table>
           <p>Pejabat Pembuat Komitmen</p>
           <p>Politeknik Pertanian Negeri Samarinda</p>
-          <p class="mt-5">Eva Nurmarini, S. Hut, MP</p>
-          <p>NIP : 19750808 199903 2 002</p>
+          <p class="mt-5">{{ $surat->pimpinan->name }}</p>
+          <p>NIP : {{ $surat->pimpinan->mip }}</p>
         </div>
       </div>
     </div>
@@ -221,7 +224,7 @@
                   <p class="my-0 py-0">Pada Tanggal</p>
                 </td>
                 <td>
-                  <p class="my-0 py-0">:</p>
+                  <p class="my-0 py-0">: {{ $surat->tempat_berangkat }}</p>
                   <p class="my-0 py-0">:</p>
                   <p class="my-0 py-0">:</p>
                   <p class="my-0 py-0">:</p>
@@ -235,8 +238,8 @@
             <p>Pimpinan,</p>
             <p>Politeknik Pertanian Negeri</p>
             <p>Samarinda</p>
-            <p class="mt-5 my-0 py-0"><u>Eva Nurmarini, S. Hut. MP</u></p>
-            <p class="my-0 py-0">NIP. 19750808 199903 2 002</p>
+            <p class="mt-5 my-0 py-0"><u>{{ $surat->pimpinan->name }}</u></p>
+            <p class="my-0 py-0">NIP. {{ $surat->pimpinan->nip }}</p>
           </div>
         </div>
       </div>
@@ -416,9 +419,9 @@
                     <td>
                       <p class="mt-4 my-5 py-0">Pejabat Pembuat Komitmen</p>
                       <p class="my-0 py-0">
-                        <u>Eva Nurmarini, S. Hut, MP</u>
+                        <u>{{ $surat->pimpinan->name }}</u>
                       </p>
-                      <p class="mb-3 my-0 py-0">NIP : 19750808 199903 2 002</p>
+                      <p class="mb-3 my-0 py-0">NIP : {{ $surat->pimpinan->nip }}</p>
                     </td>
                   </tr>
                   <tr>
@@ -443,9 +446,9 @@
                     <td>
                       <p class="mt-3 my-5 py-0">Pejabat Pembuat Komitmen</p>
                       <p class="my-0 py-0">
-                        <u>Eva Nurmarini, S. Hut, MP</u>
+                        <u>{{ $surat->pimpinan->name }}</u>
                       </p>
-                      <p class="my-0 py-0">NIP : 19750808 199903 2 002</p>
+                      <p class="my-0 py-0">NIP : {{ $surat->pimpinan->nip }}</p>
                     </td>
                   </tr>
                 </table>
@@ -475,7 +478,7 @@
     @endforeach
     <script src="{{ asset('asset_cetak/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script>
-        window.print();
+        // window.print();
     </script>
   </body>
 </html>

@@ -50,7 +50,7 @@ class SuratController extends Controller
     public function store(SuratData $suratData, SuratAction $suratAction)
     {
         $suratAction->execute($suratData);
-        return redirect()->route('dashboard.surat.show', $suratData->nomor_surat)->with('success',"Sukses Menambahkan Surat $surat->nomor_surat");
+        return redirect()->route('dashboard.surat.index')->with('success',"Sukses Menambahkan Surat");
     }
     public function show(Surat $surat)
     {

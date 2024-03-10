@@ -28,7 +28,7 @@ class PegawaiController extends Controller
     public function store(PegawaiData $pegawaiData, PegawaiAction $pegawiaAction)
     {
         $pegawiaAction->execute($pegawaiData);
-        return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Menambahkan Pegawai');
+        return redirect()->route('dashboard.datamaster.pegawai.index')->with('success','Berhasil Menambahkan Pegawai');
     }
     public function show(Pegawai $pegawai)
     {
@@ -41,12 +41,12 @@ class PegawaiController extends Controller
     public function update(PegawaiData $pegawaiData, PegawaiAction $pegawiaAction)
     {
         $pegawiaAction->execute($pegawaiData);
-        return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Update Pegawai');
+        return redirect()->route('dashboard.datamaster.pegawai.index')->with('success','Berhasil Update Pegawai');
     }
     public function destroy(PegawaiActionDelete $pegawaiActionDelete, Pegawai $pegawai)
     {
         $pegawaiActionDelete->execute($pegawai);
-        return redirect()->route('dashboard.pegawai.index')->with('success','Berhasil Hapus Pegawai');
+        return redirect()->route('dashboard.datamaster.pegawai.index')->with('success','Berhasil Hapus Pegawai');
     }
 
 }

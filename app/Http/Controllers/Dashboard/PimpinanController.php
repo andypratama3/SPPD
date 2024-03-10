@@ -23,7 +23,7 @@ class PimpinanController extends Controller
     public function store(PimpinanData $pimpinanData, PimpinanAction $pimpinanAction)
     {
         $pimpinanAction->execute($pimpinanData);
-        return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Menambahkan Pimpinan');
+        return redirect()->route('dashboard.datamaster.pimpinan.index')->with('success', 'Berhasil Menambahkan Pimpinan');
     }
     public function edit(Pimpinan $pimpinan)
     {
@@ -32,12 +32,12 @@ class PimpinanController extends Controller
     public function update(PimpinanData $pimpinanData, PimpinanAction $pimpinanAction)
     {
         $pimpinanAction->execute($pimpinanData);
-        return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Update Pimpinan');
+        return redirect()->route('dashboard.datamaster.pimpinan.index')->with('success', 'Berhasil Update Pimpinan');
     }
     public function destroy(PimpinanActionDelete $pimpinanActionDelete, Pimpinan $pimpinan)
     {
         $pimpinanActionDelete->execute($pimpinan);
-        return redirect()->route('dashboard.pimpinan.index')->with('success', 'Berhasil Hapus Pimpinan');
+        return redirect()->route('dashboard.datamaster.pimpinan.index')->with('success', 'Berhasil Hapus Pimpinan');
 
     }
 }

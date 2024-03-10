@@ -20,7 +20,7 @@ class SbmController extends Controller
     public function store(SbmData $sbmData,SbmAction $sbmAction)
     {
         $sbmAction->execute($sbmData);
-        return redirect()->route('dashboard.sbm.index')->with('success', 'Berhasil Menambahkan Sbm');
+        return redirect()->route('dashboard.datamaster.sbm.index')->with('success', 'Berhasil Menambahkan Sbm');
     }
     public function edit(Sbm $sbm)
     {
@@ -29,6 +29,6 @@ class SbmController extends Controller
     public function update(SbmData $sbmData,SbmAction $sbmAction)
     {
         $sbmAction->execute($sbmData);
-        return redirect()->route('dashboard.sbm.index')->with('success', 'Berhasil Menambahkan Sbm');
+        return redirect()->route('dashboard.datamaster.sbm.index')->with('success', 'Berhasil Menambahkan Sbm');
     }
 }
