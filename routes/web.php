@@ -45,6 +45,10 @@ Route::get('cetak/lampiran1', function(){
     return view('cetak.lampiran1');
 })->name('cetak.lampiran1');
 
+Route::get('cetak/lampiran1-nb', function(){
+    return view('cetak.lampiran1-nb');
+})->name('cetak.lampiran1-nb');
+
 Route::get('cetak/lampiran2', function(){
     return view('cetak.lampiran2');
 })->name('cetak.lampiran2');
@@ -52,4 +56,8 @@ Route::get('cetak/lampiran2', function(){
 Route::get('cetak/rincian-biaya', function(){
     return view('cetak.rincian-biaya');
 })->name('cetak.rincian-biaya');
+
+Route::get('login/', function(){
+    return view('login.index');
+})->name('login');
 

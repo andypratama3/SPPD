@@ -159,16 +159,16 @@
             $("#dynamicAddRemove").append(
                 `<tr>
                     <td>
-                        <input type="text" class="form-control" name="nama[` + i + `]" placeholder="Masukkan Nama">
+                        <input type="text" class="form-control form-control-sm" name="nama[` + i + `]" placeholder="Masukkan Nama">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="umur[` + i + `]" placeholder="Masukkan umur">
+                        <input type="text" class="form-control form-control-sm" name="umur[` + i + `]" placeholder="Masukkan umur">
                     </td>
                     <td>
-                        <input type="text" class="form-control" name="hubungan[` + i + `]" placeholder="Masukkan Hubungan">
+                        <input type="text" class="form-control form-control-sm" name="hubungan[` + i + `]" placeholder="Masukkan Hubungan">
                     </td>
                     <td colspan="2">
-                        <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
+                        <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fa fa-trash text-white"></i></button></td>
                     </td>
                 </tr>`
             );
