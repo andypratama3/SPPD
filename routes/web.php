@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
 use App\Http\Controllers\Dashboard\PimpinanController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\NomorSuratController;
 use App\Http\Controllers\Dashboard\RincianBiayaController;
 
 /*
@@ -30,6 +31,11 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
         Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.datamaster.pimpinan']);
         Route::resource('sbm', SbmController::class, ['names' => 'dashboard.datamaster.sbm']);
+        Route::get('nomor-surat',[NomorSuratController::class, 'index'])->name('dashboard.datamaster.nomor_surat.index');
+        Route::get('nomor-surat/edit/{id}',[NomorSuratController::class, 'edit'])->name('dashboard.datamaster.nomor_surat.edit');
+        Route::post('nomor-surat/update/{id}',[NomorSuratController::class, 'update'])->name('dashboard.datamaster.nomor_surat.update');
+
+
     });
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
     Route::get('surats/cetak-pdf/{slug}',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetakPdf');

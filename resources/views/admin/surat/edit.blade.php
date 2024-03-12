@@ -33,9 +33,9 @@
                                     <input type="text" class="form-control border-input" id="nomor_surat"
                                         name="nomor_surat" value="{{ $surat->nomor_surat }}"
                                         placeholder="Masukan Hanya Awalan No Surat">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text text-black">/PL21/SPPD/2024</span>
-                                    </div>
+                                        @foreach ($nomor_surat as $no)
+                                            <span class="input-group-text text-black">{{ $no->nomor_surat }}</span>
+                                        @endforeach
                                 </div>
                             </div>
                         </div>

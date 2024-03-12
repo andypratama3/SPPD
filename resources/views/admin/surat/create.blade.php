@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Dashboard')
+@section('title', 'Surat')
 @section('content')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -30,7 +30,10 @@
                                     <input type="text" class="form-control form-control-sm" id="nomor_surat"
                                         name="nomor_surat" value="{{ old('nomor_surat') }}"
                                         placeholder="Masukan Hanya Awalan No Surat">
-                                        <span class="input-group-text text-black">/PL21/SPPD/2024</span>
+                                            @foreach ($nomor_surat as $no)
+                                                <span class="input-group-text text-black">{{ $no->nomor_surat }}</span>
+                                            @endforeach
+
                                 </div>
                             </div>
                         </div>
@@ -74,7 +77,14 @@
                             <div class="form-group">
                                 <label for="tempat_tujuan">Tempat Tujuan <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm" name="tempat_tujuan" id="tempat_tujuan"
-                                    placeholder="Masukan Tempat Berangkat" value="{{ old('tempat_tujuan') }}">
+                                    placeholder="Masukan Tempat Tujuan" value="{{ old('tempat_tujuan') }}">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group">
+                                <label for="detail_tempat_tujuan">Detail Tempat Tujuan <code>*</code></label>
+                                <input type="text" class="form-control form-control-sm" name="detail_tempat_tujuan" id="detail_tempat_tujuan"
+                                    placeholder="Masukan Secara Detail Tempat" value="{{ old('detail_tempat_tujuan') }}">
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
@@ -118,6 +128,17 @@
                                 </select>
                             </div>
                         </div>
+                        {{-- <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group form-control-sm mx-0 px-0">
+                                <label for="sbm">SBM <code>*</code></label>
+                                <select name="sbm" id="sbm" class="form-control form-control-sm ">
+                                    <option selected disabled>Pilih SBM</option>
+                                    @foreach ($sbms as $sbm)
+                                        <option value="{{ $sbm->id }}">{{ $sbm->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div> --}}
                         <div class="col-md-12">
                             <div class="form-group">
                                 <h6 class="text-center">Pengikut</h6>

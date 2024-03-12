@@ -16,6 +16,12 @@
             </a>
             <div class="collapse  {{ Request::routeIs('dashboard.datamaster.*') ? 'show' : '' }} " id="ui-basic">
                 <ul class="nav flex-column sub-menu">
+                    <li class="nav-item {{ Request::routeIs('dashboard.datamaster.nomor_surat.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.datamaster.nomor_surat.index') }}">
+                            <i class="fas fa-envelope menu-icon"></i>
+                            <span class="menu-title">Nomor Surat</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{ Request::routeIs('dashboard.datamaster.pimpinan.*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('dashboard.datamaster.pimpinan.index') }}">
                             <i class="ti ti-user menu-icon"></i>

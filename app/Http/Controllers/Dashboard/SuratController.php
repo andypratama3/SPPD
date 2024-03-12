@@ -7,6 +7,7 @@ use Dompdf\Options;
 use App\Models\Surat;
 use App\Models\Pegawai;
 use App\Models\Pimpinan;
+use App\Models\NomorSurat;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
@@ -45,9 +46,10 @@ class SuratController extends Controller
 
     public function create()
     {
+        $nomor_surat = NomorSurat::all();
         $pegawais = Pegawai::all();
         $pimpinans = Pimpinan::all();
-        return view('admin.surat.create', compact('pegawais','pimpinans'));
+        return view('admin.surat.create', compact('nomor_surat','pegawais','pimpinans'));
     }
     public function store(SuratData $suratData, SuratAction $suratAction)
     {
@@ -60,9 +62,10 @@ class SuratController extends Controller
     }
     public function edit(Surat $surat)
     {
+        $nomor_surat = NomorSurat::all();
         $pegawais = Pegawai::all();
         $pimpinans = Pimpinan::all();
-       return view('admin.surat.edit', compact('surat','pegawais','pimpinans'));
+       return view('admin.surat.edit', compact('nomor_surat','surat','pegawais','pimpinans'));
     }
     public function update(SuratData $suratData, SuratAction $suratAction)
     {

@@ -13,21 +13,28 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Nama <code>*</code></label>
+                                <label for="">Biaya <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm border-input" name="name"
-                                    placeholder="Masukan Nama Karyawan" value="{{ old('name') }}">
+                                    placeholder="Masukan Nama Biaya" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">NIP <code>*</code></label>
+                                <label for="">Daerah <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm border-input" name="nip"
                                     placeholder="Masukan Nip Karyawan" value="{{ old('nip') }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Jabatan <code>*</code></label>
+                                <label for="">Satuan <code>*</code></label>
+                                <input type="text" class="form-control form-control-sm border-input" name="jabatan"
+                                    placeholder="Masukan Jabatan Karyawan" value="{{ old('jabatan') }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nilai <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm border-input" name="jabatan"
                                     placeholder="Masukan Jabatan Karyawan" value="{{ old('jabatan') }}">
                             </div>
