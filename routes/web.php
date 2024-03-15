@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function (){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['cekrole: 1']], function (){
     Route::get('/',DashboardController::class)->name('dashboard');
     Route::group(['prefix' => 'datamaster'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
@@ -48,6 +48,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function (){
     Route::post('rincian-surat-array/delete',[SuratController::class, 'destroySuratArray'])->name('dashboard.surat.arrayDelete');
 });
 
- 
+
 
 require __DIR__.'/auth.php';

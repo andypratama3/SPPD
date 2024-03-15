@@ -30,7 +30,7 @@ class SuratController extends Controller
 
         return DataTables::of($query)
                 ->addColumn('pegawai_names', function ($surat) {
-                    return $surat->first()->pegawai->pluck('name')->implode(', ');
+                    return $surat->first()->pegawai->pluck('name')->implode(',');
                 })
                 ->addColumn('options', function ($row){
                     return '

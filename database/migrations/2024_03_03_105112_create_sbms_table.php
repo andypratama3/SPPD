@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('biaya');
             $table->string('daerah');
             $table->string('satuan');
-            $table->string('nilai');
+            $table->longText('nilai');
             $table->string('slug');
             $table->timestamps();
         });

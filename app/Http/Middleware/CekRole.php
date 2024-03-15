@@ -15,21 +15,12 @@ class CekRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if(Auth::check())
-        {
-            if(Auth::user()->role == '2'){
-                return $next($request);
-            }else{
-                Session::flash('status', 'failed');
-                Session::flash('message', 'Anda Bukan Admin');
-                return redirect('/login');
-            }
+        if(in_array($request->user()->role, $roles)){
+            return $next($request);
         }else{
-            Session::flash('status', 'failed');
-            Session::flash('message', 'Mohon Login Terlebih Dahulu!');
-            return redirect('/login');
+            return redirect('/')->with('failed','Anda Bukan Admin');
         }
     }
 }

@@ -1,5 +1,8 @@
 @extends('layouts.dashboard')
 @section('title', 'SBM')
+@push('css')
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
+@endpush
 @section('content')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -32,11 +35,11 @@
                                     placeholder="Masukan Satuan" value="{{ old('satuan') }}">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Nilai <code>*</code></label>
-                                <input type="text" class="form-control form-control-sm border-input" name="nilai"
-                                    placeholder="Contoh: Makana: Rp. 20000" value="{{ old('nilai') }}">
+                                <div id="editor"></div>
+                                <textarea name="nilai" id="content-editor" style="display: none;"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -50,8 +53,71 @@
     </div>
 </div>
 @push('javascript')
-<script>
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
 
+<script>
+    $(document).ready(function () {
+        const toolbarOptions = [
+            ['bold', 'italic', 'underline', 'strike'],
+            ['blockquote', 'code-block'],
+
+            [{
+                'header': 1
+            }, {
+                'header': 2
+            }], // custom button values
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }], // superscript/subscript
+            [{
+                'indent': '-1'
+            }, {
+                'indent': '+1'
+            }], // outdent/indent
+            [{
+                'direction': 'rtl'
+            }], // text direction
+
+            [{
+                'size': ['small', false, 'large', 'huge']
+            }], // custom dropdown
+            [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+            }],
+
+            [{
+                'color': []
+            }, {
+                'background': []
+            }], // dropdown with defaults from theme
+            [{
+                'font': []
+            }],
+            [{
+                'align': []
+            }],
+
+            ['clean']
+        ];
+
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: toolbarOptions
+            },
+            theme: 'snow'
+        });
+        quill.on('text-change', function (delta, oldDelta, source){
+            $('#content-editor').text($('.ql-editor').html());
+
+        });
+    });
 </script>
 @endpush
 @endsection

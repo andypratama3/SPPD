@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Dashboard')
+@section('title', 'Surat')
 @push('css')
     <style>
         input::-webkit-outer-spin-button,
@@ -181,10 +181,10 @@
                                     <hr>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <h4>Nilai</h6>
-                                        <p>{{ $surat->sbm->nilai }}</p>
+                                        <p>{!! $surat->sbm->nilai !!}</p>
                                     <hr>
                                 </div>
                             </div>
