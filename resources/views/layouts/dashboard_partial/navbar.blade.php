@@ -117,10 +117,15 @@
                         <i class="ti-settings text-primary"></i>
                         Settings
                     </a>
-                    <a class="dropdown-item">
-                        <i class="ti-power-off text-primary"></i>
-                        Logout
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                            <i class="ti-power-off text-primary"></i>
+                            Logout
+                        </a>
+                    
+                    </form>
                 </div>
             </li>
         </ul>

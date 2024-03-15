@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'dashboard'], function (){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function (){
     Route::get('/',DashboardController::class)->name('dashboard');
     Route::group(['prefix' => 'datamaster'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
@@ -48,23 +48,6 @@ Route::group(['prefix' => 'dashboard'], function (){
     Route::post('rincian-surat-array/delete',[SuratController::class, 'destroySuratArray'])->name('dashboard.surat.arrayDelete');
 });
 
-Route::get('cetak/lampiran1', function(){
-    return view('cetak.lampiran1');
-})->name('cetak.lampiran1');
+ 
 
-Route::get('cetak/lampiran1-nb', function(){
-    return view('cetak.lampiran1-nb');
-})->name('cetak.lampiran1-nb');
-
-Route::get('cetak/lampiran2', function(){
-    return view('cetak.lampiran2');
-})->name('cetak.lampiran2');
-
-Route::get('cetak/rincian-biaya', function(){
-    return view('cetak.rincian-biaya');
-})->name('cetak.rincian-biaya');
-
-Route::get('login/', function(){
-    return view('login.index');
-})->name('login');
-
+require __DIR__.'/auth.php';

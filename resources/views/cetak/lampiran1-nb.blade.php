@@ -11,39 +11,44 @@
 
 <body>
     <div class="container-0">
-        <div class="grid">
-            <div class="left-top-content">
-                <img src="{{ asset('asset_cetak/img/logo-politani.png') }}" alt="">
+        <div class="left-container">
+            <div class="logo">
+                <img src="{{ asset('asset_cetak/img/logo-politani.png') }}" alt="Logo Politani">
             </div>
-            <div class="right-top-content">
-                <p>Lampiran 1</p>
-                <p>PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA</p>
-                <p>NOMOR: 113/PMK.05/2012</p>
-                <p>TENTANG</p>
-                <p>PERJALANAN DINAS JABATAN DALAM NEGERI BAGI PEJABAT</p>
-                <p>NEGARA, PEGAWAI NEGERI, DAN PEGAWAI TIDAK TETAP</p>
+            <div class="title">
+                <p class="uni">POLITEKNIK PERTANIAN NEGERI SAMARINDA</p>
+                <p class="vocation">
+                    KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN <br />
+                    DIREKTORAT PENDIDIKAN TINGI VOKASI
+                </p>
             </div>
-            <div class="left-bottom-content">
-                <p>POLITEKNIK PERTANIAN NEGERI SAMARINDA</p>
-                <p>KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN</p>
-                <p>DIREKTORAT PENDIDIKAN TINGGI VOKASI</p>
-            </div>
-            <div class="right-bottom-content">
-                <table border="0" cellspacing="0">
-                    <tr>
-                        <td>
-                            <p>Lembar ke</p>
-                            <p>Kode No.</p>
-                            <p>Nomor</p>
-                        </td>
-                        <td>
-                            <p><span>:</span>.........................</p>
-                            <p><span>:</span>.........................</p>
-                            <p><span>:</span>280/PL21/SPPD/2024</p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+        </div>
+        <div class="right-container">
+            <p>Lampiran I</p>
+            <p>PERATURAN MENTERI KEUANGAN REPUBLIK INDONESIA</p>
+            <p>NOMOR: 113/PMK.05/2012</p>
+            <p>TENTANG</p>
+            <p>
+                PERJALANAN DINAS JABATAN DALAM NEGERI BAGI PEJABAT <br> NEGARA, PEGAWAI
+                NEGERI, DAN PEGAWAI TIDAK TETAP
+            </p>
+            <table>
+                <tr>
+                    <td class="d-dot" style="padding-right: 20px">Lembar Ke</td>
+                    <td class="d-dot" style="padding-right: 5px">:</td>
+                    <td>............................................</td>
+                </tr>
+                <tr>
+                    <td>Kode No.</td>
+                    <td>:</td>
+                    <td>............................................</td>
+                </tr>
+                <tr>
+                    <td>Nomor</td>
+                    <td>:</td>
+                    <td>280/PL21/SPPD/2024</td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>

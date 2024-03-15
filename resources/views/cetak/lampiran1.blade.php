@@ -29,7 +29,7 @@
               KEMENTERIAN PENDIDIKAN DAN KEBUDAYAAN <br />
               DIREKTORAT PENDIDIKAN TINGI VOKASI
             </p>
-          </div>
+          </div>  
         </div>
         <div class="col-6 right-container">
           <p>Lampiran I</p>
