@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Sbm extends Model
 {
 
-    use UsesUuid,NameHasSlug;
+    use UsesUuid;
     use HasFactory;
     protected $table = 'sbms';
 

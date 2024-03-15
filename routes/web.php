@@ -31,6 +31,7 @@ Route::group(['prefix' => 'dashboard'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
         Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.datamaster.pimpinan']);
         Route::resource('sbm', SbmController::class, ['names' => 'dashboard.datamaster.sbm']);
+        Route::get('sbms/records',[SbmController::class, 'datatable'])->name('dashboard.sbms.records');
         Route::get('nomor-surat',[NomorSuratController::class, 'index'])->name('dashboard.datamaster.nomor_surat.index');
         Route::get('nomor-surat/edit/{id}',[NomorSuratController::class, 'edit'])->name('dashboard.datamaster.nomor_surat.edit');
         Route::post('nomor-surat/update/{id}',[NomorSuratController::class, 'update'])->name('dashboard.datamaster.nomor_surat.update');

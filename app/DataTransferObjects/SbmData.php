@@ -6,7 +6,7 @@ use Spatie\LaravelData\Data;
 use App\Http\Requests\Dashboard\SbmRequest;
 
 
-class RincianBiayaData extends Data
+class SbmData extends Data
 {
     public function __construct(
         public readonly string $biaya,

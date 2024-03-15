@@ -58,7 +58,8 @@ class SuratController extends Controller
     }
     public function show(Surat $surat)
     {
-       return view('admin.surat.show', compact('surat'));
+       $nomor_surat = NomorSurat::all();
+       return view('admin.surat.show', compact('surat','nomor_surat'));
     }
     public function edit(Surat $surat)
     {
@@ -97,6 +98,7 @@ class SuratController extends Controller
     public function cetak_pdf($slug)
     {
         $surat = Surat::where('slug', $slug)->first();
+        $nomor_surat = NomorSurat::all();
         // // Load the view with the data
         // $html = view('admin.cetak.cetak_surat', ['surat' => $surat])->render();
 
@@ -146,7 +148,7 @@ class SuratController extends Controller
 
         // // // Download the PDF with a filename
         // return $pdf->stream('siswa' . $surat->nomor_surat . '.pdf');
-        return view('admin.cetak.cetak_surat',compact('surat'));
+        return view('admin.cetak.cetak_surat',compact('surat','nomor_surat'));
 
     }
 

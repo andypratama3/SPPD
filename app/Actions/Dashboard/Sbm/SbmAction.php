@@ -1,5 +1,5 @@
 <?php
-namespace App\Dashboard\Sbm;
+namespace App\Actions\Dashboard\Sbm;
 
 use App\Models\Sbm;
 

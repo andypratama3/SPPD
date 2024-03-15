@@ -21,8 +21,12 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('asset_dashboard/js/SwetAlert/index.js') }}"></script>
  @stack('javascript')
-
  <script>
+     function reloadTable(id){
+         let table = $(id).DataTable();
+         table.cleanData;
+         table.ajax.reload();
+     }
     $(document).ready(function () {
         $(".delete").click(function (e) {
             slug = e.target.dataset.id;
