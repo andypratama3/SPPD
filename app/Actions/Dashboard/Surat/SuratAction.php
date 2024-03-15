@@ -14,7 +14,6 @@ class SuratAction
         $umur = json_encode($suratData->umur);
         $hubungan = json_encode($suratData->hubungan);
 
-
         $surat = Surat::updateOrCreate(
             ['slug' => $suratData->slug],
             [
@@ -31,12 +30,11 @@ class SuratAction
                 'nama' => $nama,
                 'umur' => $umur,
                 'hubungan' => $hubungan,
-                // 'nama' => $suratData->nama,
-                // 'umur' => $suratData->umur,
-                // 'hubungan' => $suratData->hubungan,
+                'sbm_id' => $suratData->sbm_id,
                 'mata_anggaran' => $suratData->mata_anggaran,
             ]
         );
+        
         if(empty($suratData->slug)){
             $surat->pegawai()->attach($suratData->pegawai);
         }else{

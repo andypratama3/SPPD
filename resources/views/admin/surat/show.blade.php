@@ -154,6 +154,45 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="card mx-4">
+                <div class="card-body">
+                    <h5 class="text-center ">SBM</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Biaya</h6>
+                                    <p>{{ $surat->sbm->biaya }}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Daerah</h6>
+                                        <p>{{ $surat->sbm->daerah }}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Satuan</h6>
+                                        <p>{{ $surat->sbm->satuan }}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <h4>Nilai</h6>
+                                        <p>{{ $surat->sbm->nilai }}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
             <div class="card-body mt-3" id="card-not-refresh">
                 @include('layouts.flashmessage')
                 @if($surat->rincianBiaya->isEmpty())

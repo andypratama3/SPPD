@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Dompdf\Dompdf;
+use App\Models\Sbm;
 use Dompdf\Options;
 use App\Models\Surat;
 use App\Models\Pegawai;
@@ -46,10 +47,11 @@ class SuratController extends Controller
 
     public function create()
     {
+        $sbms = Sbm::all();
         $nomor_surat = NomorSurat::all();
         $pegawais = Pegawai::all();
         $pimpinans = Pimpinan::all();
-        return view('admin.surat.create', compact('nomor_surat','pegawais','pimpinans'));
+        return view('admin.surat.create', compact('sbms','nomor_surat','pegawais','pimpinans'));
     }
     public function store(SuratData $suratData, SuratAction $suratAction)
     {
@@ -58,15 +60,17 @@ class SuratController extends Controller
     }
     public function show(Surat $surat)
     {
+
        $nomor_surat = NomorSurat::all();
        return view('admin.surat.show', compact('surat','nomor_surat'));
     }
     public function edit(Surat $surat)
     {
+        $sbms = Sbm::all();
         $nomor_surat = NomorSurat::all();
         $pegawais = Pegawai::all();
         $pimpinans = Pimpinan::all();
-       return view('admin.surat.edit', compact('nomor_surat','surat','pegawais','pimpinans'));
+        return view('admin.surat.edit', compact('sbms','nomor_surat','surat','pegawais','pimpinans'));
     }
     public function update(SuratData $suratData, SuratAction $suratAction)
     {

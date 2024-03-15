@@ -30,6 +30,7 @@ class Surat extends Model
         'nama',
         'umur',
         'hubungan',
+        'sbm_id',
         'mata_anggaran',
         'slug',
     ];
@@ -45,6 +46,10 @@ class Surat extends Model
     public function pimpinan()
     {
         return $this->belongsTo(Pimpinan::class, 'pimpinan_id', 'id');
+    }
+    public function sbm()
+    {
+        return $this->belongsTo(Sbm::class, 'sbm_id', 'id');
     }
     public function pegawai()
     {

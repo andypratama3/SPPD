@@ -30,4 +30,8 @@ class Sbm extends Model
     {
         return 'slug';
     }
+    public function surat()
+    {
+        return $this->hasMany(Surat::class, 'sbm_id', 'id');
+    }
 }

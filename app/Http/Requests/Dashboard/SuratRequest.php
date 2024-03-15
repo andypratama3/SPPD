@@ -62,6 +62,10 @@ class SuratRequest extends FormRequest
     {
         $this->mata_anggaran;
     }
+    public function getSbm()
+    {
+        $this->sbm_id;
+    }
     public function getSlug()
     {
         $this->slug;
