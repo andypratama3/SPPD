@@ -17,7 +17,7 @@ class CekRole
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        if(in_array($request->user()->role, $roles)){
+        if(in_array(Auth::user()->role, $roles)){
             return $next($request);
         }else{
             return redirect('/')->with('failed','Anda Bukan Admin');

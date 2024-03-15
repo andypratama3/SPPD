@@ -45,6 +45,9 @@ class RincianBiayaAction
                 $dp_int += $pelunasan_int;
             }
         }
+        if($dp_int > $total_semua_rincian){
+            $update_status = 'Lebih Dari DP';
+        }
 
         $rincianBiaya = RincianBiaya::updateOrCreate(
             ['id' => $rincianBiayaData->id],

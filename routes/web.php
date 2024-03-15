@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'dashboard', 'middleware' => ['cekrole: 1']], function (){
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth'],['cekrole: 1']], function (){
     Route::get('/',DashboardController::class)->name('dashboard');
     Route::group(['prefix' => 'datamaster'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
