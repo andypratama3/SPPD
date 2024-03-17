@@ -139,25 +139,29 @@
                                 </select>
                             </div>
                         </div>
+
+                        {{-- FORM PENGIKUT --}}
                         <div class="col-md-12">
-                            <div class="form-group">
-                                <h6 class="text-center">Pengikut</h6>
-                                <table class="table table-bordered text-center" id="dynamicAddRemove">
-                                    <tr>
-                                        <th class="w-25">Nama</th>
-                                        <th class="w-25">Umur</th>
-                                        <th class="w-50">Hubungan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                    <td><input type="text" class="form-control" name="nama[]"
-                                            placeholder="Masukkan Nama"></td>
-                                    <td><input type="text" class="form-control" name="umur[]"
-                                            placeholder="Masukkan Umur"></td>
-                                    <td><input type="text" class="form-control" name="hubungan[]"
-                                            placeholder="Masukkan Hubungan"></td>
-                                    <th class="w-25"><button type="button" id="dynamic-ar"
-                                            class="btn btn-xs btn-primary"><i class="fas fa-plus text-white text-small"></i></button></th>
-                                </table>
+                            <div class="form-group mt-3">
+                                <h5 class="text-center">Pengikut</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                        <tr>
+                                            <th class="w-25">Nama</th>
+                                            <th class="w-25">Umur</th>
+                                            <th class="w-50">Hubungan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                        <td><input type="text" class="form-control" name="nama[]"
+                                                placeholder="Masukkan Nama"></td>
+                                        <td><input type="text" class="form-control" name="umur[]"
+                                                placeholder="Masukkan Umur"></td>
+                                        <td><input type="text" class="form-control" name="hubungan[]"
+                                                placeholder="Masukkan Hubungan"></td>
+                                        <th class="w-25"><button type="button" id="dynamic-ar"
+                                                class="btn btn-xs btn-primary"><i class="fas fa-plus text-white text-small"></i></button></th>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

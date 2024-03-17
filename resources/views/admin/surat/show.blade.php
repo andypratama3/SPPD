@@ -268,47 +268,49 @@
                         <div class="col-md-12" id="form-group-reload">
                             <div class="form-group mt-3">
                                 <h5 class="text-center">Rincian Biaya</h5>
-                                <table class="table table-bordered text-center" id="dynamicAddRemove">
-                                    <tr>
-                                        <th class="w-25">Rincian Biaya</th>
-                                        <th class="w-10">Jumlah</th>
-                                        <th class="w-25">RP</th>
-                                        <th class="w-25">Total</th>
-                                        <th class="w-50">Keterangan</th>
-                                        @if($rincian->status == 'Lunas')
-                                        @else
-                                        <th class="w-25">Hapus</th>
-                                        @endif
-                                    </tr>
-                                    @foreach ($surat->rincianBiaya as $rincian)
-                                    @php
-                                        $decodedRincian = json_decode($rincian['rincian'], true);
-                                        $decodedJumlah = json_decode($rincian['jumlah'], true);
-                                        $decodedRp = json_decode($rincian['rp'], true);
-                                        $decodedTotal = json_decode($rincian['total'], true);
-                                        $decodedKeterangan = json_decode($rincian['keterangan'], true);
-                                    @endphp
-                                    @foreach ($decodedRincian as $key => $item_rincian)
-                                        <tr id="refresh-data">
-                                            <td><input type="text" class="form-control form-control-sm" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                            <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
-                                            <td><input type="number"  class="form-control form-control-sm" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
-                                            <td><input type="text" class="form-control form-control-sm" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
-                                            <td><input type="text" class="form-control form-control-sm" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                        <tr>
+                                            <th class="w-25">Rincian Biaya</th>
+                                            <th class="w-10">Jumlah</th>
+                                            <th class="w-25">RP</th>
+                                            <th class="w-25">Total</th>
+                                            <th class="w-50">Keterangan</th>
                                             @if($rincian->status == 'Lunas')
                                             @else
-                                            <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fa fa-trash text-white"></i></button></td>
+                                            <th class="w-25">Hapus</th>
                                             @endif
                                         </tr>
-                                    @endforeach
-                                    @endforeach
-                                    <tr>
-                                        @if($rincian->status == 'Lunas')
-                                        @else
-                                        <td colspan="6"><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary px-4"><i class="fas fa-plus text-white"></i></button></td>
-                                        @endif
-                                    </tr>
-                                </table>
+                                        @foreach ($surat->rincianBiaya as $rincian)
+                                        @php
+                                            $decodedRincian = json_decode($rincian['rincian'], true);
+                                            $decodedJumlah = json_decode($rincian['jumlah'], true);
+                                            $decodedRp = json_decode($rincian['rp'], true);
+                                            $decodedTotal = json_decode($rincian['total'], true);
+                                            $decodedKeterangan = json_decode($rincian['keterangan'], true);
+                                        @endphp
+                                        @foreach ($decodedRincian as $key => $item_rincian)
+                                            <tr id="refresh-data">
+                                                <td><input type="text" class="form-control form-control-sm" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
+                                                <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
+                                                <td><input type="number"  class="form-control form-control-sm" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                                @if($rincian->status == 'Lunas')
+                                                @else
+                                                <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fa fa-trash text-white"></i></button></td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                        @endforeach
+                                        <tr>
+                                            @if($rincian->status == 'Lunas')
+                                            @else
+                                            <td colspan="6"><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary px-4"><i class="fas fa-plus text-white"></i></button></td>
+                                            @endif
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
