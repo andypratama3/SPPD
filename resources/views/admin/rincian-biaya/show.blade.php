@@ -22,17 +22,17 @@
             <div class="card-body">
                 <div class="row text-center">
                     <div class="col-md-12">
-                        <div class="form-group">
+                        <div class="form-group flex-column d-flex align-items-center">
                             <label for="">Nomor Surat</label>
                             @foreach ($rincian->surat as $surat)
-                                <input type="text" class="form-control border-input" value="{{ $surat->nomor_surat }}" readonly>
+                                <input type="text" class="form-control form-control-sm border-input text-center w-50" value="{{ $surat->nomor_surat }}" readonly>
                             @endforeach
                         </div>
-                        <div class="form-group">
-                            <label for="">Nama Personil <code>*</code></label>
+                        <div class="form-group flex-column d-flex align-items-center">
+                            <label for="">Nama Personil</label>
                             @foreach ($rincian->surat as $surat)
                                 @foreach ($surat->pegawai as $pegawai)
-                                    <input type="text" class="form-control border-input mt-1" value="{{ $pegawai->name }}" readonly>
+                                    <input type="text" class="form-control form-control-sm border-input text-center w-50" value="{{ $pegawai->name }}" readonly>
                                 @endforeach
                             @endforeach
                         </div>
@@ -41,73 +41,71 @@
                 @include('layouts.flashmessage')
                 <div class="row">
                     <div class="col-md-12">
-                        <hr>
-                        <div class="form-group">
-
-                            <h6 class="text-center">Rincian Biaya</h6>
-                            <hr>
-                            <table class="table table-bordered text-center" id="dynamicAddRemove">
-                                <tr>
-                                    <th class="w-25">Rincian Biaya</th>
-                                    <th class="w-10">Jumlah</th>
-                                    <th class="w-25">RP</th>
-                                    <th class="w-25">Total</th>
-                                    <th class="w-50">Keterangan</th>
-                                </tr>
-                                @php
-                                    $decodedRincian = json_decode($rincian['rincian'], true);
-                                    $decodedJumlah = json_decode($rincian['jumlah'], true);
-                                    $decodedRp = json_decode($rincian['rp'], true);
-                                    $decodedTotal = json_decode($rincian['total'], true);
-                                    $decodedKeterangan = json_decode($rincian['keterangan'], true);
-                                @endphp
-                                @foreach ($decodedRincian as $key => $item_rincian)
+                        <div class="form-group mt-3">
+                            <h5 class="text-center">Rincian Biaya</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center" id="dynamicAddRemove">
                                     <tr>
-                                        <td><input type="text" class="form-control" name="rincian[]" readonly placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                        <td><input type="text" class="form-control" min="1" name="jumlah[]" readonly value="{{ $decodedJumlah[$key] }}"></td>
-                                        <td><input type="text" class="form-control" name="rp[]" placeholder="Masukkan Rp" readonly value="{{ $decodedRp[$key] }}" id="rp"></td>
-                                        <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
-                                        <td><input type="text" class="form-control" name="keterangan[]" readonly placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
-
+                                        <th class="w-25">Rincian Biaya</th>
+                                        <th class="w-10">Jumlah</th>
+                                        <th class="w-25">RP</th>
+                                        <th class="w-25">Total</th>
+                                        <th class="w-50">Keterangan</th>
                                     </tr>
-                                @endforeach
-                            </table>
+                                    @php
+                                        $decodedRincian = json_decode($rincian['rincian'], true);
+                                        $decodedJumlah = json_decode($rincian['jumlah'], true);
+                                        $decodedRp = json_decode($rincian['rp'], true);
+                                        $decodedTotal = json_decode($rincian['total'], true);
+                                        $decodedKeterangan = json_decode($rincian['keterangan'], true);
+                                    @endphp
+                                    @foreach ($decodedRincian as $key => $item_rincian)
+                                        <tr>
+                                            <td><input type="text" class="form-control form-control-sm" name="rincian[]" readonly placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
+                                            <td><input type="text" class="form-control form-control-sm" min="1" name="jumlah[]" readonly value="{{ $decodedJumlah[$key] }}"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="rp[]" placeholder="Masukkan Rp" readonly value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
+                                            <td><input type="text" class="form-control form-control-sm" name="keterangan[]" readonly placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
 
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             @if($rincian->status == 'Lunas')
                             <label for="">Pembayaran Full</label>
-                            <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                            <input type="text" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->dp }}">
                             @else
                             <label for="">Jumlah DP</label>
-                                <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->dp }}">
                             @endif
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Status</label>
                             @if($rincian->status == 'Lunas')
-                            <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->status }}">
+                            <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->status }}">
                             @else
                             @foreach ($surat->rincianBiaya as $status)
-                            <input type="text" class="form-control border-input" readonly value="{{ $status->status }}">
+                            <input type="text" class="form-control form-control-sm border-input" readonly value="{{ $status->status }}">
                                 @endforeach
                             </select>
                             @endif
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Sisa Pembayaran</label>
-                            <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
+                            <input type="text" class="form-control form-control-sm border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
+                        <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
                     </div>
 
                 </div>
