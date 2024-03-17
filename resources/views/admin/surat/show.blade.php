@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Surat')
+@section('title', 'Dashboard')
 @push('css')
     <style>
         input::-webkit-outer-spin-button,
@@ -181,10 +181,10 @@
                                     <hr>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <h4>Nilai</h6>
-                                        <p>{!! $surat->sbm->nilai !!}</p>
+                                        <p>{{ $surat->sbm->nilai }}</p>
                                     <hr>
                                 </div>
                             </div>
@@ -485,7 +485,7 @@
             },
             cache: false,
             success: function (response) {
-                $('#refresh-data').load(location.href + " #refresh-data");
+                $('#form-group-reload').load(location.href + " #form-group-reload");
                 $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
 
             }

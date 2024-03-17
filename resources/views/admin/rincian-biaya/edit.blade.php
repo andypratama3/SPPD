@@ -40,14 +40,14 @@
                 </div>
                 @include('layouts.flashmessage')
                 <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
-                <div class="row">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" value="{{ $rincian->id }}" name="id">
-                        <input type="hidden" value="{{ $surat->id }}" name="surat">
-                        <div class="col-md-12">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" value="{{ $rincian->id }}" name="id">
+                    <input type="hidden" value="{{ $surat->id }}" name="surat">
+                    <div class="row" id="not-refresh">
+                        <div class="col-md-12" id="form-group-reload">
                             <hr>
-                            <div class="form-group">
+                            <div class="form-group" id="form-group-reload">
 
                                 <h6 class="text-center">Rincian Biaya</h6>
                                 <hr>
@@ -268,7 +268,7 @@
             },
             cache: false,
             success: function (response) {
-                $('#refresh-data').load(location.href + " #refresh-data");
+                $('#form-group-reload').load(location.href + " #form-group-reload");
                 $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
 
             }
