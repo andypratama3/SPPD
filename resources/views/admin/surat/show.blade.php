@@ -184,11 +184,7 @@
                                     <hr>
                                 </div>
                             </div>
-<<<<<<< Updated upstream
-                            <div class="col-md-6">
-=======
                             <div class="col-sm-12 col-md-6">
->>>>>>> Stashed changes
                                 <div class="form-group">
                                     <h4>Nilai</h6>
                                         <p>{{ $surat->sbm->nilai }}</p>
