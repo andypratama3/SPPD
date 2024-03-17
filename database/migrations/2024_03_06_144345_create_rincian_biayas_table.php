@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('rp');
             $table->string('total');
             $table->string('keterangan')->nullable();
-            $table->float('dp')->nullable();
-            $table->float('sisa_pembayaran')->nullable();
-            $table->float('pelunasan')->nullable();
+            $table->string('dp', 50)->nullable();
+            $table->string('sisa_pembayaran', 50)->nullable();
+            $table->string('pelunasan', 50)->nullable();
             $table->string('status');
             $table->timestamps();
         });
