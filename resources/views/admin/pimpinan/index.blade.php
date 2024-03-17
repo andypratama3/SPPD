@@ -29,7 +29,6 @@
                             <td>{{ $pimpinan->jabatan }}</td>
                             <td>
                                 <a href="{{ route('dashboard.datamaster.pimpinan.edit', $pimpinan->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
-                                <a href="" class="btn btn-danger btn-xs" style="color: white;"><i class="fa fa-trash"></i></a>
                                 <a href="#" data-id="{{ $pimpinan->slug }}" class="btn btn-danger btn-xs delete"
                                     title="Hapus">
                                     <form action="{{ route('dashboard.datamaster.pimpinan.destroy', $pimpinan->slug) }}"
@@ -37,7 +36,7 @@
                                         @csrf
                                         @method('delete')
                                     </form>
-                                    <i class="fas fa-trash"></i>
+                                    <i class="fa fa-trash text-white"></i>
 
                                 </a>
                             </td>

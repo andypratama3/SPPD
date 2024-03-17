@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <h4 class="text-center">Nomor Surat</h4>
+                    <h4 class="text-center">NOMOR SURAT</h4>
                 </div>
                 <table class="table table-responsive text-center" id="table_pimpinan">
                     <tr>

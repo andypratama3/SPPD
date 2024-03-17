@@ -26,7 +26,6 @@
                             <td class="text-center">Tanggal</td>
                             <td class="text-center">Nama Personil</td>
                             <td class="text-center">Tujuan</td>
-
                             <td class="text-center">Action</td>
                         </tr>
                     </thead>

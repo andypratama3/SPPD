@@ -24,11 +24,15 @@ class SuratController extends Controller
     {
         return view('admin.surat.index');
     }
+    
     public function datatable()
     {
         $query = Surat::with('pegawai')->select(['nomor_surat','created_at','tempat_tujuan','slug']);
 
         return DataTables::of($query)
+                ->addColumn('created_at', function ($surat) {
+                    return date('d-m-Y', strtotime($surat->created_at));
+                })
                 ->addColumn('pegawai_names', function ($surat) {
                     return $surat->first()->pegawai->pluck('name')->implode(',');
                 })

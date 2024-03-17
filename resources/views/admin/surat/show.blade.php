@@ -17,21 +17,23 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center"> Detail Surat {{ $surat->nomor_surat }}</h5>
+                <h5 class="text-center"> DETAIL SURAT {{ $surat->nomor_surat }}</h5>
             </div>
+
+            {{-- DETAIL SURAT --}}
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Pejabat Berwenang <code>*</code></label>
-                            <input type="text" class="form-control border-input" value="{{ $surat->pimpinan->name }}" readonly>
+                            <input type="text" class="form-control form-control-sm border-input" value="{{ $surat->pimpinan->name }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Nomor Surat <code>*</code></label>
                             <div class="input-group">
-                                <input type="text" class="form-control border-input" id="nomor_surat"
+                                <input type="text" class="form-control form-control-sm border-input" id="nomor_surat"
                                     name="nomor_surat" value="{{ $surat->nomor_surat }}"
                                     readonly>
                                     @foreach ($nomor_surat as $no)
@@ -40,84 +42,84 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Pegawai <code>*</code></label>
                                 @foreach ($surat->pegawai as $pegawai)
-                                <input type="text" class="form-control border-input w-25  mt-2" name="tujuan_perjalanan"
-                                value="{{ $pegawai->name }}" readonly>
+                                <input type="text" class="form-control form-control-sm border-input " name="tujuan_perjalanan"
+                                value="{{ $pegawai->name }}" readonly style="width: 100%">
                                 @endforeach
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Tujuan Perjalanan <code>*</code></label>
-                            <input type="text" class="form-control border-input" name="tujuan_perjalanan"
+                            <input type="text" class="form-control form-control-sm border-input" name="tujuan_perjalanan"
                                 value="{{ $surat->tujuan_perjalanan }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Angkutan <code>*</code></label>
-                            <input type="text" class="form-control border-input" value="{{ $surat->angkutan }}" readonly>
+                            <input type="text" class="form-control form-control-sm border-input" value="{{ $surat->angkutan }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Tempat Berangkat <code>*</code></label>
-                            <input type="text" class="form-control border-input" name="tempat_berangkat"
+                            <input type="text" class="form-control form-control-sm border-input" name="tempat_berangkat"
                             readonly value="{{ $surat->tempat_berangkat }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Tempat Tujuan <code>*</code></label>
-                            <input type="text" class="form-control border-input" name="tempat_tujuan"
+                            <input type="text" class="form-control form-control-sm border-input" name="tempat_tujuan"
                                 value="{{ $surat->tempat_tujuan }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Lama Perjalanan <code>*</code></label>
                             <div class="input-group">
-                                <input type="number" min="1" max="100" class="form-control border-input" name="lama_perjalanan"
+                                <input type="number" min="1" max="100" class="form-control form-control-sm border-input" name="lama_perjalanan"
                                     value="{{ $surat->lama_perjalanan }}" readonly>
-                                <div class="input-group-append">
                                     <span class="input-group-text text-black">Hari</span>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Tanggal Berangkat <code>*</code></label>
-                            <input type="date" class="form-control border-input" name="tanggal_berangkat"
+                            <input type="date" class="form-control form-control-sm border-input" name="tanggal_berangkat"
                                 placeholder="Masukan Tujuan" value="{{ $surat->tanggal_berangkat }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Tanggal Kembali <code>*</code></label>
-                            <input type="date" class="form-control border-input" name="tanggal_kembali"
+                            <input type="date" class="form-control form-control-sm border-input" name="tanggal_kembali"
                                 placeholder="Masukan Tujuan" value="{{ $surat->tanggal_kembali }}" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Instansi</label>
-                            <input type="text" class="form-control border-input" name="instansi" readonly
+                            <input type="text" class="form-control form-control-sm border-input" name="instansi" readonly
                                 value="{{ $surat->instansi }}">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <div class="form-group">
                             <label for="">Mata Anggaran <code>*</code></label>
-                            <input type="text" class="form-control border-input" value="{{ $surat->mata_anggaran }}" readonly>
+                            <input type="text" class="form-control form-control-sm border-input" value="{{ $surat->mata_anggaran }}" readonly>
                         </div>
                     </div>
+
+                    {{-- PENGIKUT --}}
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <h6 class="text-center">Pengikut</h6>
+                        <div class="form-group mt-3">
+                            <h5 class="text-center">PENGIKUT</h5>
                             <table class="table table-bordered text-center">
                                 <tr>
                                     <th class="w-25">Nama</th>
@@ -132,18 +134,18 @@
                                 @endphp
                                 @foreach ($decodedNama as $index => $nama)
                                 <tr>
-                                    <td><input type="text" class="form-control" name="nama[]" readonly value="{{ $nama }}"></td>
-                                    <td><input type="text" class="form-control" name="umur[]" readonly value="{{ $decodedUmur[$index] }}"></td>
-                                    <td><input type="text" class="form-control" name="hubungan[]" readonly value="{{ $decodedHubungan[$index] }}"></td>
+                                    <td><input type="text" class="form-control form-control-sm" name="nama[]" readonly value="{{ $nama }}"></td>
+                                    <td><input type="text" class="form-control form-control-sm" name="umur[]" readonly value="{{ $decodedUmur[$index] }}"></td>
+                                    <td><input type="text" class="form-control form-control-sm" name="hubungan[]" readonly value="{{ $decodedHubungan[$index] }}"></td>
                                 </tr>
                                 @endforeach
                             @else
                             <tr>
-                                <td><input type="text" class="form-control" name="nama[]"
+                                <td><input type="text" class="form-control form-control-sm" name="nama[]"
                                         readonly></td>
-                                <td><input type="text" class="form-control" name="umur[]"
+                                <td><input type="text" class="form-control form-control-sm" name="umur[]"
                                     readonly ></td>
-                                <td><input type="text" class="form-control" name="hubungan[]"
+                                <td><input type="text" class="form-control form-control-sm" name="hubungan[]"
                                     readonly></td>
                             </tr>
                             @endif
@@ -154,34 +156,39 @@
                     </div>
                 </div>
             </div>
-            <hr>
+
+            {{-- SBM --}}
             <div class="card mx-4">
                 <div class="card-body">
                     <h5 class="text-center ">SBM</h5>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <h4>Biaya</h6>
                                     <p>{{ $surat->sbm->biaya }}</p>
                                     <hr>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <h4>Daerah</h6>
                                         <p>{{ $surat->sbm->daerah }}</p>
                                     <hr>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <h4>Satuan</h6>
                                         <p>{{ $surat->sbm->satuan }}</p>
                                     <hr>
                                 </div>
                             </div>
+<<<<<<< Updated upstream
                             <div class="col-md-6">
+=======
+                            <div class="col-sm-12 col-md-6">
+>>>>>>> Stashed changes
                                 <div class="form-group">
                                     <h4>Nilai</h6>
                                         <p>{{ $surat->sbm->nilai }}</p>
@@ -192,7 +199,8 @@
                     </div>
                 </div>
             </div>
-            <hr>
+
+            {{-- RINCIAN BIAYA - KOSONG --}}
             <div class="card-body mt-3" id="card-not-refresh">
                 @include('layouts.flashmessage')
                 @if($surat->rincianBiaya->isEmpty())
@@ -201,43 +209,43 @@
                     <input type="hidden" name="surat" value="{{ $surat->id }}">
                     <div class="row">
                         <div class="col-md-12">
-                            <hr>
-                            <div class="form-group">
-
-                                <h6 class="text-center">Rincian Biaya</h6>
-                                <hr>
-                                <table class="table table-bordered text-center" id="dynamicAddRemove">
-                                    <tr>
-                                        <th class="w-25">Rincian Biaya</th>
-                                        <th class="w-10">Jumlah</th>
-                                        <th class="w-25">RP</th>
-                                        <th class="w-25">Total</th>
-                                        <th class="w-50">Keterangan</th>
-                                    </tr>
-                                    <td><input type="text" class="form-control" name="rincian[]"
-                                        placeholder="Masukkan Rincian"></td>
-                                    <td><input type="number" class="form-control" min="1" name="jumlah[]" class="form-control"></td>
-                                    <td><input type="text" class="form-control" name="rp[]"
-                                        placeholder="Masukkan Rp" id="rp"></td>
-                                    <td><input type="text" class="form-control" name="total[]"
-                                        readonly></td>
-                                    <td><input type="text" class="form-control" name="keterangan[]"
-                                            placeholder="Masukkan Keterangan"></td>
-                                    <th class="w-25"><button type="button" id="dynamic-ar"
-                                            class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></th>
-                                </table>
+                            <div class="form-group mt-3">
+                                <h5 class="text-center">RINCIAN BIAYA</h5>  
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                        <tr>
+                                            <th class="w-25">Rincian Biaya</th>
+                                            <th class="w-10">Jumlah</th>
+                                            <th class="w-25">RP</th>
+                                            <th class="w-25">Total</th>
+                                            <th class="w-50">Keterangan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                        <td><input type="text" class="form-control form-control-sm" name="rincian[]"
+                                            placeholder="Masukkan Rincian"></td>
+                                        <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="rp[]"
+                                            placeholder="Masukkan Rp" id="rp"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="total[]"
+                                            readonly></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="keterangan[]"
+                                                placeholder="Masukkan Keterangan"></td>
+                                        <th><button type="button" id="dynamic-ar"
+                                                class="btn btn-xs btn-primary"><i class="fas fa-plus text-white"></i></button></th>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Jumlah DP</label>
-                                <input type="text" name="dp" id="dp" class="form-control border-input">
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" placeholder="Masukkan DP">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label for="">Status</label>
-                                <select name="status" class="form-control border-input">
+                                <select name="status" class="form-control form-control-sm border-input">
                                     <option selected disabled>Pilih Status Pembayaran</option>
                                     <option value="DP">DP</option>
                                     <option value="Belum Di Bayar">Belum Di Bayar</option>
@@ -246,12 +254,14 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
-                            <button class="btn btn-primary float-end">Submit</button>
+                            <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger text-white">Kembali</a>
+                            <button class="btn btn-primary float-end text-white">Submit</button>
                         </div>
                     </div>
                 </form>
                     @else
+
+                    {{-- RINCIAN BIAYA TERSEDIA --}}
                     @foreach ($surat->rincianBiaya as $rincian)
                     <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
                         @csrf
@@ -260,75 +270,73 @@
                         <input type="hidden" name="surat" value="{{ $surat->id }}">
                         <div class="row" id="not-refresh">
                             <div class="col-md-12" id="form-group-reload">
-                                <hr>
-                                <div class="form-group" >
-                                    <h6 class="text-center">Rincian Biaya</h6>
-                                    <hr>
-                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
-                                        <tr>
-                                            <th class="w-25">Rincian Biaya</th>
-                                            <th class="w-10">Jumlah</th>
-                                            <th class="w-25">RP</th>
-                                            <th class="w-25">Total</th>
-                                            <th class="w-50">Keterangan</th>
-                                            @if($rincian->status == 'Lunas')
-                                            @else
-                                            <th class="w-25">Actions</th>
-                                            @endif
-                                        </tr>
-                                        @foreach ($surat->rincianBiaya as $rincian)
-                                        @php
-                                            $decodedRincian = json_decode($rincian['rincian'], true);
-                                            $decodedJumlah = json_decode($rincian['jumlah'], true);
-                                            $decodedRp = json_decode($rincian['rp'], true);
-                                            $decodedTotal = json_decode($rincian['total'], true);
-                                            $decodedKeterangan = json_decode($rincian['keterangan'], true);
-                                        @endphp
-                                        @foreach ($decodedRincian as $key => $item_rincian)
-                                            <tr id="refresh-data">
-                                                <td><input type="text" class="form-control" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
-                                                <td><input type="number" class="form-control" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
-                                                <td><input type="number"  class="form-control" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
-                                                <td><input type="text" class="form-control" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
-                                                <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                <div class="form-group mt-3">
+                                    <h5 class="text-center">RINCIAN BIAYA</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                            <tr>
+                                                <th class="w-25">Rincian Biaya</th>
+                                                <th class="w-10">Jumlah</th>
+                                                <th class="w-25">RP</th>
+                                                <th class="w-25">Total</th>
+                                                <th class="w-50">Keterangan</th>
                                                 @if($rincian->status == 'Lunas')
                                                 @else
-                                                <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fas fa-trash"></i></button></td>
+                                                <th>Hapus</th>
                                                 @endif
                                             </tr>
-                                        @endforeach
-                                        @endforeach
-                                        <tr>
-                                            @if($rincian->status == 'Lunas')
-                                            @else
-                                            <td colspan="5"></td>
-                                            <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
-                                            @endif
-                                        </tr>
-                                    </table>
-
+                                            @foreach ($surat->rincianBiaya as $rincian)
+                                            @php
+                                                $decodedRincian = json_decode($rincian['rincian'], true);
+                                                $decodedJumlah = json_decode($rincian['jumlah'], true);
+                                                $decodedRp = json_decode($rincian['rp'], true);
+                                                $decodedTotal = json_decode($rincian['total'], true);
+                                                $decodedKeterangan = json_decode($rincian['keterangan'], true);
+                                            @endphp
+                                            @foreach ($decodedRincian as $key => $item_rincian)
+                                                <tr id="refresh-data">
+                                                    <td><input type="text" class="form-control form-control-sm" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
+                                                    <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
+                                                    <td><input type="number"  class="form-control form-control-sm" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
+                                                    <td><input type="text" class="form-control form-control-sm" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                                    @if($rincian->status == 'Lunas')
+                                                    @else
+                                                    <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fa fa-trash text-white"></i></button></td>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
+                                            @endforeach
+                                            <tr>
+                                                @if($rincian->status == 'Lunas')
+                                                @else
+                                                <td colspan="6"><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary px-4"><i class="fas fa-plus text-white"></i></button></td>
+                                                @endif
+                                            </tr>
+                                        </table>
+                                </div>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     @if($rincian->status == 'Lunas')
                                     <label for="">Pembayaran Full</label>
-                                    <input type="text" id="dp" class="form-control border-input" readonly value="{{ $rincian->dp }}">
+                                    <input type="text" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->dp }}">
                                     @else
                                     <label for="">Jumlah DP</label>
                                     @foreach ($surat->rincianBiaya as $dp)
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $dp->dp }}">
+                                    <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $dp->dp }}">
                                     @endforeach
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Status</label>
                                     @if($rincian->status == 'Lunas')
-                                    <input type="text" name="dp" id="dp" class="form-control border-input" readonly value="{{ $rincian->status }}">
+                                    <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->status }}">
                                     @else
-                                    <select name="status" class="form-control border-input">
+                                    <select name="status" class="form-control form-control-sm border-input">
                                         @foreach ($surat->rincianBiaya as $status)
                                         <option selected value="{{ $status->status }}">{{ $status->status }}</option>
                                         @endforeach
@@ -338,26 +346,26 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group" id="sisa_pembayaran_reload">
                                     <label for="">Sisa Pembayaran</label>
-                                    <input type="text" class="form-control border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
+                                    <input type="text" class="form-control form-control-sm border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
                                 </div>
                             </div>
                             @if($rincian->status == 'Lunas')
                             <div class="col-12">
-                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
+                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger text-white">Kembali</a>
                             </div>
                             @else
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Input Pelunasan</label>
-                                    <input type="text" class="form-control border-input" name="pelunasan" id="pelunasan">
+                                    <input type="text" class="form-control form-control-sm border-input" name="pelunasan" id="pelunasan" placeholder="Masukkan Pelunasan">
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
-                                <button class="btn btn-primary float-end">Update</button>
+                            <div class="col-12">
+                                <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger text-white">Kembali</a>
+                                <button class="btn btn-primary float-end text-white">Ubah</button>
                             </div>
                             @endif
                         </div>
@@ -395,22 +403,22 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="text" class="form-control" name="rincian[${i}]" placeholder="Masukkan rincian">
+                    <input type="text" class="form-control form-control-sm" name="rincian[${i}]" placeholder="Masukkan rincian">
                 </td>
                 <td>
-                    <input type="number" class="form-control" name="jumlah[${i}]" min="1">
+                    <input type="number" class="form-control form-control-sm" name="jumlah[${i}]" min="1">
                 </td>
                 <td>
-                    <input type="number" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
+                    <input type="number" class="form-control form-control-sm rp" name="rp[${i}]" placeholder="Masukkan Rp">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="total[${i}]" readonly>
+                    <input type="text" class="form-control form-control-sm" name="total[${i}]" readonly>
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
+                    <input type="text" class="form-control form-control-sm" name="keterangan[${i}]" placeholder="Masukkan keterangan">
                 </td>
                 <td colspan="2">
-                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
+                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fa fa-trash text-white"></i></button></td>
                 </td>
             </tr>`
         );

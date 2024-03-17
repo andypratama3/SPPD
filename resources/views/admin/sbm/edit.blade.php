@@ -8,7 +8,7 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Edit SBM</h5>
+                <h5 class="text-center">EDIT SBM</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('dashboard.datamaster.sbm.update', $sbm->slug) }}" method="post">
