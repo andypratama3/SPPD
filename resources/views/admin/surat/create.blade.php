@@ -30,10 +30,14 @@
                                     <input type="text" class="form-control form-control-sm" id="nomor_surat"
                                         name="nomor_surat" value="{{ old('nomor_surat') }}"
                                         placeholder="Masukan Hanya Awalan No Surat">
+<<<<<<< Updated upstream
                                             @foreach ($nomor_surat as $no)
                                                 <span class="input-group-text text-black">{{ $no->nomor_surat }}</span>
                                             @endforeach
 
+=======
+                                        <span class="input-group-text text-black">/PL21/SPPD/2024</span>
+>>>>>>> Stashed changes
                                 </div>
                             </div>
                         </div>
@@ -77,11 +81,16 @@
                             <div class="form-group">
                                 <label for="tempat_tujuan">Tempat Tujuan <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm" name="tempat_tujuan" id="tempat_tujuan"
+<<<<<<< Updated upstream
                                     placeholder="Masukan Tempat Tujuan" value="{{ old('tempat_tujuan') }}">
+=======
+                                    placeholder="Masukan Tempat Berangkat" value="{{ old('tempat_tujuan') }}">
+>>>>>>> Stashed changes
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
+<<<<<<< Updated upstream
                                 <label for="detail_tempat_tujuan">Detail Tempat Tujuan <code>*</code></label>
                                 <input type="text" class="form-control form-control-sm" name="detail_tempat_tujuan" id="detail_tempat_tujuan"
                                     placeholder="Masukan Secara Detail Tempat" value="{{ old('detail_tempat_tujuan') }}">
@@ -89,6 +98,8 @@
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
+=======
+>>>>>>> Stashed changes
                                 <label for="lama_perjalanan">Lama Perjalanan <code>*</code></label>
                                 <div class="input-group">
                                     <input type="number" min="1" max="100" class="form-control form-control-sm" name="lama_perjalanan" id="lama_perjalanan"
@@ -99,6 +110,7 @@
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
+<<<<<<< Updated upstream
                                 <label for="tanggak_kembali">Tanggal Berangkat <code>*</code></label>
                                 <input type="date" class="form-control form-control-sm" name="tanggal_berangkat" id="tanggal_berangkat"
                                     placeholder="Masukan Tujuan" value="{{ old('tanggal_berangkat') }}">
@@ -106,6 +118,8 @@
                         </div>
                         <div class="col-sm-12 col-md-6 ">
                             <div class="form-group">
+=======
+>>>>>>> Stashed changes
                                 <label for="tanggak_kembali">Tanggal Kembali <code>*</code></label>
                                 <input type="date" class="form-control form-control-sm" name="tanggal_kembali" id="tanggal_kembali"
                                     placeholder="Masukan Tujuan" value="{{ old('tanggal_kembali') }}">

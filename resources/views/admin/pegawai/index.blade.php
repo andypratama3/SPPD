@@ -7,7 +7,11 @@
             <div class="card-body">
                 <div class="form-group">
                     <h4 class="text-center">PEGAWAI</h4>
+<<<<<<< Updated upstream
                     <a href="{{ route('dashboard.datamaster.pegawai.create') }}" class="btn btn-primary btn-rounded mb-4 float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
+=======
+                    <a href="{{ route('dashboard.pegawai.create') }}" class="btn btn-primary btn-rounded mb-4 float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
+>>>>>>> Stashed changes
                 </div>
                 <table class="table table-responsive text-center" id="table_pegawai">
                     <tr>
@@ -27,6 +31,7 @@
                             <td>{{ $pegawai->jabatan }}</td>
                             <td>{{ $pegawai->golongan }}</td>
                             <td>
+<<<<<<< Updated upstream
                                 <a href="{{ route('dashboard.datamaster.pegawai.show', $pegawai->slug) }}" class="btn btn-info btn-xs"><i class="fas fa-eye text-white"></i></a>
                                 <a href="{{ route('dashboard.datamaster.pegawai.edit', $pegawai->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
                                 <a href="#" data-id="{{ $pegawai->slug }}" class="btn btn-danger btn-xs delete"
@@ -39,6 +44,11 @@
                                     <i class="fa fa-trash text-white"></i>
 
                                 </a>
+=======
+                                <a href="{{ route('dashboard.pegawai.show', $pegawai->slug) }}" class="btn btn-info btn-xs"><i class="fas fa-eye text-white"></i></a>
+                                <a href="{{ route('dashboard.pegawai.edit', $pegawai->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
+                                <a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash text-white"></i></a>
+>>>>>>> Stashed changes
                             </td>
                         </tr>
                         @endforeach

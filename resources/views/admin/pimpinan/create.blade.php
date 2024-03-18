@@ -33,7 +33,11 @@
                             </div>
                         </div>
                         <div class="col-md-12">
+<<<<<<< Updated upstream
                             <a href="{{ route('dashboard.datamaster.pegawai.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+=======
+                            <a href="{{ route('dashboard.pegawai.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+>>>>>>> Stashed changes
                             <button class="btn btn-primary btn-rounded float-end text-white">Submit</button>
                         </div>
                     </div>

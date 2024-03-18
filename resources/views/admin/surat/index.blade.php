@@ -26,7 +26,12 @@
                             <td class="text-center">Tanggal</td>
                             <td class="text-center">Nama Personil</td>
                             <td class="text-center">Tujuan</td>
+<<<<<<< Updated upstream
                             <td class="text-center">Action</td>
+=======
+                            {{-- <td class="text-center">DP</td>
+                            <td class="text-center">Total</td> --}}
+>>>>>>> Stashed changes
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +57,11 @@
             responsive: true,
             processing: true,
             pageLength: 100,
+<<<<<<< Updated upstream
             scrollX: true,
+=======
+            scrollX: true,  
+>>>>>>> Stashed changes
             ajax: {
             'url': $('#data_surat').val(),
         },

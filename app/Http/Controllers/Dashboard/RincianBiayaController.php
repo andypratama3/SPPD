@@ -17,6 +17,7 @@ class RincianBiayaController extends Controller
     {
         return view('admin.rincian-biaya.index');
     }
+<<<<<<< Updated upstream
     public function datatable()
     {
         $query = RincianBiaya::with('surat')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
@@ -40,6 +41,9 @@ class RincianBiayaController extends Controller
                 ->addIndexColumn()
                 ->make(true);
     }
+=======
+
+>>>>>>> Stashed changes
     public function store(RincianBiayaData $rincianData,RincianBiayaAction $rincianBiayaAction)
     {
         $rincianBiayaAction->execute($rincianData);
