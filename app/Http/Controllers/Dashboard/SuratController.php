@@ -38,10 +38,7 @@ class SuratController extends Controller
                 })
                 ->addColumn('options', function ($row){
                     return '
-<<<<<<< Updated upstream
                     <a href="' . route('dashboard.surat.cetakPdf', $row->slug) . '" class="btn btn-xs btn-success"><i class="fa fa-file-pdf text-white"></i></a>
-=======
->>>>>>> Stashed changes
                     <a href="' . route('dashboard.surat.show', $row->slug) . '" class="btn btn-xs btn-info"><i class="fa fa-eye text-white"></i></a>
                     <a href="' . route('dashboard.surat.edit', $row->slug) . '" class="btn btn-xs btn-warning"><i class="fa fa-pen text-white"></i></a>
                     <button data-id="' . $row['slug'] . '" class="btn btn-xs btn-danger" id="btn-delete"><i class="fa fa-trash text-white"></i></button>
