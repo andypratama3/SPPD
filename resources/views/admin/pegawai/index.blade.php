@@ -7,11 +7,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <h4 class="text-center">PEGAWAI</h4>
-<<<<<<< Updated upstream
                     <a href="{{ route('dashboard.datamaster.pegawai.create') }}" class="btn btn-primary btn-rounded mb-4 float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
-=======
-                    <a href="{{ route('dashboard.pegawai.create') }}" class="btn btn-primary btn-rounded mb-4 float-end text-white"><i class="fas fa-plus text-small"></i> Tambah</a>
->>>>>>> Stashed changes
                 </div>
                 <table class="table table-responsive text-center" id="table_pegawai">
                     <tr>
