@@ -27,24 +27,9 @@
                             <td>{{ $pegawai->jabatan }}</td>
                             <td>{{ $pegawai->golongan }}</td>
                             <td>
-<<<<<<< Updated upstream
                                 <a href="{{ route('dashboard.datamaster.pegawai.show', $pegawai->slug) }}" class="btn btn-info btn-xs"><i class="fas fa-eye text-white"></i></a>
                                 <a href="{{ route('dashboard.datamaster.pegawai.edit', $pegawai->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
-                                <a href="#" data-id="{{ $pegawai->slug }}" class="btn btn-danger btn-xs delete"
-                                    title="Hapus">
-                                    <form action="{{ route('dashboard.datamaster.pegawai.destroy', $pegawai->slug) }}"
-                                        id="delete-{{ $pegawai->slug }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        @method('delete')
-                                    </form>
-                                    <i class="fa fa-trash text-white"></i>
-
-                                </a>
-=======
-                                <a href="{{ route('dashboard.pegawai.show', $pegawai->slug) }}" class="btn btn-info btn-xs"><i class="fas fa-eye text-white"></i></a>
-                                <a href="{{ route('dashboard.pegawai.edit', $pegawai->slug) }}" class="btn btn-warning btn-xs"><i class="fas fa-pen text-white"></i></a>
                                 <a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash text-white"></i></a>
->>>>>>> Stashed changes
                             </td>
                         </tr>
                         @endforeach

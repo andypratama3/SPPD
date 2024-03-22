@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sbms', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('biaya');
-            $table->string('daerah');
-            $table->string('satuan');
-            $table->longText('nilai');
-            $table->string('slug');
+        Schema::create('pegawai_rincian', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sbms');
+        Schema::dropIfExists('pegawai_rincian');
     }
 };

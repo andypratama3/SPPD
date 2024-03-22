@@ -127,17 +127,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 ">
-                            <div class="form-group">
-                                <label for="sbm_id">SBM<code>*</code></label>
-                                <select name="sbm_id" id="sbm_id" class="form-control form-control-sm border-input mx-0">
-                                    <option selected value="{{ $surat->sbm_id }}">{{ $surat->sbm->biaya }}</option>
-                                    @foreach ($sbms as $sbm)
-                                        <option value="{{ $sbm->id }}">{{ $sbm->biaya }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
                         <div class="col-md-12">
                             <div class="form-group mt-3">
                                 <h5 class="text-center">Pengikut</h5>

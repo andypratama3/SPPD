@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\Surat;
+use App\Models\Pegawai;
 use App\Models\RincianBiaya;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,6 +18,13 @@ class RincianBiayaController extends Controller
     public function index()
     {
         return view('admin.rincian-biaya.index');
+    }
+    public function create()
+    {
+        $surats = Surat::orderBy('nomor_surat','asc')->get();
+        $pegawais = Pegawai::all();
+
+        return view('admin.rincian-biaya.create', compact('surats','pegawais'));
     }
     public function datatable()
     {
@@ -43,7 +52,7 @@ class RincianBiayaController extends Controller
     public function store(RincianBiayaData $rincianData,RincianBiayaAction $rincianBiayaAction)
     {
         $rincianBiayaAction->execute($rincianData);
-        return redirect()->back()->with('success','Berhasil Menambahkan Rincian');
+        return redirect()->route('dashboard.rincian.biaya.index')->with('success','Berhasil Update Rincian');
     }
     public function show($rincian)
     {
@@ -59,7 +68,7 @@ class RincianBiayaController extends Controller
     public function update(RincianBiayaData $rincianData, RincianBiayaAction $rincianBiayaAction)
     {
         $rincianBiayaAction->execute($rincianData);
-        return redirect()->back()->with('success','Berhasil Update Rincian');
+        return redirect()->route('dashboard.rincian.biaya.index')->with('success','Berhasil Update Rincian');
     }
     public function destroy(RincianBiayaDelete $rincianBiayaDelete, $slug)
     {

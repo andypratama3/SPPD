@@ -47,10 +47,6 @@ class Surat extends Model
     {
         return $this->belongsTo(Pimpinan::class, 'pimpinan_id', 'id');
     }
-    public function sbm()
-    {
-        return $this->belongsTo(Sbm::class, 'sbm_id', 'id');
-    }
     public function pegawai()
     {
         return $this->belongsToMany(Pegawai::class, 'pegawai_surats');

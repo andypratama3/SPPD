@@ -34,12 +34,6 @@
                             <span class="menu-title">Pegawai</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ Request::routeIs('dashboard.datamaster.sbm.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('dashboard.datamaster.sbm.index') }}">
-                            <i class="fa-solid fa-money-check menu-icon"></i>
-                            <span class="menu-title">SBM</span>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </li>

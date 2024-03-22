@@ -35,11 +35,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-<<<<<<< Updated upstream
                             <a href="{{ route('dashboard.datamaster.pimpinan.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
-=======
-                            <a href="{{ route('dashboard.pimpinan.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
->>>>>>> Stashed changes
                             <button type="submit" class="btn btn-primary btn-rounded float-end text-white">Submit</button>
                         </div>
                     </div>

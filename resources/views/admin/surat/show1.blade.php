@@ -152,9 +152,183 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger">Kembali</a>
                     </div>
                 </div>
+            </div>
+
+
+            <div class="card-body mt-3" id="card-not-refresh">
+                @include('layouts.flashmessage')
+                {{-- RINCIAN BIAYA KOSONGAN --}}
+                @if($surat->rincianBiaya->isEmpty())
+                <form action="{{ route('dashboard.rincian.biaya.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="surat" value="{{ $surat->id }}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <h5 class="text-center">Rincian Biaya</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                        <tr>
+                                            <th class="w-25">Rincian Biaya</th>
+                                            <th class="w-10">Jumlah</th>
+                                            <th class="w-25">RP</th>
+                                            <th class="w-25">Total</th>
+                                            <th class="w-50">Keterangan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                        <td><input type="text" class="form-control form-control-sm" name="rincian[]"
+                                            placeholder="Masukkan Rincian"></td>
+                                        <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" class="form-control form-control-sm"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="rp[]"
+                                            placeholder="Masukkan Rp" id="rp"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="total[]"
+                                            readonly></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="keterangan[]"
+                                                placeholder="Masukkan Keterangan"></td>
+                                        <th><button type="button" id="dynamic-ar"
+                                                class="btn btn-xs btn-primary"><i class="fas fa-plus text-white"></i></button></th>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Jumlah DP</label>
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" placeholder="Masukkan DP">
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                <select name="status" class="form-control form-control-sm border-input">
+                                    <option selected disabled>Pilih Status Pembayaran</option>
+                                    <option value="DP">DP</option>
+                                    <option value="Belum Di Bayar">Belum Di Bayar</option>
+                                    <option value="Lunas">Lunas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <button class="btn btn-primary btn-rounded float-end text-white">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                {{-- RINCIAN BIAYA ISIAN --}}
+                @else
+                @foreach ($surat->rincianBiaya as $rincian)
+                <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" name="id" id="rincian_id" value="{{ $rincian->id }}">
+                    <input type="hidden" name="surat" value="{{ $surat->id }}">
+                    <div class="row" id="not-refresh">
+                        <div class="col-md-12" id="form-group-reload">
+                            <div class="form-group mt-3">
+                                <h5 class="text-center">Rincian Biaya</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center" id="dynamicAddRemove">
+                                        <tr>
+                                            <th class="w-25">Rincian Biaya</th>
+                                            <th class="w-10">Jumlah</th>
+                                            <th class="w-25">RP</th>
+                                            <th class="w-25">Total</th>
+                                            <th class="w-50">Keterangan</th>
+                                            @if($rincian->status == 'Lunas')
+                                            @else
+                                            <th class="w-25">Hapus</th>
+                                            @endif
+                                        </tr>
+                                        @foreach ($surat->rincianBiaya as $rincian)
+                                        @php
+                                            $decodedRincian = json_decode($rincian['rincian'], true);
+                                            $decodedJumlah = json_decode($rincian['jumlah'], true);
+                                            $decodedRp = json_decode($rincian['rp'], true);
+                                            $decodedTotal = json_decode($rincian['total'], true);
+                                            $decodedKeterangan = json_decode($rincian['keterangan'], true);
+                                        @endphp
+                                        @foreach ($decodedRincian as $key => $item_rincian)
+                                            <tr id="refresh-data">
+                                                <td><input type="text" class="form-control form-control-sm" name="rincian[]" placeholder="Masukkan Rincian" value="{{ $item_rincian }}"></td>
+                                                <td><input type="number" class="form-control form-control-sm" min="1" name="jumlah[]" value="{{ $decodedJumlah[$key] }}"></td>
+                                                <td><input type="number"  class="form-control form-control-sm" name="rp[]" placeholder="Masukkan Rp" value="{{ $decodedRp[$key] }}" id="rp"></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="total[]" readonly value="{{ $decodedTotal[$key] }}"></td>
+                                                <td><input type="text" class="form-control form-control-sm" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
+                                                @if($rincian->status == 'Lunas')
+                                                @else
+                                                <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fa fa-trash text-white"></i></button></td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                        @endforeach
+                                        <tr>
+                                            @if($rincian->status == 'Lunas')
+                                            @else
+                                            <td colspan="6"><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary px-4"><i class="fas fa-plus text-white"></i></button></td>
+                                            @endif
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                @if($rincian->status == 'Lunas')
+                                <label for="">Pembayaran Full</label>
+                                <input type="text" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->dp }}">
+                                @else
+                                <label for="">Jumlah DP</label>
+                                @foreach ($surat->rincianBiaya as $dp)
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $dp->dp }}">
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Status</label>
+                                @if($rincian->status == 'Lunas')
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->status }}">
+                                @else
+                                <select name="status" class="form-control form-control-sm border-input">
+                                    @foreach ($surat->rincianBiaya as $status)
+                                    <option selected value="{{ $status->status }}">{{ $status->status }}</option>
+                                    @endforeach
+                                    <option value="DP">DP</option>
+                                    <option value="Belum Di Bayar">Belum Di Bayar</option>
+                                </select>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group" id="sisa_pembayaran_reload">
+                                <label for="">Sisa Pembayaran</label>
+                                <input type="text" class="form-control form-control-sm border-input" readonly id="sisa_pembayaran" value="{{ $rincian->sisa_pembayaran }}">
+                            </div>
+                        </div>
+                        @if($rincian->status == 'Lunas')
+                        <div class="col-12">
+                            <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                        </div>
+                        @else
+                        <div class="col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <label for="">Input Pelunasan</label>
+                                <input type="text" class="form-control form-control-sm border-input" name="pelunasan" id="pelunasan" placeholder="Masukkan Pelunasan">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="{{ route('dashboard.surat.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <button class="btn btn-primary btn-rounded float-end text-white">Simpan</button>
+                        </div>
+                        @endif
+                    </div>
+                </form>
+                @endforeach
+                @endif
             </div>
         </div>
     </div>

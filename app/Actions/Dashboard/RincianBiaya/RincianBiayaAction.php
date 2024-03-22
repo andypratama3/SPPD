@@ -68,7 +68,6 @@ class RincianBiayaAction
             $rincianBiaya->surat()->attach($rincianBiayaData->surat);
         }else{
             $rincianBiaya->surat()->sync($rincianBiayaData->surat);
-
         }
 
     }
