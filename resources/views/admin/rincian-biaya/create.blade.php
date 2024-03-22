@@ -27,7 +27,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Nomor Surat</label>
-                                <select name="surat" id="" class="select2 form-control">
+                                <select name="surat" id="surat_id" class="select2 form-control">
+                                    <option selected disabled>Pilih Nomor Surat</option>
                                     @foreach ($surats as $surat)
                                       <option value="{{ $surat->id }}">{{ $surat->nomor_surat }}</option>
                                     @endforeach
@@ -35,12 +36,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Nama Personil <code>*</code></label>
-                                <select name="pegawai" id="" class="select2 form-control">
-                                    @foreach ($surats as $surat)
-                                        @foreach ($surat->pegawai as $pegawai )
-                                        <option value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
-                                        @endforeach
-                                    @endforeach
+                                <select name="pegawai" id="pegawai_id" class="select2 form-control">
+                                    <option selected disabled>Pilih Personil</option>
                                 </select>
                             </div>
                         </div>
@@ -73,6 +70,10 @@
                                                     class="fas fa-plus"></i></button></td>
                                     </tr>
                                 </table>
+                                <div class="mt-2 float-end" style="margin-right: 20px; border: 2px solid; padding: 10px;">
+                                    <td colspan="2"><strong>Grand Total</strong></td>
+                                    <td colspan="4"><strong><u>Rp. 12981267</u></strong></td>
+                                </div>
 
                             </div>
                         </div>
@@ -198,6 +199,31 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return rupiah;
         }
+        $('#surat_id').on('change', function () {
+            let surat_id = $('#surat_id').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: '{{ route("dashboard.rincian.get.pegawai") }}',
+                method: 'POST',
+                data: {
+                    surat_id : surat_id
+                },
+                success: function (response) {
+                    $('#pegawai_id').empty();
+                    $.each(response.pegawai, function (index, pegawai) {
+                        $('#pegawai_id').append('<option value="' + pegawai.id + '">' + pegawai.name + '</option>');
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
 
     });
 </script>

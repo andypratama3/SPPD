@@ -25,11 +25,10 @@ class RincianBiayaActionDelete
             // Check if the index exists before removing it
             if (isset($rincianData['total'][$item_index_array])) {
                 $deletedTotal = str_replace('.', '', $rincianData['total'][$item_index_array]);
-                $deletedTotal = max(0, $deletedTotal); // Ensure deletedTotal is not negative
                 $rincian->sisa_pembayaran -= intval($deletedTotal);
 
                 // Ensure sisa_pembayaran is not negative
-                $rincian->sisa_pembayaran = max(0, $rincian->sisa_pembayaran);
+                $rincian->sisa_pembayaran = $rincian->sisa_pembayaran;
 
                 unset($rincianData['rincian'][$item_index_array]);
                 unset($rincianData['jumlah'][$item_index_array]);

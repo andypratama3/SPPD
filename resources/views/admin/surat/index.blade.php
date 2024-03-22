@@ -42,7 +42,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
     $.noConflict();
-   
+
     $(document).ready(function () {
         $('#table_surat').DataTable({
             ordering: true,
@@ -60,7 +60,7 @@
             { data: 'DT_RowIndex',name: 'DT_RowIndex',orderable: false,searchable: false},
             { data: 'nomor_surat', name: 'nomor_surat'},
             { data: 'created_at', name: 'created_at'},
-            { data: 'pegawai_names', name: 'pegawai.name'},
+            { data: 'pegawai_names', name: 'pegawai_names'},
             { data: 'tempat_tujuan', name: 'tempat_tujuan'},
             { data: 'options',name: 'options', orderable: false, searchable: false }
         ],

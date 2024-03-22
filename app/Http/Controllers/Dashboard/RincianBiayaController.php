@@ -22,9 +22,9 @@ class RincianBiayaController extends Controller
     public function create()
     {
         $surats = Surat::orderBy('nomor_surat','asc')->get();
-        $pegawais = Pegawai::all();
+        // $pegawais = Pegawai::all();
 
-        return view('admin.rincian-biaya.create', compact('surats','pegawais'));
+        return view('admin.rincian-biaya.create', compact('surats'));
     }
     public function datatable()
     {
@@ -79,6 +79,29 @@ class RincianBiayaController extends Controller
         $rincianBiayaAction->execute($rincianData);
         return redirect()->back()->with('success','Berhasil Update Rincian');
     }
+    public function find_pegawai(Request $request)
+    {
+        $surat_id = $request->surat_id;
+        $surat = Surat::where('id', $surat_id)->first();
+
+        $pegawaiData = [];
+
+        if ($surat) {
+            foreach ($surat->pegawai as $pegawai) {
+                // Additional logic for each employee
+                $pegawaiData[] = [
+                    'id' => $pegawai->id,
+                    'name' => $pegawai->name,
+                    // Add more properties if needed
+                ];
+            }
+            return response()->json(['pegawai' => $pegawaiData, 'message' => 'Berhasil Mendapatkan Data']);
+        } else {
+            return response()->json(['error' => 'Gagal Mendapatkan Data']);
+        }
+    }
+
+
     public function destroy(RincianBiayaDelete $RincianBiayaDelete, $id)
     {
         if($RincianBiayaDelete)

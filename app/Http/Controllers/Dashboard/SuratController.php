@@ -26,14 +26,19 @@ class SuratController extends Controller
 
     public function datatable()
     {
-        $query = Surat::with('pegawai')->select(['nomor_surat','created_at','tempat_tujuan','slug']);
+        $query = Surat::all();
 
         return DataTables::of($query)
                 ->addColumn('created_at', function ($surat) {
                     return date('d-m-Y', strtotime($surat->created_at));
                 })
                 ->addColumn('pegawai_names', function ($surat) {
-                    return $surat->first()->pegawai->pluck('name')->implode(',');
+                    $pegawaiNames = '';
+                    foreach ($surat->pegawai as $pegawai) {
+                        $pegawaiNames .= $pegawai->name . ', ';
+                    }
+                    $pegawaiNames = rtrim($pegawaiNames, ', ');
+                    return $pegawaiNames;
                 })
                 ->addColumn('options', function ($row){
                     return '
@@ -55,11 +60,11 @@ class SuratController extends Controller
         $pimpinans = Pimpinan::all();
         return view('admin.surat.create', compact('nomor_surat','pegawais','pimpinans'));
     }
-    public function store(SuratData $suratData, SuratAction $suratAction)
-    {
-        $suratAction->execute($suratData);
-        return redirect()->route('dashboard.surat.index')->with('success',"Sukses Menambahkan Surat");
-    }
+    // public function store(SuratData $suratData, SuratAction $suratAction)
+    // {
+    //     $suratAction->execute($suratData);
+    //     return redirect()->route('dashboard.surat.index')->with('success',"Sukses Menambahkan Surat");
+    // }
     public function show(Surat $surat)
     {
 

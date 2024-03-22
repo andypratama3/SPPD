@@ -89,7 +89,10 @@
                                         </tr>
                                     @endforeach
                                 </table>
-
+                                <div class="mt-2 float-end" style="margin-right: 20px; border: 2px solid; padding: 10px;">
+                                    <td colspan="2"><strong>Grand Total</strong></td>
+                                    <td colspan="4"><strong><u>Rp. 12981267</u></strong></td>
+                                </div>
                             </div>
                         </div>
                         <div class="col-6">
