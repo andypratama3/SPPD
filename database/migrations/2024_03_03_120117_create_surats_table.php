@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('umur')->nullable();
             $table->string('hubungan')->nullable();
             $table->string('mata_anggaran');
-            $table->foreignUuid('sbm_id')->nullable()->references('id')->on('sbms')->onDelete('cascade');
             $table->string('slug');
             $table->timestamps();
         });
