@@ -66,8 +66,10 @@ class RincianBiayaAction
 
         if(empty($rincianBiayaData->id)){
             $rincianBiaya->surat()->attach($rincianBiayaData->surat);
+            $rincianBiaya->pegawai()->attach($rincianBiayaData->pegawai);
         }else{
             $rincianBiaya->surat()->sync($rincianBiayaData->surat);
+            $rincianBiaya->pegawai()->sync($rincianBiayaData->pegawai);
         }
 
     }

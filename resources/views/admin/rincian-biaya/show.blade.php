@@ -90,10 +90,7 @@
                             @if($rincian->status == 'Lunas')
                             <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input" readonly value="{{ $rincian->status }}">
                             @else
-                            @foreach ($surat->rincianBiaya as $status)
-                            <input type="text" class="form-control form-control-sm border-input" readonly value="{{ $status->status }}">
-                                @endforeach
-                            </select>
+                            <input type="text" class="form-control form-control-sm border-input" readonly value="{{ $rincian->status }}">
                             @endif
                         </div>
                     </div>

@@ -16,13 +16,14 @@
             <div class="card-body">
                 <div class="form-group">
                     <h4 class="text-center">Rincian Biaya</h4>
-                    {{-- <a href="{{ route('dashboard.surat.create') }}" class="btn btn-primary mb-4 btn-rounded text-white float-end"><i class="fas fa-plus text-small"></i> Tambah</a> --}}
+                    <a href="{{ route('dashboard.rincian.biaya.create') }}" class="btn btn-primary mb-4 btn-rounded text-white float-end"><i class="fas fa-plus text-small"></i> Tambah</a>
                 </div>
                 <table class="table table-responsive text-center cell-border nowrap stripe hover" id="table_rincian_biaya" style="width: 100%">
                     <thead>
                         <tr>
                             <td class="text-center">No</td>
                             <td class="text-center">Nomor SPPD</td>
+                            <td class="text-center">Nama Personil</td>
                             <td class="text-center">DP</td>
                             <td class="text-center">Sisa Pembayaran</td>
                             <td class="text-center">Status</td>
@@ -59,6 +60,7 @@
         columns: [
             { data: 'DT_RowIndex',name: 'DT_RowIndex',orderable: false,searchable: false},
             { data: 'nomor_surat', name: 'nomor_surat'},
+            { data: 'nama.personil', name: 'nama.personil'},
             // { data: 'dp', name: 'dp'},
             {
                 data: 'dp', name: 'dp',
@@ -125,7 +127,50 @@
             { data: 'options',name: 'options', orderable: false, searchable: false }
         ],
     });
-
+    $('#table_rincian_biaya').on('click', '#btn-delete', function () {
+        var id = $(this).data('id');
+        var url = '{{ route("dashboard.rincian.biaya.destroy", ":id") }}'; // Use the correct route name "destroy"
+        url = url.replace(':id', id);
+        swal({
+            title: 'Anda yakin?',
+            text: 'Data yang sudah dihapus tidak dapat dikembalikan!',
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willDelete) => {
+            if (willDelete) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                // Send a DELETE request
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    cache: false,
+                    success: function (data) {
+                        if (data.status) {
+                            swal('Berhasil', data.status, 'success').then(() => {
+                                reloadTable('#table_rincian_biaya');
+                            });
+                        } else if (data.message) {
+                            swal('Error', data.message, 'error');
+                            reloadTable('#table_rincian_biaya');
+                        } else {
+                            swal('Error', 'Gagal menghapus surat', 'error');
+                            reloadTable('#table_rincian_biaya');
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        swal('Error', 'Gagal menghapus surat', 'error');
+                    }
+                });
+            } else {
+                // If the user cancels the deletion, do nothing
+            }
+        });
+    });
     });
 </script>
 @endpush

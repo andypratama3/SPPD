@@ -28,7 +28,7 @@ class RincianBiayaController extends Controller
     }
     public function datatable()
     {
-        $query = RincianBiaya::with('surat')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
+        $query = RincianBiaya::with('surat','pegawai')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
 
         return DataTables::of($query)
                 ->addColumn('nomor_surat', function ($rincian) {
@@ -36,13 +36,19 @@ class RincianBiayaController extends Controller
                     foreach ($rincian->surat as $surat) {
                         $nomor_surat .= $surat->nomor_surat . ', ';
                     }
-                    // Remove trailing comma and space
                     return rtrim($nomor_surat, ', ');
+                })
+                ->addColumn('nama.personil', function ($pegawais){
+                    foreach ($pegawais->pegawai as $pegawai) {
+                        return $pegawai->name;
+                    }
+                    // return $pegawai;
                 })
                 ->addColumn('options', function ($row){
                     return '
                         <a href="' . route('dashboard.rincian.biaya.show', $row->id) . '" class="btn btn-xs btn-info"><i class="fa fa-eye text-white"></i></a>
                         <a href="' . route('dashboard.rincian.biaya.edit', $row->id) . '" class="btn btn-xs btn-warning"><i class="fa fa-pen text-white"></i></a>
+                        <button data-id="' . $row['id'] . '" class="btn btn-xs btn-danger" id="btn-delete"><i class="fa fa-trash text-white"></i></button>
                     ';
                 })
                 ->rawColumns(['options'])
@@ -61,22 +67,26 @@ class RincianBiayaController extends Controller
     }
     public function edit($rincian)
     {
+        $surats = Surat::orderBy('nomor_surat','asc')->get();
+        $pegawais = Pegawai::all();
         $rincian = RincianBiaya::where('id', $rincian)->firstOrFail();
-        return view('admin.rincian-biaya.edit',compact('rincian'));
+
+        return view('admin.rincian-biaya.edit',compact('surats','pegawais','rincian'));
 
     }
     public function update(RincianBiayaData $rincianData, RincianBiayaAction $rincianBiayaAction)
     {
         $rincianBiayaAction->execute($rincianData);
-        return redirect()->route('dashboard.rincian.biaya.index')->with('success','Berhasil Update Rincian');
+        return redirect()->back()->with('success','Berhasil Update Rincian');
     }
-    public function destroy(RincianBiayaDelete $rincianBiayaDelete, $slug)
+    public function destroy(RincianBiayaDelete $RincianBiayaDelete, $id)
     {
-        $result = $rincianBiayaDelete->execute($slug);
-        if($result) {
-            return response()->json(['success' => 'Berhasil Rincian Biaya']);
-        } else {
-            return response()->json(['message' => 'Gagal Rincian Biaya'], 500);
+        if($RincianBiayaDelete)
+        {
+            $RincianBiayaDelete->execute($id);
+            return response()->json(['status' => 'success', 'message' => 'Berhasil Menghapus Rincian']);
+        }else{
+            return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Rincian']);
         }
 
     }

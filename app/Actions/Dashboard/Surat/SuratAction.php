@@ -30,11 +30,10 @@ class SuratAction
                 'nama' => $nama,
                 'umur' => $umur,
                 'hubungan' => $hubungan,
-                'sbm_id' => $suratData->sbm_id,
                 'mata_anggaran' => $suratData->mata_anggaran,
             ]
         );
-        
+
         if(empty($suratData->slug)){
             $surat->pegawai()->attach($suratData->pegawai);
         }else{

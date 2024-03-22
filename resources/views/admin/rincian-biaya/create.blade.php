@@ -27,15 +27,15 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Nomor Surat</label>
-                                <select name="nomor_surat" id="" class="select2 form-control">
+                                <select name="surat" id="" class="select2 form-control">
                                     @foreach ($surats as $surat)
-                                      <option value="{{ $surat->nomor_surat }}">{{ $surat->nomor_surat }}</option>
+                                      <option value="{{ $surat->id }}">{{ $surat->nomor_surat }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="">Nama Personil <code>*</code></label>
-                                <select name="pegawai_id" id="" class="select2 form-control">
+                                <select name="pegawai" id="" class="select2 form-control">
                                     @foreach ($surats as $surat)
                                         @foreach ($surat->pegawai as $pegawai )
                                         <option value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>

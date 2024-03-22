@@ -3,13 +3,12 @@ namespace App\Actions\Dashboard\RincianBiaya;
 
 use App\Models\RincianBiaya;
 
-class RincianBiayaActionDelete
+class RincianBiayaDelete
 {
-   public function execute($slug)
+   public function execute($id)
    {
-        $rincianBiaya = RincianBiaya::where('slug', $slug)->firstOrFail();
-        $rincianBiaya->surat()->detach();
+        $rincianBiaya = RincianBiaya::where('id', $id)->firstOrFail();
         $rincianBiaya->delete();
-        return $rincian;
+        return $rincianBiaya;
    }
 }

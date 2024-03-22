@@ -20,6 +20,7 @@ class RincianBiayaData extends Data
         public readonly ?string $pelunasan,
         public readonly string $status,
         public readonly string $surat,
+        public readonly string $pegawai,
         public readonly ?string $id,
 
     ) {

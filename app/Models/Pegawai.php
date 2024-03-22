@@ -26,4 +26,8 @@ class Pegawai extends Model
     {
         return $this->belongsToMany(Surat::class, 'pegawai_surats');
     }
+    public function rincian()
+    {
+        return $this->belongsToMany(RincianBiaya::class, 'pengawai_rincian');
+    }
 }
