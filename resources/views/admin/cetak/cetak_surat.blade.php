@@ -25,6 +25,8 @@
 
   <body>
     @foreach ($surat->pegawai as $pegawai)
+    @foreach ($surat->rincianBiaya as $rincian)
+
     <div class="container-fluid container-0">
       <div class="row d-flex justify-content-between">
         <div class="col-6 left-container">
@@ -207,6 +209,177 @@
         </div>
       </div>
     </div>
+
+    {{-- rincian Biaya --}}
+    <div class="container-fluid container-0">
+        <div class="row">
+          <p class="text-center title">RINCIAN BIAYA PERJALANAN DINAS</p>
+          <div class="col-12">
+            <table class="tabel">
+              <tr>
+                <td>Lampiran SPPD Nomor</td>
+                <td class="d-dot">:</td>
+                @foreach ($nomor_surat as $nomor)
+                    <td class="d-dot">{{ $surat->nomor_surat }} {{ $nomor->nomor_surat }}</td>
+                @endforeach
+              </tr>
+              <tr>
+                <td>Tanggal</td>
+                <td class="d-dot">:</td>
+                <td>7 Februari 2024</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-1" style="margin-bottom: 320px;">
+        <div class="row">
+          <table class="tabel">
+            <thead class="text-center">
+              <tr>
+                <th width="4%">NO.</th>
+                <th>PERINCIAN BIAYA</th>
+                <th width="15%">JUMLAH</th>
+                <th>KETERANGAN</th>
+              </tr>
+            </thead>
+            <tbody>
+              @php
+                $decodedRincian = json_decode($rincian['rincian'], true);
+                $decodedJumlah = json_decode($rincian['jumlah'], true);
+                $decodedRp = json_decode($rincian['rp'], true);
+                $decodedTotal = json_decode($rincian['total'], true);
+                $decodedKeterangan = json_decode($rincian['keterangan'], true);
+              @endphp
+              @foreach ($decodedRincian as $key => $item_rincian)
+              <tr class="non-tp-border">
+                <td class="text-center my-0 py-0">{{ $loop->iteration }}</td>
+                <td class="my-0 py-0">{{ $item_rincian }}</td>
+                <td class="d-flex justify-content-between amount">
+                  <span>Rp.</span> 500.000
+                </td>
+                <td>{{ $decodedKeterangan[$key] }}</td>
+              </tr>
+              <tr class="non-tp-border">
+                <td class="text-center my-0 py-0 pt-1" style="vertical-align: top">2.</td>
+                <td class="my-0 py-0">
+                  {{ $item_rincian }}
+                  <div class="d-flex justify-content-center">
+                    <table class="tabel-rincian" width="100%">
+                      <tr class="non-rl-border">
+                        <td class="text-end">2 ( dua ) hari</td>
+                        <td class="text-center w-25">X Rp.</td>
+                        <td class="text-start">35.000.000</td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+                <td class="d-flex align-items-end justify-content-between amount pb-1">
+                  <span>Rp.</span> 700.000
+                </td>
+                <td class="info"></td>
+              </tr>
+              <tr class="non-tp-border">
+                <td class="text-center my-0 py-0 pt-1" style="vertical-align: top">3.</td>
+                <td class="my-0 py-0">
+                  Uang Penginapan
+                  <div class="d-flex justify-content-center align-items-end">
+                    <table class="tabel-rincian" width="100%">
+                      <tr class="non-rl-border">
+                        <td class="text-end">1 ( satu ) hari</td>
+                        <td class="text-center w-25">X Rp.</td>
+                        <td class="text-start">5.254.000</td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+                <td class="d-flex align-items-end justify-content-between amount pb-1">
+                  <span>Rp.</span> 525.408
+                </td>
+                <td class="info"></td>
+              </tr>
+              <tr class="non-tp-border">
+                <td class="my-0 py-0 total-amount"></td>
+                <td class="my-0 py-0 total-amount">JUMLAH</td>
+                <td class="d-flex justify-content-between amount">
+                  <span>Rp.</span> 1.725.408
+                </td>
+                <td></td>
+              </tr>
+              @endforeach
+
+              <tr>
+                <td colspan="4" style="border: 1px solid #000">
+                  Terbilang : Satu juta tujuh ratus dua puluh lima ribu empat
+                  ratus delapan rupiah
+                </td>
+              </tr>
+              <tr class="non-border">
+                <td colspan="2"></td>
+                <td colspan="2">
+                  <p class="mt-3 my-0 py-0">Samarinda, 21 Februari 2024</p>
+                </td>
+              </tr>
+              <tr class="non-border">
+                <td></td>
+                <td>
+                  <p class="my-0 py-0">Telah dibayar sejumlah</p>
+                  <p class="my-0 py-0"><span class="rp">Rp.</span>{{ $rincian->dp }}</p>
+                </td>
+                <td colspan="2">
+                  <p class="my-0 py-0">Telah terima jumlah uang sebesar</p>
+                  <p class="my-0 py-0"><span class="rp">Rp.</span>{{ $rincian->dp }}</p>
+                </td>
+              </tr>
+              <tr class="non-border">
+                <td></td>
+                <td>
+                  <p class="mt-3 my-5 py-0">Bendahara Pengeluaran</p>
+                  <p class="my-0 py-0">Muliah, SE</p>
+                  <p class="mb-3 my-0 py-0">NIP 19771003 199903 2 001</p>
+                </td>
+                <td colspan="2">
+                  <p class="mt-3 my-5 py-0">Yang Menerima</p>
+                  @foreach ($rincian->pegawai as $pegawai_rincian)
+                    <p class="my-0 py-0">{{ $pegawai_rincian->name }}</p>
+                    <p class="mb-3 my-0 py-0">{{ $pegawai_rincian->nip }}</p>
+                  @endforeach
+                </td>
+              </tr>
+              <tr>
+                <td
+                  colspan="4"
+                  class="text-center py-3"
+                  style="border-bottom: transparent"
+                >
+                  PERHITUNGAN SPPD RAMPUNG
+                </td>
+              </tr>
+              <tr class="non-border">
+                <td></td>
+                <td>
+                  <p class="py-0 my-0">Ditetapkan sejumlah</p>
+                  <p class="py-0 my-0">Yang telah dibayar semula</p>
+                  <p class="py-0 my-0">Sisa kurang lebih</p>
+                </td>
+                <td colspan="2">
+                  <p class="py-0 my-0">: <span class="rp">Rp.</span>1.725.408</p>
+                  <p class="py-0 my-0">: <span class="rp">Rp.</span>1.725.408</p>
+                  <p class="py-0 my-0">: <span class="rp">Rp.</span>-</p>
+                </td>
+              </tr>
+              <tr class="non-border">
+                <td colspan="2"></td>
+                <td colspan="2">
+                  <p class="mt-3 my-5 py-0">Pejabat Pembuat Komitmen</p>
+                  <p class="my-0 py-0">Eva Nurmarini, S.Hut., MP</p>
+                  <p class="mb-3 my-0 py-0">NIP 19750808 199903 2 002</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     <div class="container-fluid container-0">
         <div class="row">
           <div class="col-6 offset-6">
@@ -230,6 +403,7 @@
             </table>
           </div>
         </div>
+
         <div class="row mt-3">
           <div class="col-4 offset-8 text-center">
             <p>Pimpinan,</p>
@@ -240,6 +414,7 @@
           </div>
         </div>
       </div>
+
       <div class="container-fluid container-1 mt-3">
         <div class="row">
           <table class="tabel">
@@ -473,9 +648,11 @@
         </table>
       </div>
     @endforeach
+    @endforeach
+
     <script src="{{ asset('asset_cetak/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script>
-        window.print();
+
     </script>
   </body>
 </html>

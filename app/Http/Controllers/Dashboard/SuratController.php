@@ -109,55 +109,7 @@ class SuratController extends Controller
     {
         $surat = Surat::where('slug', $slug)->first();
         $nomor_surat = NomorSurat::all();
-        // // Load the view with the data
-        // $html = view('admin.cetak.cetak_surat', ['surat' => $surat])->render();
-
-        // $options = new Options();
-        // $options->set('isRemoteEnabled', true);
-        // $options->set('dpi', 150);
-
-        // $options->set('isCssFloatEnabled', true);
-
-        // $dompdf = new Dompdf($options);
-
-        // $dompdf->loadHtml($html);
-
-        // $dompdf->setPaper('A4', 'portrait');
-
-        // $dompdf->render();
-
-        // // Convert the rendered PDF content to base64 format
-        // $pdfContent = $dompdf->output();
-        // $pdfBase64 = base64_encode($pdfContent);
-        // Embed the PDF content in an HTML iframe
-        // return '<iframe src="data:application/pdf;base64,' . $pdfBase64 . '" width="100%" height="800px"></iframe>';
-         // Load the view with the data
-        // $pdf = PDF::loadView('admin.cetak.cetak_surat', ['surat' => $surat]);
-
-        // // Set the paper size to A4
-        // $pdf->setPaper('a4');
-
-        // // Set additional options to match Chrome's print settings
-        // $pdf->setOptions([
-        //     'isPhpEnabled' => true, // Enable PHP rendering
-        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
-        //     'isRemoteEnabled' => true, // Allow loading of remote resources
-        //     'dpi' => 120, // DPI (dots per inch)
-        //     'defaultMediaType' => 'print', // Default media type
-        //     'fontHeightRatio' => 1.1, // Font height ratio
-        //     'isFontSubsettingEnabled' => true, // Enable font subsetting
-        //     'isJavascriptEnabled' => true, // Enable JavaScript execution
-        //     'isCssFloatEnabled' => true, // Enable CSS float
-        //     'isFixedPosEnabled' => true, // Enable fixed positioning
-        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
-        //     'isImageOptimEnabled' => true, // Enable image optimization
-        //     'isPdfaEnabled' => true, // Enable PDF/A mode
-        //     'isHtml5ParserEnabled' => true, // Enable HTML5 parsing
-        //     'isPhpEnabled' => true, // Enable PHP rendering
-        // ]);
-
-        // // // Download the PDF with a filename
-        // return $pdf->stream('siswa' . $surat->nomor_surat . '.pdf');
+        
         return view('admin.cetak.cetak_surat',compact('surat','nomor_surat'));
 
     }
