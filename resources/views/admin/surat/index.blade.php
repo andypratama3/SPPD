@@ -42,7 +42,15 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
     $.noConflict();
+<<<<<<< Updated upstream
 
+=======
+    function reloadTable(id){
+        var table = $(id).DataTable();
+        table.cleanData;
+        table.ajax.reload();
+    }
+>>>>>>> Stashed changes
     $(document).ready(function () {
         $('#table_surat').DataTable({
             ordering: true,
@@ -82,23 +90,26 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-
                 // Send a DELETE request
                 $.ajax({
                     url: url,
                     type: 'DELETE',
+<<<<<<< Updated upstream
                     cache: false,
                     success: function (data) {
                         if (data.status) {
                             swal('Berhasil', data.status, 'success').then(() => {
+=======
+                    success: function (data) {
+                        if (data.status === 'success') {
+                            swal('Berhasil', data.message, 'success').then(() => {
+>>>>>>> Stashed changes
                                 reloadTable('#table_surat');
                             });
-                        } else if (data.message) {
-                            swal('Error', data.message, 'error');
-                            reloadTable('#table_surat');
                         } else {
-                            swal('Error', 'Gagal menghapus surat', 'error');
-                            reloadTable('#table_surat');
+                            // Reload the page with an error message
+                            swal('Error', data.message, 'error');
+                            window.location.href = "{{ route('dashboard.surat.index') }}";
                         }
                     },
                     error: function(xhr, textStatus, errorThrown) {

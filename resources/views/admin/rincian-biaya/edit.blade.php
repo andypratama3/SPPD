@@ -265,9 +265,13 @@
             },
             cache: false,
             success: function (response) {
+<<<<<<< Updated upstream
                 $('#form-group-refresh').load(location.href + " #form-group-refresh");
                 $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
 
+=======
+                $('#form-group_reload').load(location.href + " #form-group_reload");
+>>>>>>> Stashed changes
             }
         });
     });

@@ -60,11 +60,11 @@ class SuratController extends Controller
         $pimpinans = Pimpinan::all();
         return view('admin.surat.create', compact('nomor_surat','pegawais','pimpinans'));
     }
-    // public function store(SuratData $suratData, SuratAction $suratAction)
-    // {
-    //     $suratAction->execute($suratData);
-    //     return redirect()->route('dashboard.surat.index')->with('success',"Sukses Menambahkan Surat");
-    // }
+    public function store(SuratData $suratData, SuratAction $suratAction)
+    {
+        $suratAction->execute($suratData);
+        return redirect()->route('dashboard.surat.index')->with('success',"Sukses Menambahkan Surat");
+    }
     public function show(Surat $surat)
     {
 
@@ -93,7 +93,6 @@ class SuratController extends Controller
         }else{
             return response()->json(['status' => 'error', 'message' => 'Gagal Menghapus Surat']);
         }
-
     }
     public function destroySuratArray(Request $request, SuratActionDeleteArray $suratActionDeleteArray)
     {
@@ -109,7 +108,7 @@ class SuratController extends Controller
     {
         $surat = Surat::where('slug', $slug)->first();
         $nomor_surat = NomorSurat::all();
-        
+
         return view('admin.cetak.cetak_surat',compact('surat','nomor_surat'));
 
     }
