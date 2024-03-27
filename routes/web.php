@@ -37,11 +37,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','cekrole: 1']], f
 
     });
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
-<<<<<<< Updated upstream
     Route::get('surats/cetak-pdf/{slug}',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetakPdf');
-=======
-    Route::post('surats/cetak',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetak.data');
->>>>>>> Stashed changes
     Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
     Route::get('rincian-biayas/records',[RincianBiayaController::class, 'datatable'])->name('dashboard.rincianBiaya.getRecords');
     Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
