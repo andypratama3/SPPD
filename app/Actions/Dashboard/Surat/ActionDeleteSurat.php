@@ -7,7 +7,6 @@ class ActionDeleteSurat
 {
     public function execute($surat)
     {
-<<<<<<< Updated upstream
        foreach ($surat->rincianBiaya as $rincian) {
             $rincian->surat()->detach($surat->id);
             $rincian->delete();
@@ -16,14 +15,6 @@ class ActionDeleteSurat
         $surat->pegawai()->detach();
 
         // Delete the Surat record
-=======
-        // $surat = Surat::where('slug', $slug)->firstOrFail();
-        $surat->pegawai()->detach();
-        $surat->rincianBiaya()->detach();
-        foreach ($surat->rincianBiaya as $rincian) {
-            $rincian->delete();
-        }
->>>>>>> Stashed changes
         $surat->delete();
     }
 }

@@ -124,7 +124,6 @@
                             <i class="ti-power-off text-primary"></i>
                             Logout
                         </a>
-                    
                     </form>
                 </div>
             </li>

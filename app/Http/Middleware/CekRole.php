@@ -20,7 +20,7 @@ class CekRole
         if(in_array(Auth::user()->role, $roles)){
             return $next($request);
         }else{
-            return redirect('/')->with('failed','Anda Bukan Admin');
+            return redirect()->route('notAdmin')->with('failed','Anda Bukan Admin');
         }
     }
 }

@@ -16,7 +16,7 @@
                         <td>NIP</td>
                         <td>Jabatan</td>
                         <td>Golongan</td>
-                        <td>Action</td>
+                        <td>Aksi</td>
                     </tr>
                     <tbody>
                         @foreach ($pegawais as $pegawai)

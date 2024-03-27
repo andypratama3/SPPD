@@ -26,7 +26,7 @@
                             <td class="text-center">Tanggal</td>
                             <td class="text-center">Nama Personil</td>
                             <td class="text-center">Tujuan</td>
-                            <td class="text-center">Action</td>
+                            <td class="text-center">Aksi</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,15 +42,6 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script>
     $.noConflict();
-<<<<<<< Updated upstream
-
-=======
-    function reloadTable(id){
-        var table = $(id).DataTable();
-        table.cleanData;
-        table.ajax.reload();
-    }
->>>>>>> Stashed changes
     $(document).ready(function () {
         $('#table_surat').DataTable({
             ordering: true,
@@ -94,16 +85,10 @@
                 $.ajax({
                     url: url,
                     type: 'DELETE',
-<<<<<<< Updated upstream
                     cache: false,
                     success: function (data) {
                         if (data.status) {
                             swal('Berhasil', data.status, 'success').then(() => {
-=======
-                    success: function (data) {
-                        if (data.status === 'success') {
-                            swal('Berhasil', data.message, 'success').then(() => {
->>>>>>> Stashed changes
                                 reloadTable('#table_surat');
                             });
                         } else {

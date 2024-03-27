@@ -16,9 +16,6 @@
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card" id="card-not-refresh">
-            {{-- <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Detail Rincian</h5>
-            </div> --}}
             <form action="{{ route('dashboard.rincian.biaya.update', $rincian->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -65,7 +62,7 @@
                                         <th class="w-25">RP</th>
                                         <th class="w-25">Total</th>
                                         <th class="w-50">Keterangan</th>
-                                        <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus"></i></button></td>
+                                        <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i class="fas fa-plus text-white"></i></button></td>
 
                                     </tr>
                                     @php
@@ -84,7 +81,7 @@
                                             <td><input type="text" class="form-control" name="keterangan[]" placeholder="Masukkan Keterangan" value="{{ $decodedKeterangan[$key] }}"></td>
                                             @if($rincian->status == 'Lunas')
                                             @else
-                                            <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fas fa-trash"></i></button></td>
+                                            <td><button type="button" class="btn btn-xs btn-danger remove-row delete-item-array" data-id="{{ $key }}"><i class="fa fa-trash text-white"></i></button></td>
                                             @endif
                                         </tr>
                                     @endforeach
@@ -138,8 +135,8 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                            <button class="btn btn-primary float-end">Update</button>
+                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger btn-rounded text-white">Kembali</a>
+                            <button class="btn btn-primary float-end btn-rounded text-white">Update</button>
                         </div>
                         @endif
                     </div>
@@ -169,31 +166,32 @@
         });
 
         let i = 5;
-        $("#dynamic-ar").click(function () {
+        // $("#dynamic-ar").click(function () {
+        $("#form-group-refresh").on('click','#dynamic-ar',function () {
         ++i;
-        $("#dynamicAddRemove").append(
-            `<tr>
-                <td>
-                    <input type="text" class="form-control" name="rincian[${i}]" placeholder="Masukkan rincian">
-                </td>
-                <td>
-                    <input type="number" class="form-control" name="jumlah[${i}]" min="1">
-                </td>
-                <td>
-                    <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
-                </td>
-                <td>
-                    <input type="text" class="form-control" name="total[${i}]" readonly>
-                </td>
-                <td>
-                    <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
-                </td>
-                <td colspan="2">
-                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
-                </td>
-            </tr>`
-        );
-    });
+            $("#dynamicAddRemove").append(
+                `<tr>
+                    <td>
+                        <input type="text" class="form-control" name="rincian[${i}]" placeholder="Masukkan rincian">
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="jumlah[${i}]" min="1">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="total[${i}]" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
+                    </td>
+                    <td colspan="2">
+                        <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fa fa-trash text-white"></i></button></td>
+                    </td>
+                </tr>`
+            );
+        });
 
     $(document).on('click', '.remove-input-field', function () {
         $(this).parents('tr').remove();
@@ -265,13 +263,8 @@
             },
             cache: false,
             success: function (response) {
-<<<<<<< Updated upstream
                 $('#form-group-refresh').load(location.href + " #form-group-refresh");
-                $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");
-
-=======
-                $('#form-group_reload').load(location.href + " #form-group_reload");
->>>>>>> Stashed changes
+                $('#sisa_pembayaran_reload').load(location.href + " #sisa_pembayaran_reload");  
             }
         });
     });

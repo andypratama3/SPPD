@@ -42,7 +42,7 @@ class SuratController extends Controller
                 })
                 ->addColumn('options', function ($row){
                     return '
-                    <a href="' . route('dashboard.surat.cetakPdf', $row->slug) . '" class="btn btn-xs btn-success"><i class="fa fa-file-pdf text-white"></i></a>
+                    <a href="' . route('dashboard.surat.cetakPdf', $row->slug) . '" class="btn btn-xs btn-success" target="_blank"><i class="fa fa-file-pdf text-white"></i></a>
                     <a href="' . route('dashboard.surat.show', $row->slug) . '" class="btn btn-xs btn-info"><i class="fa fa-eye text-white"></i></a>
                     <a href="' . route('dashboard.surat.edit', $row->slug) . '" class="btn btn-xs btn-warning"><i class="fa fa-pen text-white"></i></a>
                     <button data-id="' . $row['slug'] . '" class="btn btn-xs btn-danger" id="btn-delete"><i class="fa fa-trash text-white"></i></button>
@@ -108,8 +108,12 @@ class SuratController extends Controller
     {
         $surat = Surat::where('slug', $slug)->first();
         $nomor_surat = NomorSurat::all();
+        $tgl_berangkat = $surat->tanggal_berangkat;
+        $tgl_berangkat_formated = date('Y-m-d', strtotime($tgl_berangkat));
+        $tgl_kembali = $surat->tanggal_kembali;
+        $tgl_kembali_formated = date('Y-m-d', strtotime($tgl_kembali));
 
-        return view('admin.cetak.cetak_surat',compact('surat','nomor_surat'));
+        return view('admin.cetak.cetak_surat',compact('surat','nomor_surat', 'tgl_berangkat_formated', 'tgl_kembali_formated'));
 
     }
 

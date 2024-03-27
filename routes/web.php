@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AksesController;
 use App\Http\Controllers\Dashboard\SbmController;
 use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Dashboard\RincianBiayaController;
 //     return view('welcome');
 // });
 
+Route::get('akses', [AksesController::class, 'akses'])->name('notAdmin');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','cekrole: 1']], function (){
     Route::get('/',DashboardController::class)->name('dashboard');

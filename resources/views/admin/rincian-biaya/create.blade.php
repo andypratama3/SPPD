@@ -18,13 +18,13 @@
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header mt-2" style="background: none !important;">
-                <h5 class="text-center">Tambah Rincian Biaya</h5>
+                <h5 class="text-center">TAMBAH RINCIAN BIAYA</h5>
             </div>
             <form action="{{ route('dashboard.rincian.biaya.store') }}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="row text-center">
-                        <div class="col-md-12">
+                        <div class="col-sm-12 col-md-6 offset-3">
                             <div class="form-group">
                                 <label for="">Nomor Surat</label>
                                 <select name="surat" id="surat_id" class="select2 form-control">
@@ -44,10 +44,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <hr>
-                            <div class="form-group">
-                                <h6 class="text-center">Rincian Biaya</h6>
-                                <hr>
+                            <div class="form-group mt-3">
+                                <h5 class="text-center">Rincian Biaya</h5>
                                 <table class="table table-bordered text-center" id="dynamicAddRemove">
                                     <tr>
                                         <th class="w-25">Rincian Biaya</th>
@@ -58,16 +56,16 @@
                                         <th class="w-25">Actions</th>
                                     </tr>
                                     <tr>
-                                        <td><input type="text" class="form-control" name="rincian[]"
+                                        <td><input type="text" class="form-control form-control-sm" name="rincian[]"
                                                 placeholder="Masukkan Rincian"></td>
-                                        <td><input type="text" class="form-control" min="1" name="jumlah[]"></td>
-                                        <td><input type="text" class="form-control" name="rp[]"
+                                        <td><input type="text" class="form-control form-control-sm" min="1" name="jumlah[]"></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="rp[]"
                                                 placeholder="Masukkan Rp" id="rp"></td>
-                                        <td><input type="text" class="form-control" name="total[]" readonly></td>
-                                        <td><input type="text" class="form-control" name="keterangan[]"
+                                        <td><input type="text" class="form-control form-control-sm" name="total[]" readonly></td>
+                                        <td><input type="text" class="form-control form-control-sm" name="keterangan[]"
                                                 placeholder="Masukkan Keterangan"></td>
                                         <td><button type="button" id="dynamic-ar" class="btn btn-xs btn-primary"><i
-                                                    class="fas fa-plus"></i></button></td>
+                                                    class="fas fa-plus text-white"></i></button></td>
                                     </tr>
                                 </table>
                                 <div class="mt-2 float-end" style="margin-right: 20px; border: 2px solid; padding: 10px;">
@@ -80,21 +78,21 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="">Jumlah DP</label>
-                                <input type="text" name="dp" id="dp" class="form-control border-input">
+                                <input type="text" name="dp" id="dp" class="form-control form-control-sm border-input">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="">Status</label>
-                                <select name="status" class="form-control border-input">
+                                <select name="status" class="form-control form-control-sm border-input">
                                     <option value="DP">DP</option>
                                     <option value="Belum Di Bayar">Belum Di Bayar</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-danger">Kembali</a>
-                            <button class="btn btn-primary float-end">Submit</button>
+                            <a href="{{ route('dashboard.rincian.biaya.index') }}" class="btn btn-rounded btn-danger text-white">Kembali</a>
+                            <button class="btn btn-primary btn-rounded float-end text-white">Submit</button>
                         </div>
                     </div>
             </form>
@@ -128,22 +126,22 @@
             $("#dynamicAddRemove").append(
                 `<tr>
                 <td>
-                    <input type="text" class="form-control" name="rincian[${i}]" placeholder="Masukkan rincian">
+                    <input type="text" class="form-control form-control-sm" name="rincian[${i}]" placeholder="Masukkan rincian">
                 </td>
                 <td>
-                    <input type="number" class="form-control" name="jumlah[${i}]" min="1">
+                    <input type="number" class="form-control form-control-sm" name="jumlah[${i}]" min="1">
                 </td>
                 <td>
-                    <input type="text" class="form-control rp" name="rp[${i}]" placeholder="Masukkan Rp">
+                    <input type="text" class="form-control form-control-sm rp" name="rp[${i}]" placeholder="Masukkan Rp">
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="total[${i}]" readonly>
+                    <input type="text" class="form-control form-control-sm" name="total[${i}]" readonly>
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="keterangan[${i}]" placeholder="Masukkan keterangan">
+                    <input type="text" class="form-control form-control-sm" name="keterangan[${i}]" placeholder="Masukkan keterangan">
                 </td>
                 <td colspan="2">
-                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fas fa-trash"></i></button></td>
+                    <button type="button" class="btn btn-xs btn-danger remove-input-field"><i class="fa fa-trash text-white"></i></button></td>
                 </td>
             </tr>`
             );

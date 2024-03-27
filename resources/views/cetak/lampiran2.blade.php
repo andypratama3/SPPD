@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran2.css') }}" />
     <link
       rel="stylesheet"
-      href="{{ asset('asset_cetak/bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
+      href="{{ asset('bootstrap-5.1.3-dist/css/bootstrap.min.css') }}"
     />
   </head>
 
@@ -278,6 +278,6 @@
       </table>
     </div>
 
-    <script src="{{ asset('asset_cetak/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js') }}"></script>
   </body>
 </html>

@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lampiran 1</title>
-    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran1.css') }}" />
-    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran-1.css') }}" />
+    <link rel="stylesheet" href="{{ asset('asset_cetak/css/lampiran-2.css') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link
       rel="stylesheet"
@@ -72,10 +72,10 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid main-title container-1">
+    <div class="container-fluid main-title lampiran-1 container-1">
       <p class="title">SURAT PERINTAH PERJALANAN DINAS</p>
     </div>
-    <div class="container-fluid container-2">
+    <div class="container-fluid lampiran-1 container-2">
       <div class="row">
         <table>
           <tr>
@@ -138,7 +138,11 @@
               <p class="my-0 py-0">b. Tanggal berangkat</p>
               <p class="my-0 py-0">c. Tanggal harus kembali</p>
             </td>
-            <td colspan="3">{{ $surat->lama_perjalanan }} (dua) hari {{ $surat->tanggal_berangkat }} - {{ $surat->tanggal_kembali }}</td>
+            <td colspan="3">
+              <p class="my-0 py-0">{{ $surat->lama_perjalanan }} ({!! \Illuminate\Support\Str::words($surat->lama_perjalanan,5) !!}) hari</p>
+              <p class="my-0 py-0">{{ $tgl_berangkat_formated }}</p>
+              <p class="my-0 py-0">{{ $tgl_kembali_formated }}</p>
+            </td>
           </tr>
           <tr>
             <td style="word-spacing: 100px">Pengikut Nama</td>
@@ -186,7 +190,7 @@
         </table>
       </div>
     </div>
-    <div class="container-fluid mt-3 container-3" style="margin-bottom: 200px;">
+    <div class="container-fluid mt-3 lampiran-1 container-3" style="margin-bottom: 200px;">
       <div class="row d-flex justify-content-between">
         <div class="col-7 left-container">
           <p>*) Coret yang tidak perlu</p>
@@ -199,13 +203,13 @@
             </tr>
             <tr>
               <td>Pada tanggal</td>
-              <td class="px-3">: 2 Februari 2024</td>
+              {{-- <td class="px-3">: {{ $tanggal_hari_ini_formated }}</td> --}}
             </tr>
           </table>
           <p>Pejabat Pembuat Komitmen</p>
           <p>Politeknik Pertanian Negeri Samarinda</p>
           <p class="mt-5">{{ $surat->pimpinan->name }}</p>
-          <p>NIP : {{ $surat->pimpinan->mip }}</p>
+          <p>NIP : {{ $surat->pimpinan->nip }}</p>
         </div>
       </div>
     </div>
@@ -629,7 +633,7 @@
           </table>
         </div>
       </div>
-      <div class="container-fluid container-2 px-0 mt-3" style="margin-bottom: 100px;">
+      <div class="container-fluid lampiran-2 container-2 px-0 mt-3" style="margin-bottom: 100px;">
         <table class="tabel">
           <tr>
             <td>VII.</td>
