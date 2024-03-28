@@ -37,8 +37,10 @@
                             <div class="form-group">
                                 <label for="">Nama Personil <code>*</code></label>
                                 <select name="pegawai" id="" class="select2 form-control">
-                                @foreach ($rincian->pegawai as $pegawai)
-                                    <option selected value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
+                                @foreach ($surats as $surat)    
+                                    @foreach ($surat->pegawai as $pegawai)
+                                        <option selected value="{{ $pegawai->id }}">{{ $pegawai->name }}</option>
+                                    @endforeach
                                 @endforeach
                                 @foreach ($surats as $surat)
                                     @foreach ($surat->pegawai as $pegawai )
