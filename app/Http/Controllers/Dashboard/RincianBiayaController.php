@@ -28,7 +28,7 @@ class RincianBiayaController extends Controller
     }
     public function datatable()
     {
-        $query = RincianBiaya::with('surat','pegawai')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
+        $query = RincianBiaya::with('surat','pegawaiRincian')->select(['id','rincian','jumlah','rp','total','keterangan','dp','sisa_pembayaran','pelunasan','status','created_at']);
 
         return DataTables::of($query)
                 ->addColumn('nomor_surat', function ($rincian) {
@@ -39,7 +39,7 @@ class RincianBiayaController extends Controller
                     return rtrim($nomor_surat, ', ');
                 })
                 ->addColumn('nama.personil', function ($pegawais){
-                    foreach ($pegawais->pegawai as $pegawai) {
+                    foreach ($pegawais->pegawaiRincian as $pegawai) {
                         return $pegawai->name;
                     }
                     // return $pegawai;

@@ -33,7 +33,7 @@ class RincianBiaya extends Model
     {
         return $this->belongsToMany(Surat::class, 'surat_rincian');
     }
-    public function pegawai()
+    public function pegawaiRincian()
     {
         return $this->belongsToMany(Pegawai::class, 'pegawai_rincian');
     }

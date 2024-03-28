@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AksesController;
 use App\Http\Controllers\Dashboard\SbmController;
+use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\SuratController;
 use App\Http\Controllers\Dashboard\PegawaiController;
 use App\Http\Controllers\Dashboard\PimpinanController;
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','cekrole: 1']], f
     Route::group(['prefix' => 'datamaster'], function (){
         Route::resource('pegawai', PegawaiController::class, ['names' => 'dashboard.datamaster.pegawai']);
         Route::resource('pimpinan', PimpinanController::class, ['names' => 'dashboard.datamaster.pimpinan']);
+        Route::resource('user', UserController::class, ['names' => 'dashboard.datamaster.user']);
         Route::get('nomor-surat',[NomorSuratController::class, 'index'])->name('dashboard.datamaster.nomor_surat.index');
         Route::get('nomor-surat/edit/{id}',[NomorSuratController::class, 'edit'])->name('dashboard.datamaster.nomor_surat.edit');
         Route::post('nomor-surat/update/{id}',[NomorSuratController::class, 'update'])->name('dashboard.datamaster.nomor_surat.update');

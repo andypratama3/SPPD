@@ -344,7 +344,7 @@
                 </td>
                 <td colspan="2">
                   <p class="mt-3 my-5 py-0">Yang Menerima</p>
-                  @foreach ($rincian->pegawai as $pegawai_rincian)
+                  @foreach ($rincian->pegawaiRincian as $pegawai_rincian)
                     <p class="my-0 py-0">{{ $pegawai_rincian->name }}</p>
                     <p class="mb-3 my-0 py-0">{{ $pegawai_rincian->nip }}</p>
                   @endforeach

@@ -34,6 +34,12 @@
                             <span class="menu-title">Pegawai</span>
                         </a>
                     </li>
+                    <li class="nav-item {{ Request::routeIs('dashboard.datamaster.user.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('dashboard.datamaster.user.index') }}">
+                            <i class="fas fa-users menu-icon"></i>
+                            <span class="menu-title">User</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </li>
