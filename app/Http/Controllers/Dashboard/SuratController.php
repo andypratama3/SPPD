@@ -106,15 +106,17 @@ class SuratController extends Controller
     }
     public function cetak_pdf($slug)
     {
+        
         $surat = Surat::where('slug', $slug)->first();
         $nomor_surat = NomorSurat::all();
         $tgl_berangkat = $surat->tanggal_berangkat;
         $tgl_berangkat_formated = date('Y-m-d', strtotime($tgl_berangkat));
         $tgl_kembali = $surat->tanggal_kembali;
         $tgl_kembali_formated = date('Y-m-d', strtotime($tgl_kembali));
+        $tgl_sekarang = date('Y-m-d');
+        $tgl_sekarang_formated = date('Y-m-d', strtotime($tgl_sekarang));
 
-        return view('admin.cetak.cetak_surat',compact('surat','nomor_surat', 'tgl_berangkat_formated', 'tgl_kembali_formated'));
-
+        return view('admin.cetak.cetak_surat',compact('surat','nomor_surat', 'tgl_berangkat_formated', 'tgl_kembali_formated', 'tgl_sekarang_formated'));
     }
 
 

@@ -42,12 +42,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth','cekrole: 1']], f
     });
     Route::resource('surat', SuratController::class, ['names' => 'dashboard.surat']);
     Route::get('surats/cetak-pdf/{slug}',[SuratController::class, 'cetak_pdf'])->name('dashboard.surat.cetakPdf');
+    Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
+    Route::post('rincian-surat-array/delete',[SuratController::class, 'destroySuratArray'])->name('dashboard.surat.arrayDelete');
     Route::resource('rincian-biaya', RincianBiayaController::class, ['names' => 'dashboard.rincian.biaya']);
     Route::get('rincian-biayas/records',[RincianBiayaController::class, 'datatable'])->name('dashboard.rincianBiaya.getRecords');
-    Route::get('surats/records',[SuratController::class, 'datatable'])->name('dashboard.surat.getRecords');
     Route::post('rincian/find/pegawai',[RincianBiayaController::class, 'find_pegawai'])->name('dashboard.rincian.get.pegawai');
     Route::post('rincian-biaya-array/delete',[RincianBiayaController::class, 'destroyRincianArray'])->name('dashboard.rincianBiaya.arrayDelete');
-    Route::post('rincian-surat-array/delete',[SuratController::class, 'destroySuratArray'])->name('dashboard.surat.arrayDelete');
 });
 
 

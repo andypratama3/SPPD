@@ -72,7 +72,6 @@
                                     <td colspan="2"><strong>Grand Total</strong></td>
                                     <td colspan="4"><strong><u>Rp. 12981267</u></strong></td>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-6">
